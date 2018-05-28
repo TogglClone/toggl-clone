@@ -1,8 +1,8 @@
 import React from 'react';
 import {Route, Switch} from 'react-router-dom';
 
-import Home from './component/Home/Home.js';
-import Timer from './component/Timer/Timer.js';
+import Home from './components/Home/Home.js';
+import Timer from './components/Timer/Timer.js';
 
 export default (
     <div>
