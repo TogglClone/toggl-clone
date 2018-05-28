@@ -1,5 +1,5 @@
 UPDATE timers
-SET start_time = $1 
-WHERE timer_id = $2;
+SET start_time = $1, end_time = $2
+WHERE timer_id = $3;
 SELECT * FROM timers
-WHERE user_id = $3;
+WHERE user_id = $4;
