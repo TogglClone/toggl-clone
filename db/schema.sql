@@ -5,7 +5,8 @@ CREATE TABLE IF NOT EXISTS users(
 CREATE TABLE IF NOT EXISTS timers(
     timer_id SERIAL PRIMARY KEY,
     user_id INT,
-    day_created TEXT
+    start_time TEXT,
+    end_time TEXT
 ),
 CREATE TABLE IF NOT EXISTS tags(
     tag_id SERIAL PRIMARY KEY,
