@@ -4,16 +4,15 @@ import routes from "./routes";
 import "./App.css"
 
 class App extends Component {
-  render() {
-      return (
-        <HashRouter>
-          <div className="App">
-            {routes}
-          </div>
-        </HashRouter>
-      )
-    
-  }
-}
+ render() {
+     return (
+       <HashRouter>
+         <div className="App">
+           {routes} 
+         </div>
+       </HashRouter>
+     )
+   
+ }
 
 export default App
