@@ -84,7 +84,7 @@ const BurgerContainer = styled.section`
   flex-direction: column;
 `
 
-const Video = styled.video``
+// const Video = styled.video``
 
 const TitleContainer = styled.section`
   width: calc(100% - (2.2rem * 2));
