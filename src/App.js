@@ -3,15 +3,18 @@ import {HashRouter} from 'react-router-dom';
 import routes from "./routes";
 import "./App.css"
 
-export default class App extends Component {
- render() {
-     return (
-       <HashRouter>
-         <div className="App">
-           {routes} 
-         </div>
-       </HashRouter>
-     )
-   
- }
+
+class App extends Component {
+  render() {
+      return (
+        <HashRouter>
+          <div className="App">
+            {routes}
+          </div>
+        </HashRouter>
+      )
+    
+  }
 }
+
+export default App
