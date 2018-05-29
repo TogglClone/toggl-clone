@@ -11,6 +11,7 @@ class ProjectBar extends Component{
             seconds: '00',
             minutes: '00',
             hours: 0,
+            timer_name: '',
             timerMode: true,
             timerFn: null,
             start_time: null,
@@ -52,16 +53,16 @@ class ProjectBar extends Component{
             })
         } else {
             clearInterval(this.state.timerFn)
-            const {hours, minutes, seconds, start_time} = this.state
+            const {hours, minutes, seconds, start_time, timer_name} = this.state
             let end_time = new Date()
             let total_time = `${hours}:${minutes}:${seconds}`
-            let timer_name = 'Deniz Timer aw ye'
             //push the start date and end_time to server think about adding the difference as one of the table columns
             this.props.addTimer(start_time, end_time, total_time, timer_name)
             this.setState({
                 seconds: '00',
                 minutes: '00',
                 hours: '0',
+                timer_name: ''
             })
         }
         this.setState({
@@ -69,11 +70,11 @@ class ProjectBar extends Component{
         })
     }
     render(){
-        console.log(this.state.start_time, this.state.end_time)
+        console.log(this.state.timer_name)
         let {seconds, minutes, hours} = this.state
         return(
             <div>
-                
+                <input type="text" placeholder='What are you working on?' onChange={(e) => this.setState({timer_name: e.target.value})}/>
                 {hours}:{minutes}:{seconds}
                 <button onClick={() => this.toggleTimer()}>Start</button>
             </div>

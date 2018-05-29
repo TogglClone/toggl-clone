@@ -1,23 +1,24 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
-import {getTimers} from '../../../ducks/reducer';
+import {getTimers, handleTimerName, updateName, deleteTimer} from '../../../ducks/reducer';
 
 class TimersList extends Component{
-    constructor(){
-        super()
-
-        this.state = {
-            timers: []
-        }
-    }
     componentDidMount(){
         this.props.getTimers()
     }
     render(){
-        let timersList = this.props.timers.map( e => {
+        const {timers, timerNameEdits, handleTimerName, updateName, deleteTimer} = this.props
+        let timersList = timers.map( (e, i) => {
             return(
-                <div key={e.timer_id}>{e.start_time} {e.end_time} {e.timer_name}</div>
+                <div key={i}>
+                    <input type="text" value={timerNameEdits[i]} onChange={(e) => handleTimerName(timerNameEdits, e.target.value, i)}/>
+                    <button onClick={() => updateName(timerNameEdits[i], e.timer_id)}>Edit Name</button>
+                    <button onClick={() => deleteTimer(e.timer_id)}>Delete</button>
+                    {/* <span>{e.start_time}  </span>
+                    <span>{e.end_time}</span> */}
+                
+                </div>
             )
         })
         return(
@@ -30,8 +31,9 @@ class TimersList extends Component{
 
 function mapStateToProps(state) {
     return{
-        timers: state.timers
+        timers: state.timers,
+        timerNameEdits: state.timerNameEdits
     }
 }
 
-export default connect(mapStateToProps, {getTimers})(TimersList)
+export default connect(mapStateToProps, {getTimers, handleTimerName, updateName, deleteTimer})(TimersList)
