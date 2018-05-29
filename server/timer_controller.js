@@ -23,7 +23,7 @@ module.exports = {
         })
     },
     updateName:  (req, res) => {
-        let {user_id} = req.user
+        let user_id = 1
         let { timer_name, timer_id } = req.body
         const db = req.app.get('db')
         db.timers.change_timer_name([timer_name, timer_id, user_id]).then( (timers) => {
@@ -34,7 +34,7 @@ module.exports = {
         })
     },
     updateStartEnd: (req, res) => {
-        let {user_id} = req.user
+        let user_id = 1
         let { timer_id, start_time, end_time } = req.body
         const db = req.app.get('db')
         db.timers.change_timer_start([start_time, end_time, timer_id, user_id]).then( (timers) => {
@@ -45,7 +45,7 @@ module.exports = {
         })
     },
     delete: (req, res) => {
-        let {user_id} = req.user
+        let user_id = 1
         let { timer_id } = req.query
         const db = req.app.get('db')
         db.timers.delete_timer([timer_id, user_id]).then( (timers) => {

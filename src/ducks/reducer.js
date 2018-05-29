@@ -1,38 +1,95 @@
 import axios from 'axios';
 
 const initialState = {
-    timers: []
+    timers: [],
+    timerNameEdits: []
 }
 
-const GET_TIMERS = 'GET_TIMERS';
-const ADD_TIMER = 'ADD_TIMER'
+const TIMERS = 'TIMERS';
+const TIMER_NAME_EDITS = 'TIMER_NAME_EDITS'
 
 export function getTimers(){
-    let timers = axios.get('/api/timers').then( res => {
-        return res.data
+    let timersObj = axios.get('/api/timers').then( res => {
+        var timerNames = res.data.map( timer => {
+            return timer.timer_name
+        })
+        let returnObj = {
+            timerNames: timerNames,
+            timers: res.data
+        }
+        return returnObj
     })
     return {
-        type: GET_TIMERS,
-        payload: timers
+        type: TIMERS,
+        payload: timersObj
     }
 }
 export function addTimer(start_time, end_time, total_time, timer_name){
-    let timers = axios.post('/api/timer' , {start_time, end_time, total_time, timer_name})
-    .then( res => {
-        return res.data
+    let timersObj = axios.post('/api/timer' , {start_time, end_time, total_time, timer_name}).then( res => {
+        var timerNames = res.data.map( timer => {
+            return timer.timer_name
+        })
+        let returnObj = {
+            timerNames: timerNames,
+            timers: res.data
+        }
+        return returnObj
     })
     return {
-        type: ADD_TIMER,
-        payload: timers
+        type: TIMERS,
+        payload: timersObj
+    }
+}
+export function handleTimerName(timerNameEdits, value, index){
+    let temp = timerNameEdits.slice()
+    temp[index] = value
+
+    return {
+        type: TIMER_NAME_EDITS,
+        payload: temp
+    }
+}
+export function updateName(timer_name, timer_id){
+    let timersObj = axios.put('/api/timer-name', {timer_name, timer_id}).then( res => {
+        console.log(res.data)
+        var timerNames = res.data.map( timer => {
+            return timer.timer_name
+        })
+        let returnObj = {
+            timerNames: timerNames,
+            timers: res.data
+        }
+        return returnObj
+    })
+    return {
+        type: TIMERS,
+        payload: timersObj
+    }
+}
+export function deleteTimer(timer_id){
+    let timersObj = axios.delete(`/api/timer?timer_id=${timer_id}`).then( res => {
+        var timerNames = res.data.map( timer => {
+            return timer.timer_name
+        })
+        let returnObj = {
+            timerNames: timerNames,
+            timers: res.data
+        }
+        return returnObj
+    })
+    return {
+        type: TIMERS,
+        payload: timersObj
     }
 }
 
 export default function reducer( state = initialState, action){
     switch (action.type) {
-        case GET_TIMERS + '_FULFILLED':     
-            return Object.assign({}, state, {timers: action.payload})
-        case ADD_TIMER + '_FULFILLED':     
-            return Object.assign({}, state, {timers: action.payload})
+        case TIMERS + '_FULFILLED':    
+        console.log(action.payload) 
+            return Object.assign({}, state, {timers: action.payload.timers, timerNameEdits:action.payload.timerNames})
+        case TIMER_NAME_EDITS:
+            return Object.assign({}, state, {timerNameEdits: action.payload})
         default:
             return state;
     }
