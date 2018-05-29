@@ -1,23 +1,28 @@
-const express = require('express')
-    , massive = require('massive');
-const bodyParser = require('body-parser')
-
-require('dotenv').config();
-const tagc = require('./tag_controller.js')
-const timerc = require('./timer_controller.js')
-
-const port = 3005
-
-app = express()
-
+require("dotenv")
+const express = require("express")
+const massive = require("massive")
+const bodyParser = require("body-parser")
+const session = require("express-session")
+const Auth0Strategy = require("passport-auth0")
+const cors = require("cors")
 const {
-    CONNECTION_STRING,
-} = process.env;
-
+  CONNECTION_STRING,
+  SESSION_SECRET,
+  SERVER_PORT,
+  DOMAIN,
+  CLIENT_ID,
+  CLIENT_SECRET,
+  CALLBACK_URL
+} = process.env
+const app = express()
 app.use(bodyParser.json())
-massive(CONNECTION_STRING).then( db=> {
-    app.set('db', db);
-    console.log("Database connected")
+app.use(cors())
+//change
+massive(CONNECTION_STRING).then(db => {
+  app.set("db", db)
+  app.listen(SERVER_PORT, () => {
+    console.log(`listening on ${SERVER_PORT}`)
+  })
 })
 
 app.get("/api/tags", tagc.getAll)
@@ -29,5 +34,3 @@ app.post("/api/timer", timerc.create)
 app.put("/api/timer-name", timerc.updateName)
 app.put("/api/timer-start", timerc.updateStartEnd)
 app.delete("/api/timer", timerc.delete)
-
-app.listen(port, ()=> console.log("Done Listening!"));
