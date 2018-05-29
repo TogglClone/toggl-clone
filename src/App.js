@@ -3,7 +3,7 @@ import {HashRouter} from 'react-router-dom';
 import routes from "./routes";
 import "./App.css"
 
-class App extends Component {
+export default class App extends Component {
  render() {
      return (
        <HashRouter>
@@ -14,5 +14,4 @@ class App extends Component {
      )
    
  }
-
-export default App
+}
