@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS users(
     user_id SERIAL PRIMARY KEY,
-    auth_id TEXT
+    username TEXT
 ),
 CREATE TABLE IF NOT EXISTS timers(
     timer_id SERIAL PRIMARY KEY,

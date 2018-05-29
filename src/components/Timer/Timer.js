@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
+import ProjectBar from './ProjectBar/ProjectBar';
 
 class Timer extends Component {
     
@@ -9,6 +10,7 @@ class Timer extends Component {
                 Timer
                 <br/>
                 <Link to={'/'}><button>Home</button></Link>
+                <ProjectBar />
             </div>
         )
     }
