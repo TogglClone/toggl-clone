@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import styled from "styled-components"
+import hatdog from "./img/hotdog.mov"
 
 export default class Landing extends Component {
   constructor() {
@@ -35,13 +36,15 @@ export default class Landing extends Component {
           </BurgerContainer>
         </Header>
         <TitleContainer>
-          <h1>Everything works much better with Toggl</h1>
-          <p>Hassle-free time tracking so your business runs like clockwork.</p>
-          <Video>
-            <video src="">VID</video>
-            <video src="">VID</video>
-            <video src="">VDI</video>
-          </Video>
+          <TitleText>Everything works much better with Toggl</TitleText>
+          <Ptag>
+            Hassle-free time tracking so your business runs like clockwork.
+          </Ptag>
+          <VideoContainer>
+            <video src={hatdog} style={videoSize} autoPlay loop />
+          </VideoContainer>
+          {/* <video src="">VID</video>
+            <video src="">VDI</video> */}
         </TitleContainer>
 
         <button>Get Started</button>
@@ -71,7 +74,7 @@ const Logo = styled.section`
 const Burger = styled.section`
   background-color: #000;
   border-radius: 0.2rem;
-  margin-top: 7px;
+  margin-top: 6px;
   height: 3px;
   width: 34px;
 `
@@ -85,10 +88,32 @@ const Video = styled.video``
 
 const TitleContainer = styled.section`
   width: calc(100% - (2.2rem * 2));
-  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
   color: white;
+`
+const TitleText = styled.h1`
+  font-size: 1.65rem;
+  line-height: 2.14rem;
+  margin-top: 1.2rem;
+`
+const Ptag = styled.p`
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.52;
+  margin-top: 1rem;
 `
 
 const FrontWrapper = styled.section`
-  background: #a0ccdc;
+  background: #a4cfdc;
+  height: 100vh;
 `
+
+const VideoContainer = styled.section`
+  display: flex;
+  justify-content: center;
+`
+const videoSize = {
+  width: "17rem",
+  height: "16rem"
+}
