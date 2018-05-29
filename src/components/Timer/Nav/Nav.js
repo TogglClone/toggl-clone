@@ -9,7 +9,7 @@ export default function Nav(){
     )
 }
 
-const NavContainer = styled.div`
+const NavContainer = styled.section`
     // background-color: #323232;
     // color: white
 `
