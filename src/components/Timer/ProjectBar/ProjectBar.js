@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
-// import Moment from 'react-moment';
+import {connect} from 'react-redux';
 
-export default class ProjectBar extends Component{
+import {addTimer} from '../../../ducks/reducer';
+
+class ProjectBar extends Component{
     constructor(){
         super() 
 
@@ -11,8 +13,7 @@ export default class ProjectBar extends Component{
             hours: 0,
             timerMode: true,
             timerFn: null,
-            startDate: null,
-            endDate: null
+            start_time: null,
         }
         this.toggleTimer = this.toggleTimer.bind( this )
     }
@@ -36,14 +37,14 @@ export default class ProjectBar extends Component{
             })
         }
         if(this.state.timerMode){
-            let startDate = new Date()
+            let start_time = new Date()
             this.setState({
-                startDate
+                start_time
             })
             var x = setInterval(() => {                
                 let now = new Date().getTime();
                 
-                let difference = Math.round(now - startDate.getTime())/1000;
+                let difference = Math.round(now - start_time.getTime())/1000;
                 handleTimeDifference(difference)
             }, 1000);
             this.setState({
@@ -51,15 +52,16 @@ export default class ProjectBar extends Component{
             })
         } else {
             clearInterval(this.state.timerFn)
-            let endDate = new Date()
-            
-            //push the start date and enddate to server think about adding the difference as one of the table columns
-            
+            const {hours, minutes, seconds, start_time} = this.state
+            let end_time = new Date()
+            let total_time = `${hours}:${minutes}:${seconds}`
+            let timer_name = 'Deniz Timer aw ye'
+            //push the start date and end_time to server think about adding the difference as one of the table columns
+            this.props.addTimer(start_time, end_time, total_time, timer_name)
             this.setState({
                 seconds: '00',
                 minutes: '00',
                 hours: '0',
-                endDate
             })
         }
         this.setState({
@@ -67,7 +69,7 @@ export default class ProjectBar extends Component{
         })
     }
     render(){
-        console.log(this.state.startDate, this.state.endDate)
+        console.log(this.state.start_time, this.state.end_time)
         let {seconds, minutes, hours} = this.state
         return(
             <div>
@@ -78,3 +80,5 @@ export default class ProjectBar extends Component{
         )
     }
 }
+
+export default connect(null, {addTimer})(ProjectBar)

@@ -1,6 +1,7 @@
 module.exports = {
     getAll: (req, res) => {
-        let {user_id} = req.user
+        let user_id = 1
+        // user_id should be destructured from req.user
         const db = req.app.get('db')
         db.timers.get_timers([user_id]).then( (timers) => {
             res.status(200).send(timers)
@@ -10,7 +11,8 @@ module.exports = {
         })
     },
     create: (req, res) => {
-        let {user_id} = req.user
+        let user_id = 1
+        // user_id should be destructured from req.user
         let { start_time, end_time, total_time, timer_name } = req.body
         const db = req.app.get('db')
         db.timers.create_timer([user_id, start_time, end_time, total_time, timer_name]).then( (timers) => {

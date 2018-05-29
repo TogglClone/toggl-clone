@@ -7,25 +7,25 @@ import ProjectBar from './ProjectBar/ProjectBar';
 import TimersList from './TimersList/TimersList';
 
 class Timer extends Component {
-    
-    render(){
-        return(
-            <TimerContainer>
-                <Nav />
-                Timer
-                <br/>
-                <Link to={'/'}><button>Home</button></Link>
-                <ProjectBar />
-                <TimersList />
-                
-            </TimerContainer>
-        )
-    }
+   
+   render(){
+       return(
+           <TimerContainer>
+               <Nav />
+               Timer
+               <br/>
+               <Link to={'/'}><button>Home</button></Link>
+               <ProjectBar />
+               <TimersList />
+               
+           </TimerContainer>
+       )
+   }
 }
 
 // styles
 const TimerContainer = styled.div`
-    background-color: #fafbfc;
+   background-color: #fafbfc;
 `
 
 export default Timer;
