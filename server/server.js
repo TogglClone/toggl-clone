@@ -59,7 +59,6 @@ passport.serializeUser(function(id, done){
     done(null, id)
 });
 passport.deserializeUser(function(id, done){
-    console.log(id, 'id deserialize')
     done(null, id)
 });
 // AUTH ENDPOINTS--------------------- 
