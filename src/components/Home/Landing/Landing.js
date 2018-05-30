@@ -1,51 +1,8 @@
 import React, { Component } from "react"
-import ReactFontFace from "react-font-face"
 import styled from "styled-components"
 import hatdog from "./img/hotdog.mov"
 import Button from "../../Button/Button"
-import gwReg from "../../../fonts/GT-Walsheim-Pro-Regular.woff"
-import gwBold from "../../../fonts/GT-Walsheim-Pro-Bold.woff"
-import gwMed from "../../../fonts/GT-Walsheim-Pro-Medium.woff"
-import PropTypes from "prop-types"
 
-//  ↓↓↓↓↓  FONTS  ↓↓↓↓↓↓↓
-
-const fontConfig = {
-  file: [
-    {
-      fontFamily: "gwReg",
-      fontStyle: "normal",
-      fontWeight: 500,
-      file: gwReg,
-      fontType: "truetype"
-    },
-    {
-      fontFamily: "gwMed",
-      fontStyle: "normal",
-      fontWeight: 500,
-      file: gwMed,
-      fontType: "truetype"
-    },
-    {
-      fontFamily: "gwBold",
-      fontStyle: "normal",
-      file: gwBold,
-      fontType: "truetype"
-    }
-  ]
-}
-
-const fontStyle = {
-  reg: {
-    fontFamily: "gwReg"
-  },
-  med: {
-    fontFamily: "gwMed"
-  },
-  bold: {
-    fontFamily: "gwBold"
-  }
-}
 class Landing extends Component {
   constructor() {
     super()
@@ -80,10 +37,8 @@ class Landing extends Component {
           </BurgerContainer>
         </Header>
         <TitleContainer>
-          <TitleText style={fontStyle.reg}>
-            Everything works much better with Toggl
-          </TitleText>
-          <Ptag style={fontStyle.reg}>
+          <TitleText>Everything works much better with Toggl</TitleText>
+          <Ptag>
             Hassle-free time tracking so your business runs like clockwork.
           </Ptag>
           <VideoContainer>
@@ -100,7 +55,7 @@ class Landing extends Component {
   }
 }
 
-export default ReactFontFace(Landing, fontConfig)
+export default Landing
 
 //  ↓↓↓↓↓  STYLES  ↓↓↓↓↓↓↓
 
@@ -115,7 +70,6 @@ const Header = styled.section`
   justify-content: space-between;
   padding: 27px 1.3rem;
   align-items: center;
-  font-family: styles.GWBold;
 `
 
 // const mobileNav = styled.nav`

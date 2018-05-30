@@ -1,15 +1,14 @@
 import React, { Component } from "react"
-import PropTypes from "prop-types"
-import styled from "styled-components"
+// import styled from "styled-components"
 
 export default class Button extends Component {
   render() {
     const { type, children } = this.props
     const styleChoice = styles[type ? type : styles.default]
     return (
-      <StyledButton style={Object.assign({}, btnBase, styleChoice)}>
+      <button style={Object.assign({}, btnBase, styleChoice)}>
         {children}
-      </StyledButton>
+      </button>
     )
   }
 }
@@ -38,11 +37,11 @@ let pink = {
   outline: "none"
 }
 
-const StyledButton = styled.button`
-  color: #282a2d;
-  outline: none;
-  background-color: #fff;
-`
+// const StyledButton = styled.button`
+//   color: #282a2d;
+//   outline: none;
+//   background-color: #fff;
+// `
 let styles = {
   white: white,
   pink: pink,
