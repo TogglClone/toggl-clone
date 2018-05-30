@@ -23,36 +23,47 @@ export default function Nav(){
             </LogoContainer>
             <IconContainer to={"/timer"}>
                 <TimerIcon/>
+                <NavItem>Timer</NavItem>
             </IconContainer>
             <IconContainer to={"/timer/dashboard"}>
                 <DashIcon/>
+                <NavItem>Dashboard</NavItem>
             </IconContainer>
             <IconContainer to={"/timer/summary"}>
                 <SummaryIcon/>
+                <NavItem>Reports</NavItem>
             </IconContainer>
             <IconContainer to={"/timer/insights"}>
                 <InsightsIcon/>
+                <NavItem>Insights</NavItem>
             </IconContainer>
             <IconContainer to={"/timer/reports"}>
                 <ReportsIcon/>
+                <NavItem>Saved Reports</NavItem>
             </IconContainer>
             <IconContainer to={"/timer/projects"}>
                 <ProjectsIcon/>
+                <NavItem>Projects</NavItem>
             </IconContainer>
             <IconContainer to={"/timer/clients"}>
                 <ClientsIcon/>
+                <NavItem>Clients</NavItem>
             </IconContainer>
             <IconContainer to={"/timer/team"}>
                 <TeamIcon/>
+                <NavItem>Team</NavItem>
             </IconContainer>
             <IconContainer to={"/timer/workspaces"}>
                 <WorkspacesIcon/>
+                <NavItem>Workspaces</NavItem>
             </IconContainer>
             <IconContainer to={"/timer/tags"}>
                 <TagsIcon/>
+                <NavItem>Tags</NavItem>
             </IconContainer>
             <IconContainer to={"/timer/help"}>
                 <HelpIcon/>
+                <NavItem>Help</NavItem>
             </IconContainer>
         </NavContainer>
     )
@@ -100,6 +111,17 @@ const IconContainer = styled(Link)`
     padding: 0px 10px;
     overflow: hidden;
     flex: 0 1 auto;
+    align-items: center;    
+    text-decoration: none;
+`
+const NavItem = styled.span`
+    text-decoration: none;
+    display: none;
+    margin-left: 5px;
+    color:  #fafbfc;
+    @media(min-width: 1024px){
+        display: inline-block;
+    }
 `
 
 const TimerIcon = styled.span`
