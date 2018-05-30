@@ -4,23 +4,33 @@ import PackagesContainer from './PackagesContainer'
 
 export default function Packages() {
     return (
-        <PackagesSectionContainer>
+        <OuterPackageDiv>
             <PackH1>PLANS TO SUIT EVERYONE</PackH1>
-            <PackagesContainer version="0"/>
-            <PackageDivider />
-            <PackagesContainer version="1"/>
-            <PackageDivider />
-            <PackagesContainer version="2"/>
-        </PackagesSectionContainer>
+            <PackagesSectionContainer>
+                <PackagesContainer version="0"/>
+                <PackageDivider />
+                <PackagesContainer version="1"/>
+                <PackageDivider />
+                <PackagesContainer version="2"/>
+            </PackagesSectionContainer>
+        </OuterPackageDiv>
     )
 }
 
 //  ↓↓↓↓↓  STYLES  ↓↓↓↓↓↓↓
-const PackagesSectionContainer = styled.div`
+const OuterPackageDiv = styled.div`
     background: #ED6368;
     width: 100%;
     padding: 3rem 0 5rem 0;
     color: white;
+`
+const PackagesSectionContainer = styled.div`
+    @media(min-width: 1024px){
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
+    }
 `
 const PackH1 = styled.h1`
     font-size: .75rem;
@@ -30,4 +40,8 @@ const PackageDivider = styled.div`
     height:2px;
     background: white;
     opacity: .1;
+    @media(min-width: 1024px){
+        height: 304px;
+        width: 2px;
+    }
 `

@@ -29,8 +29,10 @@ export default class BenniesContainer extends Component {
       const { version } = this.props;
       
       return (
-            <BennieIndContainer color={this.state.colors[version]}>
-                <BennieImg src={this.state.img[version]} /><br/>
+            <BennieIndContainer>
+                <BennieColorContainer color={this.state.colors[version]}>
+                    <BennieImg src={this.state.img[version]} /><br/>
+                </BennieColorContainer>
                 <BennieTextCont>
                     <BennieMiniTitle fontColor={this.state.fontColors[version]}>{this.state.miniTitle[version]}</BennieMiniTitle>
                     <BennieTitle>{this.state.title[version]}</BennieTitle>
@@ -46,10 +48,30 @@ export default class BenniesContainer extends Component {
 
 //  ↓↓↓↓↓  STYLES  ↓↓↓↓↓↓↓
 const BennieIndContainer = styled.div`
-    background: ${props=> props.color};
-    padding-top: 1rem;
-    border-radius: 3px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
     margin: 0rem 1.5rem 2rem 1.5rem;
+    @media(min-width: 768px){
+        width: 609px;
+        margin: 0rem auto 2rem auto;
+    }
+    @media(min-width: 1024px){
+        width: calc(100vw - 9rem);
+        margin: 0rem 6.2rem 2 6.2rem;
+    }
+`
+const BennieColorContainer = styled.div`
+    background: ${props=> props.color};
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    width: 100%;
+    hieght: auto;
+    padding-top: 1rem;
+    @media(min-width: 1024px){
+        width: calc(100vw - 9rem);
+        height: 22rem;
+        margin: 0rem 6.2rem 2 6.2rem;
+    }
 `
 const BennieImg = styled.img`
     height: 153px;
