@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import styled from "styled-components"
+import Button from "../../Button/Button"
 import BenniesContainer from "./BenniesContainer"
 
 
@@ -15,7 +16,7 @@ export default class Bennies extends Component {
                     <BenniesContainer version="3" />
                     <BennieFooter>
                         <BennieH2> Begin your free 30 day trial now. </BennieH2>
-                        <button> GET STARTED </button>
+                        <Button type="pink"> GET STARTED </Button>
                     </BennieFooter>
                 </BennieSectionContainer>
         )

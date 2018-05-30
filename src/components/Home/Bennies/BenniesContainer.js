@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import styled from "styled-components"
+import Button from "../../Button/Button"
 import img0 from "./img/img0.png"
 import img1 from "./img/img1.png"
 import img2 from "./img/img2.png"
@@ -34,7 +35,9 @@ export default class BenniesContainer extends Component {
                     <BennieMiniTitle fontColor={this.state.fontColors[version]}>{this.state.miniTitle[version]}</BennieMiniTitle>
                     <BennieTitle>{this.state.title[version]}</BennieTitle>
                     <BennieDesc>{this.state.description[version]}</BennieDesc>
-                    <button>{this.state.btnText}</button>
+                    <BennieButton>
+                        <Button type="white">{this.state.btnText}</Button>
+                    </BennieButton>
                 </BennieTextCont>
             </BennieIndContainer>
         )
@@ -45,13 +48,11 @@ export default class BenniesContainer extends Component {
 const BennieIndContainer = styled.div`
     background: ${props=> props.color};
     padding-top: 1rem;
-    width: 21rem;
     border-radius: 3px;
-    margin: auto;
-    margin-bottom: 2rem;
+    margin: 0rem 1.5rem 2rem 1.5rem;
 `
 const BennieImg = styled.img`
-    height: 23vh;
+    height: 153px;
     width: auto;
     margin: 1rem 0 1.5rem 0;
 `
@@ -75,4 +76,8 @@ const BennieDesc = styled.h3`
     font-size: .8rem;
     line-height: 1.4rem;
     margin-bottom: 3rem;
+`
+const BennieButton = styled.div`
+    text-align: center;
+    widrth: 100%;
 `
