@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { Link } from "react-router-dom"
-import Landing from "../Landing/Landing"
+import Landing from "./Landing/Landing"
 
 class Home extends Component {
   render() {
