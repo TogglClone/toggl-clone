@@ -14,11 +14,8 @@
     "moment": "^2.22.1",
     "passport": "^0.4.0",
     "passport-auth0": "^0.6.1",
-<<<<<<< HEAD
     "pure-react-carousel": "^1.12.2",
-=======
     "prop-types": "^15.6.1",
->>>>>>> master
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "react-font-face": "^0.2.1",
@@ -26,11 +23,8 @@
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.4",
-<<<<<<< HEAD
-=======
     "redux": "^4.0.0",
     "redux-promise-middleware": "^5.1.1",
->>>>>>> master
     "sessions": "0.0.2-7",
     "styled-components": "^3.3.0"
   },
