@@ -1,7 +1,14 @@
 import React, {Component} from 'react';
+import styled from 'styled-components';
 import {connect} from 'react-redux';
 
 import {addTimer} from '../../../ducks/reducer';
+
+import start_icon from './img/start_icon.svg';
+import stop_icon from './img/stop_icon.svg';
+import folder_icon from './img/folder_icon.svg';
+import tag_icon from './img/tag_icon.svg';
+import billable_icon from './img/billable_icon.svg';
 
 class ProjectBar extends Component{
     constructor(){
@@ -71,16 +78,84 @@ class ProjectBar extends Component{
     }
     render(){
         console.log(this.state.timer_name)
-        let {seconds, minutes, hours, timer_name} = this.state
+        let {seconds, minutes, hours, timer_name, timerMode} = this.state
         return(
-            <div>
-                <input type="text" value={timer_name} placeholder='What are you working on?' onChange={(e) => this.setState({timer_name: e.target.value})}/>
-                {hours}:{minutes}:{seconds}
-                <button onClick={() => this.toggleTimer()}>Start</button>
-            </div>
+            <MainBar>
+                <NameInput type="text" value={timer_name} placeholder='What are you working on?' onChange={(e) => this.setState({timer_name: e.target.value})}/>
+                <TimerContainer>
+                    <TimeDisplay>
+                        {hours}:{minutes}:{seconds}
+                    </TimeDisplay>
+                    {
+                        timerMode 
+                        ?
+                        (
+                            <StartButton onClick={() => this.toggleTimer()}/>
+                        ) : 
+                        <StopButton onClick={() => this.toggleTimer()}></StopButton>
+                    }
+                </TimerContainer>
+            </MainBar>
         )
     }
 }
+
+const MainBar = styled.section`
+    height: 66px;
+    width: 100%;
+    display: grid;
+    background-color: rgb(255, 255, 255);
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px;
+    margin-bottom: 20px;
+    z-index: 100;
+    @media(min-width: 768px){
+        grid-template-columns: 1fr 1fr;
+    }
+`
+
+const NameInput = styled.input`
+    border-width: 0;
+    margin-left: 10px;
+`
+
+const TimerContainer = styled.section`
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+`
+const TimeDisplay = styled.div`
+
+`
+const StartButton = styled.div`
+    width: 42px;
+    height: 42px;
+    padding: 2px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    background: url(${start_icon}) no-repeat 50%;
+    cursor: pointer;
+    user-select: none;
+`
+const StopButton = styled.div`
+    width: 42px;
+    height: 42px;
+    padding: 2px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    background: url(${stop_icon}) no-repeat 50%;
+    cursor: pointer;
+    user-select: none;
+`
+const BillableIcon = styled.span`
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background-color: transparent;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-image: url();
+    opacity: 0;
+`
+
 //start button
 /* <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36"><g fill="none" fill-rule="evenodd"><rect width="36" height="36" fill="#4BC800" rx="18"/><path fill="#FFF" d="M13 11.994c0-1.101.773-1.553 1.745-.997l10.51 6.005c.964.55.972 1.439 0 1.994l-10.51 6.007c-.964.55-1.745.102-1.745-.997V11.994z"/></g></svg> */
 //stop button
