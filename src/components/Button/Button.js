@@ -35,6 +35,7 @@ let white = {
 let pink = {
   backgroundColor: "#e24f54",
   color: "white",
+  border: "none",
   outline: "none"
 }
 
