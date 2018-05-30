@@ -46,10 +46,8 @@ class Landing extends Component {
           </VideoContainer>
           {/* <video src="">VID</video>
             <video src="">VDI</video> */}
+          <Button type="pink">Get Started</Button>
         </TitleContainer>
-        <Button type="white">Get Started</Button>
-        <Button type="pink">Get Started</Button>
-        <Button>test</Button>
       </FrontWrapper>
     )
   }
@@ -106,13 +104,15 @@ const TitleText = styled.h1`
   font-size: 1.65rem;
   line-height: 2.14rem;
   margin-top: 1.2rem;
+  margin: 0;
+  margin-top: 1.75rem;
 `
 const Ptag = styled.p`
-  font-size: 01rem;
+  font-size: 1rem;
   font-weight: 100;
-  font-weight: 500;
-  line-height: 1.52;
+  margin: 0;
   margin-top: 1rem;
+  line-height: 1.52;
 `
 
 const VideoContainer = styled.section`

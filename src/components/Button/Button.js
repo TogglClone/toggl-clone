@@ -36,12 +36,6 @@ let pink = {
   color: "white",
   outline: "none"
 }
-
-// const StyledButton = styled.button`
-//   color: #282a2d;
-//   outline: none;
-//   background-color: #fff;
-// `
 let styles = {
   white: white,
   pink: pink,
