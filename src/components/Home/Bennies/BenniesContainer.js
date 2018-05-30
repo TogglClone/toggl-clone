@@ -45,31 +45,34 @@ export default class BenniesContainer extends Component {
 const BennieIndContainer = styled.div`
     background: ${props=> props.color};
     padding-top: 1rem;
-    width: 8.5rem;
+    width: 21rem;
+    border-radius: 3px;
     margin: auto;
-    margin-bottom: .9rem;
+    margin-bottom: 2rem;
 `
 const BennieImg = styled.img`
-    height: 10vh;
+    height: 23vh;
     width: auto;
-    margin-bottom: .5rem;
+    margin: 1rem 0 1.5rem 0;
 `
 const BennieTextCont = styled.div`
     background: white;
-    padding: 1rem 1rem 0 1rem;
+    padding: 2rem 3rem 0 3rem;
     width: 100% -2rem;
     text-align: left;
+    padding-bottom: 2rem;
 `
 const BennieMiniTitle = styled.h2`
-    font-size: .3rem; 
+    font-size: .6rem; 
     color: ${props=> props.fontColor};
 `
 const BennieTitle = styled.h1`
-    font-size: .5rem;
+    font-size: 1.2rem;
     font-weight: 700;
-    margin-bottom: .5rem;
+    margin-bottom: 1.5rem;
 `
 const BennieDesc = styled.h3`  
-    font-size: .35rem;
-    line-height: .6rem;
+    font-size: .8rem;
+    line-height: 1.4rem;
+    margin-bottom: 3rem;
 `

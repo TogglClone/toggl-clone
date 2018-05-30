@@ -4,9 +4,7 @@ import BenniesContainer from "./BenniesContainer"
 
 
 export default class Bennies extends Component {
-    render() {
-      const { version } = this.props;
-      
+    render() {      
       return (
                 <BennieSectionContainer>
                     <BennieH1> A few benefits </BennieH1>
@@ -27,22 +25,23 @@ export default class Bennies extends Component {
 //  ↓↓↓↓↓  STYLES  ↓↓↓↓↓↓↓
 const BennieSectionContainer = styled.div`
     background: #E3E8EB;
-    padding-top: 1.3rem;
+    padding-top: 4.5rem;
 `
 
 const BennieH1 = styled.h1`
-    font-size: .75rem;
+    font-size: 1.65rem;
+    line-height: 2.14rem;
     font-weight: 700;
-    line-height: 1.60rem;
     margin: 0;
 `
 const BennieH2 = styled.h2`
-    font-size: .40rem;
+    font-size: 1rem;
+    line-height: 2.14rem;
     font-weight: 400;
     margin: 0;
-    margin-bottom: .9rem;
+    margin-bottom: 1.5rem;
 `
 const BennieFooter = styled.div`
-    padding-top: .8rem;
-    height: 4.5rem;
+    padding-top: 1.5rem;
+    height: 10rem;
 `
