@@ -92,7 +92,9 @@ class Landing extends Component {
           {/* <video src="">VID</video>
             <video src="">VDI</video> */}
         </TitleContainer>
-        <Button>Get Started</Button>
+        <Button type="white">Get Started</Button>
+        <Button type="pink">Get Started</Button>
+        <Button>test</Button>
       </FrontWrapper>
     )
   }

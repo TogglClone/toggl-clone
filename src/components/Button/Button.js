@@ -15,7 +15,6 @@ export default class Button extends Component {
 }
 
 let btnBase = {
-  borderRadius: 12,
   padding: 12,
   borderRadius: "2.4rem",
   cursor: "pointer",
@@ -24,23 +23,28 @@ let btnBase = {
   fontWeight: 100,
   fontSize: ".86rem",
   minWidth: "14rem",
-  outline: "none",
-  border: ".3rem solid transparent"
+  outline: "none"
 }
 
-let pretty = {
+let white = {
+  border: ".219rem solid transparent",
+  borderColor: "#f1f4f6",
+  fontWeight: "bold"
+}
+
+let pink = {
   backgroundColor: "#e24f54",
-  color: "white"
+  color: "white",
+  outline: "none"
 }
 
 const StyledButton = styled.button`
   color: #282a2d;
   outline: none;
   background-color: #fff;
-  border-color: #f1f4f6;
 `
 let styles = {
-  // primary: primaryStyle,
-  pretty: pretty,
+  white: white,
+  pink: pink,
   default: btnBase
 }
