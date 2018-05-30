@@ -1,37 +1,46 @@
 import React, { Component } from "react"
-import styled from "styled-components"
 import PropTypes from "prop-types"
+import styled from "styled-components"
 
 export default class Button extends Component {
   render() {
     const { type, children } = this.props
-    const styleChoice = styles[type ? type : "default"]
+    const styleChoice = styles[type ? type : styles.default]
     return (
-      <Button style={Object.assign({}, ButtonClass, ButtonClass)}>
+      <StyledButton style={Object.assign({}, btnBase, styleChoice)}>
         {children}
-      </Button>
+      </StyledButton>
     )
   }
 }
 
-let styles = {
-  // primary: primaryStyle,
-  // default: defaultStyle,
-  // danger: danger,
-  // dashed: dashed,
-  // green: {
-  //   backgroundColor: "green"
-  // }
+let btnBase = {
+  borderRadius: 12,
+  padding: 12,
+  borderRadius: "2.4rem",
+  cursor: "pointer",
+  textTransform: "uppercase",
+  height: 50,
+  fontWeight: 100,
+  fontSize: ".86rem",
+  minWidth: "14rem",
+  outline: "none",
+  border: ".3rem solid transparent"
 }
 
-const ButtonClass = styled.button`
-  background: #db5b61;
-  height: 48px;
-  min-width: 217px;
-  font-size: 1rem;
-  text-transform: uppercase;
-  color: white;
-  border-radius: 2.4rem;
-  font-weight: 500;
+let pretty = {
+  backgroundColor: "#e24f54",
+  color: "white"
+}
+
+const StyledButton = styled.button`
+  color: #282a2d;
   outline: none;
+  background-color: #fff;
+  border-color: #f1f4f6;
 `
+let styles = {
+  // primary: primaryStyle,
+  pretty: pretty,
+  default: btnBase
+}

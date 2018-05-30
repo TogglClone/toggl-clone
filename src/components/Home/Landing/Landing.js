@@ -6,6 +6,7 @@ import Button from "../../Button/Button"
 import gwReg from "../../../fonts/GT-Walsheim-Pro-Regular.woff"
 import gwBold from "../../../fonts/GT-Walsheim-Pro-Bold.woff"
 import gwMed from "../../../fonts/GT-Walsheim-Pro-Medium.woff"
+import PropTypes from "prop-types"
 
 //  ↓↓↓↓↓  FONTS  ↓↓↓↓↓↓↓
 
@@ -34,7 +35,7 @@ const fontConfig = {
   ]
 }
 
-const s = {
+const fontStyle = {
   reg: {
     fontFamily: "gwReg"
   },
@@ -79,10 +80,10 @@ class Landing extends Component {
           </BurgerContainer>
         </Header>
         <TitleContainer>
-          <TitleText style={s.reg}>
+          <TitleText style={fontStyle.reg}>
             Everything works much better with Toggl
           </TitleText>
-          <Ptag style={s.reg}>
+          <Ptag style={fontStyle.reg}>
             Hassle-free time tracking so your business runs like clockwork.
           </Ptag>
           <VideoContainer>
@@ -91,8 +92,7 @@ class Landing extends Component {
           {/* <video src="">VID</video>
             <video src="">VDI</video> */}
         </TitleContainer>
-
-        <Button />
+        <Button>Get Started</Button>
       </FrontWrapper>
     )
   }
@@ -101,6 +101,12 @@ class Landing extends Component {
 export default ReactFontFace(Landing, fontConfig)
 
 //  ↓↓↓↓↓  STYLES  ↓↓↓↓↓↓↓
+
+const FrontWrapper = styled.section`
+  background: #a4cfdc;
+  height: 100vh;
+  letter-spacing: 0.04em;
+`
 
 const Header = styled.section`
   display: flex;
@@ -146,15 +152,11 @@ const TitleText = styled.h1`
   margin-top: 1.2rem;
 `
 const Ptag = styled.p`
-  font-size: 0.9rem;
+  font-size: 01rem;
+  font-weight: 100;
   font-weight: 500;
   line-height: 1.52;
   margin-top: 1rem;
-`
-
-const FrontWrapper = styled.section`
-  background: #a4cfdc;
-  height: 100vh;
 `
 
 const VideoContainer = styled.section`
