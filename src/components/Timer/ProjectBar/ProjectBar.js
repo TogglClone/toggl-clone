@@ -71,15 +71,18 @@ class ProjectBar extends Component{
     }
     render(){
         console.log(this.state.timer_name)
-        let {seconds, minutes, hours} = this.state
+        let {seconds, minutes, hours, timer_name} = this.state
         return(
             <div>
-                <input type="text" placeholder='What are you working on?' onChange={(e) => this.setState({timer_name: e.target.value})}/>
+                <input type="text" value={timer_name} placeholder='What are you working on?' onChange={(e) => this.setState({timer_name: e.target.value})}/>
                 {hours}:{minutes}:{seconds}
                 <button onClick={() => this.toggleTimer()}>Start</button>
             </div>
         )
     }
 }
-
+//start button
+/* <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36"><g fill="none" fill-rule="evenodd"><rect width="36" height="36" fill="#4BC800" rx="18"/><path fill="#FFF" d="M13 11.994c0-1.101.773-1.553 1.745-.997l10.51 6.005c.964.55.972 1.439 0 1.994l-10.51 6.007c-.964.55-1.745.102-1.745-.997V11.994z"/></g></svg> */
+//stop button
+/* <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36"><g fill="none" fill-rule="evenodd"><rect width="36" height="36" fill="#E20505" rx="18"/><rect width="14" height="14" x="11" y="11" fill="#FFF" rx="1.5"/></g></svg> */
 export default connect(null, {addTimer})(ProjectBar)
