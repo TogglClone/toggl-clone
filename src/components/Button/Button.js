@@ -1,10 +1,27 @@
 import React, { Component } from "react"
 import styled from "styled-components"
+import PropTypes from "prop-types"
 
 export default class Button extends Component {
   render() {
-    return <ButtonClass>Get Started</ButtonClass>
+    const { type, children } = this.props
+    const styleChoice = styles[type ? type : "default"]
+    return (
+      <Button style={Object.assign({}, ButtonClass, ButtonClass)}>
+        {children}
+      </Button>
+    )
   }
+}
+
+let styles = {
+  // primary: primaryStyle,
+  // default: defaultStyle,
+  // danger: danger,
+  // dashed: dashed,
+  // green: {
+  //   backgroundColor: "green"
+  // }
 }
 
 const ButtonClass = styled.button`
