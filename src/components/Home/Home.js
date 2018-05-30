@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 import Landing from "./Landing/Landing"
 import Bennies from "./Bennies/Bennies"
 import Reviews from  "./Reviews/Reviews"
+import Packages from "./Packages/Packages"
 
 class Home extends Component {
   render() {
@@ -17,8 +18,9 @@ class Home extends Component {
           <button>Timer</button>
         </Link>
         <Landing />
-        <Bennies/>
+        <Bennies />
         <Reviews />
+        <Packages />
       </div>
     )
   }

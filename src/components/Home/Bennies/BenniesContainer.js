@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import styled from "styled-components"
+import Button from "../../Button/Button"
 import img0 from "./img/img0.png"
 import img1 from "./img/img1.png"
 import img2 from "./img/img2.png"
@@ -28,13 +29,17 @@ export default class BenniesContainer extends Component {
       const { version } = this.props;
       
       return (
-            <BennieIndContainer color={this.state.colors[version]}>
-                <BennieImg src={this.state.img[version]} /><br/>
+            <BennieIndContainer>
+                <BennieColorContainer color={this.state.colors[version]}>
+                    <BennieImg src={this.state.img[version]} /><br/>
+                </BennieColorContainer>
                 <BennieTextCont>
                     <BennieMiniTitle fontColor={this.state.fontColors[version]}>{this.state.miniTitle[version]}</BennieMiniTitle>
                     <BennieTitle>{this.state.title[version]}</BennieTitle>
                     <BennieDesc>{this.state.description[version]}</BennieDesc>
-                    <button>{this.state.btnText}</button>
+                    <BennieButton>
+                        <Button type="white">{this.state.btnText}</Button>
+                    </BennieButton>
                 </BennieTextCont>
             </BennieIndContainer>
         )
@@ -43,15 +48,33 @@ export default class BenniesContainer extends Component {
 
 //  ↓↓↓↓↓  STYLES  ↓↓↓↓↓↓↓
 const BennieIndContainer = styled.div`
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    margin: 0rem 1.5rem 2rem 1.5rem;
+    @media(min-width: 768px){
+        width: 609px;
+        margin: 0rem auto 2rem auto;
+    }
+    @media(min-width: 1024px){
+        width: calc(100vw - 9rem);
+        margin: 0rem 6.2rem 2 6.2rem;
+    }
+`
+const BennieColorContainer = styled.div`
     background: ${props=> props.color};
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    width: 100%;
+    hieght: auto;
     padding-top: 1rem;
-    width: 21rem;
-    border-radius: 3px;
-    margin: auto;
-    margin-bottom: 2rem;
+    @media(min-width: 1024px){
+        width: calc(100vw - 9rem);
+        height: 22rem;
+        margin: 0rem 6.2rem 2 6.2rem;
+    }
 `
 const BennieImg = styled.img`
-    height: 23vh;
+    height: 153px;
     width: auto;
     margin: 1rem 0 1.5rem 0;
 `
@@ -75,4 +98,8 @@ const BennieDesc = styled.h3`
     font-size: .8rem;
     line-height: 1.4rem;
     margin-bottom: 3rem;
+`
+const BennieButton = styled.div`
+    text-align: center;
+    widrth: 100%;
 `
