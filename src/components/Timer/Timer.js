@@ -14,8 +14,7 @@ class Timer extends Component {
                <TimerBody>
                     <ProjectBar />
                     <TimersList />
-               </TimerBody>
-               
+               </TimerBody>               
            </TimerContainer>
        )
    }
@@ -32,7 +31,14 @@ const TimerContainer = styled.div`
    }
 `
 const TimerBody = styled.section`
-
+   overflow: auto;
+   ::-webkit-scrollbar-thumb {
+        background-color: #e20604e6;
+    }
+    ::-webkit-scrollbar {
+        background-color: #E1E1E1;
+        width: 2px;
+    }
 `
 
 export default Timer;
