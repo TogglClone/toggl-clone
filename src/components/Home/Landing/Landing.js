@@ -1,51 +1,8 @@
 import React, { Component } from "react"
-import ReactFontFace from "react-font-face"
 import styled from "styled-components"
 import hatdog from "./img/hotdog.mov"
 import Button from "../../Button/Button"
-import gwReg from "../../../fonts/GT-Walsheim-Pro-Regular.woff"
-import gwBold from "../../../fonts/GT-Walsheim-Pro-Bold.woff"
-import gwMed from "../../../fonts/GT-Walsheim-Pro-Medium.woff"
-import PropTypes from "prop-types"
 
-//  ↓↓↓↓↓  FONTS  ↓↓↓↓↓↓↓
-
-const fontConfig = {
-  file: [
-    {
-      fontFamily: "gwReg",
-      fontStyle: "normal",
-      fontWeight: 500,
-      file: gwReg,
-      fontType: "truetype"
-    },
-    {
-      fontFamily: "gwMed",
-      fontStyle: "normal",
-      fontWeight: 500,
-      file: gwMed,
-      fontType: "truetype"
-    },
-    {
-      fontFamily: "gwBold",
-      fontStyle: "normal",
-      file: gwBold,
-      fontType: "truetype"
-    }
-  ]
-}
-
-const fontStyle = {
-  reg: {
-    fontFamily: "gwReg"
-  },
-  med: {
-    fontFamily: "gwMed"
-  },
-  bold: {
-    fontFamily: "gwBold"
-  }
-}
 class Landing extends Component {
   constructor() {
     super()
@@ -80,27 +37,23 @@ class Landing extends Component {
           </BurgerContainer>
         </Header>
         <TitleContainer>
-          <TitleText style={fontStyle.reg}>
-            Everything works much better with Toggl
-          </TitleText>
-          <Ptag style={fontStyle.reg}>
+          <TitleText>Everything works much better with Toggl</TitleText>
+          <Ptag>
             Hassle-free time tracking so your business runs like clockwork.
           </Ptag>
           <VideoContainer>
             <video src={hatdog} style={videoSize} autoPlay loop />
           </VideoContainer>
+          <Button type="pink">Get Started</Button>
           {/* <video src="">VID</video>
             <video src="">VDI</video> */}
         </TitleContainer>
-        <Button type="white">Get Started</Button>
-        <Button type="pink">Get Started</Button>
-        <Button>test</Button>
       </FrontWrapper>
     )
   }
 }
 
-export default ReactFontFace(Landing, fontConfig)
+export default Landing
 
 //  ↓↓↓↓↓  STYLES  ↓↓↓↓↓↓↓
 
@@ -115,7 +68,6 @@ const Header = styled.section`
   justify-content: space-between;
   padding: 27px 1.3rem;
   align-items: center;
-  font-family: styles.GWBold;
 `
 
 // const mobileNav = styled.nav`
@@ -152,13 +104,15 @@ const TitleText = styled.h1`
   font-size: 1.65rem;
   line-height: 2.14rem;
   margin-top: 1.2rem;
+  margin: 0;
+  margin-top: 1.75rem;
 `
 const Ptag = styled.p`
-  font-size: 01rem;
+  font-size: 1rem;
   font-weight: 100;
-  font-weight: 500;
-  line-height: 1.52;
+  margin: 0;
   margin-top: 1rem;
+  line-height: 1.52;
 `
 
 const VideoContainer = styled.section`
@@ -169,5 +123,6 @@ const videoSize = {
   minWidth: "17rem",
   // width: "calc(100% - (2.5rem * 2))",
   maxWidth: "39rem",
-  height: "16rem"
+  height: "16rem",
+  marginBottom: "-2%"
 }

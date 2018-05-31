@@ -1,11 +1,10 @@
-import React, { Component } from 'react'
+import React, { Component } from "react"
 import styled from "styled-components"
 import Button from "../../Button/Button"
 import img0 from "./img/img0.png"
 import img1 from "./img/img1.png"
 import img2 from "./img/img2.png"
 import img3 from "./img/img3.png"
-
 
 export default class BenniesContainer extends Component {
     constructor(){
@@ -49,6 +48,29 @@ export default class BenniesContainer extends Component {
             </BennieIndContainer>
         )
     }
+  }
+  render() {
+    const { version } = this.props
+
+    return (
+      <BennieIndContainer>
+        <BennieColorContainer color={this.state.colors[version]}>
+          <BennieImg src={this.state.img[version]} />
+          <br />
+        </BennieColorContainer>
+        <BennieTextCont>
+          <BennieMiniTitle fontColor={this.state.fontColors[version]}>
+            {this.state.miniTitle[version]}
+          </BennieMiniTitle>
+          <BennieTitle>{this.state.title[version]}</BennieTitle>
+          <BennieDesc>{this.state.description[version]}</BennieDesc>
+          <BennieButton>
+            <Button type="white">{this.state.btnText}</Button>
+          </BennieButton>
+        </BennieTextCont>
+      </BennieIndContainer>
+    )
+  }
 }
 
 //  ↓↓↓↓↓  STYLES  ↓↓↓↓↓↓↓
@@ -158,6 +180,6 @@ const BennieDesc = styled.h3`
     }
 `
 const BennieButton = styled.div`
-    text-align: center;
-    widrth: 100%;
+  text-align: center;
+  widrth: 100%;
 `
