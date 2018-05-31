@@ -29,15 +29,6 @@ export default class Button extends Component {
   }
 }
 
-let leftArrow = {
-  marginRight: "1rem",
-  display: "none"
-}
-
-let rightArrow = {
-  marginLeft: "1rem"
-}
-
 let btnBase = {
   padding: 12,
   borderRadius: "2.4rem",
