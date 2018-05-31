@@ -48,29 +48,6 @@ export default class BenniesContainer extends Component {
             </BennieIndContainer>
         )
     }
-  }
-  render() {
-    const { version } = this.props
-
-    return (
-      <BennieIndContainer>
-        <BennieColorContainer color={this.state.colors[version]}>
-          <BennieImg src={this.state.img[version]} />
-          <br />
-        </BennieColorContainer>
-        <BennieTextCont>
-          <BennieMiniTitle fontColor={this.state.fontColors[version]}>
-            {this.state.miniTitle[version]}
-          </BennieMiniTitle>
-          <BennieTitle>{this.state.title[version]}</BennieTitle>
-          <BennieDesc>{this.state.description[version]}</BennieDesc>
-          <BennieButton>
-            <Button type="white">{this.state.btnText}</Button>
-          </BennieButton>
-        </BennieTextCont>
-      </BennieIndContainer>
-    )
-  }
 }
 
 //  ↓↓↓↓↓  STYLES  ↓↓↓↓↓↓↓
