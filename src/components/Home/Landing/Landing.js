@@ -1,7 +1,8 @@
 import React, { Component } from "react"
 import ReactFontFace from "react-font-face"
-import styled from "styled-components"
+import styled, {keyframes} from "styled-components"
 import hatdog from "./img/hotdog.mov"
+import timer_icon from './img/timer_icon.svg';
 import Button from "../../Button/Button"
 import gwReg from "../../../fonts/GT-Walsheim-Pro-Regular.woff"
 import gwBold from "../../../fonts/GT-Walsheim-Pro-Bold.woff"
@@ -95,6 +96,7 @@ class Landing extends Component {
         <Button type="white">Get Started</Button>
         <Button type="pink">Get Started</Button>
         <Button>test</Button>
+        <RotateTimer src={timer_icon} alt="animated rotating timer"/>
       </FrontWrapper>
     )
   }
@@ -171,3 +173,22 @@ const videoSize = {
   maxWidth: "39rem",
   height: "16rem"
 }
+
+const rotate360 = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+`
+
+const RotateTimer = styled.img`
+height: 25px;
+width: 25px;
+  animation: ${rotate360} 15s linear infinite;
+  @media(max-width: 768px){
+    display: none;
+  }
+`
