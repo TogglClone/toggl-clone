@@ -51,7 +51,6 @@ export function handleTimerName(timerNameEdits, value, index){
 }
 export function updateName(timer_name, timer_id){
     let timersObj = axios.put('/api/timer-name', {timer_name, timer_id}).then( res => {
-        console.log(res.data)
         var timerNames = res.data.map( timer => {
             return timer.timer_name
         })
@@ -86,7 +85,6 @@ export function deleteTimer(timer_id){
 export default function reducer( state = initialState, action){
     switch (action.type) {
         case TIMERS + '_FULFILLED':    
-        console.log(action.payload) 
             return Object.assign({}, state, {timers: action.payload.timers, timerNameEdits:action.payload.timerNames})
         case TIMER_NAME_EDITS:
             return Object.assign({}, state, {timerNameEdits: action.payload})
