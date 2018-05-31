@@ -44,9 +44,9 @@ class Landing extends Component {
           <VideoContainer>
             <video src={hatdog} style={videoSize} autoPlay loop />
           </VideoContainer>
+          <Button type="pink">Get Started</Button>
           {/* <video src="">VID</video>
             <video src="">VDI</video> */}
-          <Button type="pink">Get Started</Button>
         </TitleContainer>
       </FrontWrapper>
     )
@@ -123,5 +123,6 @@ const videoSize = {
   minWidth: "17rem",
   // width: "calc(100% - (2.5rem * 2))",
   maxWidth: "39rem",
-  height: "16rem"
+  height: "16rem",
+  marginBottom: "-2%"
 }
