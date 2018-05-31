@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 import Landing from "./Landing/Landing"
 import Bennies from "./Bennies/Bennies"
 import Reviews from  "./Reviews/Reviews"
+import Footer from './Footer/Footer'
 
 class Home extends Component {
   render() {
@@ -19,6 +20,7 @@ class Home extends Component {
         <Landing />
         <Bennies/>
         <Reviews />
+        <Footer />
       </div>
     )
   }

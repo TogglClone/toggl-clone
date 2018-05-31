@@ -4,8 +4,10 @@ import annika from "./img/annika.jpg"
 import brad from "./img/brad.jpg"
 import tasha from "./img/tasha.jpg"
 import background from "./img/bg.png"
-import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel';
-import 'pure-react-carousel/dist/react-carousel.es.css';
+import './Slick.css'
+// import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel';
+// import 'pure-react-carousel/dist/react-carousel.es.css';
+import Slider from 'react-slick'
 
 export default class Reviews extends Component {
     constructor(){
@@ -19,24 +21,44 @@ export default class Reviews extends Component {
         }
     }
     render() {
+        var settings = {
+            fade:true,
+            dots: true,
+            speed: 2000,
+            swipe: true,
+            slidesToShow:1,
+            slidesToScroll: 1,
+            arrows:false,
+            // dotsClass:'Dot'
+          };
         return(
             <ReviewsContainer>
                 <ReviewTitle> Sweet Nothings </ReviewTitle>
                 <ReviewMini> Some client love. </ReviewMini>
-                <CarouselProvider
-                                naturalSlideWidth={100}
-                                naturalSlideHeight={125}
-                                totalSlides={3}
-                                className='carousel'
-                            >
-                                <Slider style={{height:'200px',width:'100%'}}>
-                                <Slide  index=''><img  src='https://files.slack.com/files-pri/T039C2PUY-FAY9WP00J/annika_2x-c866df477ed2e77a109a22d64193df69.jpg' alt="Profile Image" /></Slide>
-                                <Slide  index=''><img src='https://files.slack.com/files-pri/T039C2PUY-FAXJUB4KA/brad_2x-b55bf1cded49d029b980097e2c438d12.jpg' alt="Profile Image" /></Slide>
-                                <Slide  index=''><img src='https://files.slack.com/files-pri/T039C2PUY-FAY6YFNUT/tasha_2x-78c9d2020a6a35b7f39a6e60915f0b26.jpg' alt="Profile Image" /></Slide>
-                                </Slider>
-                                <ButtonBack >Back</ButtonBack>
-                                <ButtonNext>Next</ButtonNext>
-                </CarouselProvider>
+                <Slider {...settings}>
+            <div>
+            <ReviewText>{this.state.review[0]}</ReviewText>
+                <ImageWormBody><Worm><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45.8 69.6"><path d="M23.5 68.1V63a5.6 5.6 0 0 1 5.6-5.6h1a5.6 5.6 0 0 0 5.6-5.6 5.6 5.6 0 0 0-5.6-5.6h-13a5.6 5.6 0 0 1-5.6-5.6 5.6 5.6 0 0 1 5.6-5.6h21.5a5.6 5.6 0 0 0 5.6-5.6 5.6 5.6 0 0 0-5.6-5.6H7.1a5.6 5.6 0 0 1-5.6-5.6 5.6 5.6 0 0 1 5.6-5.6h10.8A5.6 5.6 0 0 0 23.5 7V1.8" fill="none" stroke="#ffacba" stroke-linecap="round" stroke-miterlimit="10" stroke-width="3" ></path></svg></Worm>
+             <ImageContainer> <img style={{height:'65px',width:'65px',borderRadius:'50%',margin:'auto'}} src={this.state.img[0]}alt="tasha" /></ImageContainer></ImageWormBody>
+            </div>
+            <div>
+            <ReviewText>{this.state.review[1]}</ReviewText>
+            <ImageWormBody><Worm><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45.8 69.6"><path d="M23.5 68.1V63a5.6 5.6 0 0 1 5.6-5.6h1a5.6 5.6 0 0 0 5.6-5.6 5.6 5.6 0 0 0-5.6-5.6h-13a5.6 5.6 0 0 1-5.6-5.6 5.6 5.6 0 0 1 5.6-5.6h21.5a5.6 5.6 0 0 0 5.6-5.6 5.6 5.6 0 0 0-5.6-5.6H7.1a5.6 5.6 0 0 1-5.6-5.6 5.6 5.6 0 0 1 5.6-5.6h10.8A5.6 5.6 0 0 0 23.5 7V1.8" fill="none" stroke="#ffacba" stroke-linecap="round" stroke-miterlimit="10" stroke-width="3" ></path></svg></Worm>
+                <ImageContainer> <img style={{height:'65px',width:'65px',borderRadius:'50%',margin:'auto'}} src={this.state.img[1]} alt="brad" /></ImageContainer></ImageWormBody>
+            </div>
+            <div>
+            <ReviewText>{this.state.review[2]}</ReviewText>
+            <ImageWormBody><Worm><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45.8 69.6"><path d="M23.5 68.1V63a5.6 5.6 0 0 1 5.6-5.6h1a5.6 5.6 0 0 0 5.6-5.6 5.6 5.6 0 0 0-5.6-5.6h-13a5.6 5.6 0 0 1-5.6-5.6 5.6 5.6 0 0 1 5.6-5.6h21.5a5.6 5.6 0 0 0 5.6-5.6 5.6 5.6 0 0 0-5.6-5.6H7.1a5.6 5.6 0 0 1-5.6-5.6 5.6 5.6 0 0 1 5.6-5.6h10.8A5.6 5.6 0 0 0 23.5 7V1.8" fill="none" stroke="#ffacba" stroke-linecap="round" stroke-miterlimit="10" stroke-width="3" ></path></svg></Worm>
+                <ImageContainer>  <img style={{height:'65px',width:'65px',borderRadius:'50%',margin:'auto'}} src={this.state.img[2]} alt="annika" /></ImageContainer></ImageWormBody>
+            </div>
+           
+          </Slider>
+                {/* <Dots>
+                    <Dot style={{left:'0'}}></Dot>
+                    <Dot style={{left:'1.6rem'}}></Dot>
+                    <Dot style={{left:'3.2rem'}}></Dot>
+                </Dots> */}
+       
                 {/* <ReviewContent>  */}
                 {/* <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45.8 69.6"><path d="M23.5 68.1V63a5.6 5.6 0 0 1 5.6-5.6h1a5.6 5.6 0 0 0 5.6-5.6 5.6 5.6 0 0 0-5.6-5.6h-13a5.6 5.6 0 0 1-5.6-5.6 5.6 5.6 0 0 1 5.6-5.6h21.5a5.6 5.6 0 0 0 5.6-5.6 5.6 5.6 0 0 0-5.6-5.6H7.1a5.6 5.6 0 0 1-5.6-5.6 5.6 5.6 0 0 1 5.6-5.6h10.8A5.6 5.6 0 0 0 23.5 7V1.8" fill="none" stroke="#ffacba" stroke-linecap="round" stroke-miterlimit="10" stroke-width="3" style="stroke-dashoffset: 0px;"></path></svg> */}
             </ReviewsContainer>
@@ -58,4 +80,34 @@ const ReviewTitle = styled.h1`
 `
 const ReviewMini = styled.h2`
     font-size: .75rem;
+    margin-bottom: 1.5em;
+    margin-top:0;
+    line-height:1.71;
+    letter-spacing:-.02em;
+`
+const ReviewText = styled.h3`
+    font-size: 1.1rem;
+    font-weight:300;
+    line-height: 1.5;
+    margin-bottom: 0;
+    padding-left:.8rem;
+    padding-right:.8rem;
+    position:relative;
+    display:block;
+    
+`
+const ImageWormBody = styled.section`
+    padding-top:1.5rem;
+    position:relative;
+`
+const Worm = styled.section`
+    height:7.7rem;
+    margin-left:auto;
+    margin-right:auto;
+    width:3.3rem;
+`
+const ImageContainer = styled.section`
+    height:6.4rem;
+    margin-top:2rem;
+    position:relative;
 `

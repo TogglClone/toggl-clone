@@ -84,17 +84,17 @@ export default Footer;
 
 // ::before/::after
  const FooterMain = styled.section `
- ::before{
-     background-color:#fff;
-     bottom:0px;
-     box-sizing:inherit;
-     content:'';
-     left:0px;
-     position:absolute;
-     right:0px;
-     top:0px;
-     z-index:2;
- }
+//  ::before{
+//      background-color:#fff;
+//      bottom:0px;
+//      box-sizing:inherit;
+//      content:'';
+//      left:0px;
+//      position:absolute;
+//      right:0px;
+//      top:0px;
+//      z-index:2;
+//  }
  display:flex;
  justifyContent:space-between;
  paddingBottom:5.3rem;
@@ -110,23 +110,23 @@ export default Footer;
  `
 
  const Top = styled.section`
- ::before{
-     background-image: url(https://www.toggl.com/common/images/button-arrow-1deed00dda5d8041c47eeca866d67f0e.svg);
-     background-position-x:center;
-     background-position-y:center;
-     background-repeat-x: no-repeat;
-     background-repeat-y: no-repeat;
-     background-size:contain;
-     box-sizing:border-box;
-     content:"";
-     display:block;
-     font-size:0px;
-     height:8px;
-     left:24px;
-     position:absolute;
-     top:11px;
-     transform:translateX(-50%) translateY(0) scaleX(1) rotate(-90
- }
+//  ::before{
+//      background-image: url(https://www.toggl.com/common/images/button-arrow-1deed00dda5d8041c47eeca866d67f0e.svg);
+//      background-position-x:center;
+//      background-position-y:center;
+//      background-repeat-x: no-repeat;
+//      background-repeat-y: no-repeat;
+//      background-size:contain;
+//      box-sizing:border-box;
+//      content:"";
+//      display:block;
+//      font-size:0px;
+//      height:8px;
+//      left:24px;
+//      position:absolute;
+//      top:11px;
+//      transform:translateX(-50%) translateY(0) scaleX(1) rotate(-90
+//  }
 
  background-color:#dee1e3;
  border-bottom-left:50%;
