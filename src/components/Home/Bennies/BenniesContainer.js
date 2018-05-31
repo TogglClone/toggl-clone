@@ -5,6 +5,7 @@ import img0 from "./img/img0.png"
 import img1 from "./img/img1.png"
 import img2 from "./img/img2.png"
 import img3 from "./img/img3.png"
+import { CLIENT_RENEG_WINDOW } from "tls";
 
 export default class BenniesContainer extends Component {
     constructor(){
@@ -21,16 +22,17 @@ export default class BenniesContainer extends Component {
             img: [img0, img1, img2, img3],
             // side: ["right", "left", "right", "left"],
             textMargin: ["0 4.5rem 0 52%", "0 52% 0 4.5rem" ],
-            textMarginBig: ["0 5rem 0 60%", "0 60% 0 5rem" ],
-            imgMargin: ["auto 52% auto 4.5rem", "auto 4.5rem auto 52%" ],
+            // textMarginBig: ["0 6rem 0 58%", "0 58% 0 6rem" ],
+            textMarginBig: ["0 8% 0 59%", "0 59% 0 8%" ],
+            imgMargin: ["auto 52% auto 5rem", "auto 5rem auto 52%" ],
             colors: ["#FFACBA", "#F8CE6A", "#88CF8F", "#CA99D7"],
-            fontColors: ["#E3677C", "#F69F09", "#31AA53", "#A857BD"]
+            fontColors: ["#E3677C", "#F69F09", "#31AA53", "#A857BD"],
         }
     }
     render() {
-      const { version } = this.props;
-
-      return (
+        const { version } = this.props;
+        
+        return (
             <BennieIndContainer>
                 <BennieColorContainer color={this.state.colors[version]}>
                     <BennieImgContainer side={this.state.imgMargin[version%2]} >
@@ -74,7 +76,6 @@ const BennieColorContainer = styled.div`
         width: calc(100vw - 9rem);
         height: 22rem;
         border-radius: 3px;
-        // margin: 0rem 6.2rem 2 6.2rem;
         margin-top: 4.5rem;
         padding-top: 0;
         display: flex;
@@ -82,10 +83,18 @@ const BennieColorContainer = styled.div`
         position: relative;
     }
     @media(min-width: 1240px){
-        height: 41rem;
+        height: 40rem;
     }
 `
 const BennieImgContainer = styled.div`
+    @media(min-width: 415px){
+        width: calc(100%);
+        height: 50vw;
+    }
+    @media(min-width: 480px){
+        height: 100%;
+        width: 100%;
+    }
     @media(min-width: 1024px){
        height: 100%;
        width: 50%;
@@ -93,9 +102,13 @@ const BennieImgContainer = styled.div`
     }
 `
 const BennieImg = styled.img`
-    height: 153px;
+    height: 9.4rem;
     width: auto;
-    margin: 1rem 0 1.5 rem 0;
+    margin: 1rem 0 1.8rem 0;
+    @media(min-width: 415px){
+        margin-top: 2rem;
+        margin-bottom: 2.5rem;
+    }
     @media(min-width: 768px){
         margin-top: 2rem;
         margin-bottom: 2.5rem;
@@ -106,15 +119,14 @@ const BennieImg = styled.img`
     }
     @media(min-width: 1240px){
         height: 325px;
-        margin-top: 35%;
+        margin-top: 18vh;
     }
 `
 const BennieTextCont = styled.div`
     background: white;
-    padding: 2rem 3rem 0 3rem;
+    padding: 1.8rem 3.5rem 2rem 2.5rem;
     width: 100% -2rem;
     text-align: left;
-    padding-bottom: 2rem;
     @media(min-width: 1024px){
         border-top-left-radius: 2px;
         border-top-right-radius: 2px;
@@ -128,7 +140,7 @@ const BennieTextCont = styled.div`
         position: absolute;
         margin: ${props=> props.sideBig};
         padding: 5rem;
-        top: -20px;
+        top: -35px;
     }
 `
 const BennieMiniTitle = styled.h2`
@@ -142,7 +154,7 @@ const BennieMiniTitle = styled.h2`
 const BennieTitle = styled.h1`
     font-size: 1.2rem;
     font-weight: 700;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.4rem;
     @media(min-width: 1240px){
         font-size: 1.5rem;
     }
@@ -150,10 +162,12 @@ const BennieTitle = styled.h1`
 const BennieDesc = styled.h3`  
     font-size: .8rem;
     line-height: 1.4rem;
-    margin-bottom: 3rem;
+    margin-bottom: 2.8rem;
+    font-weight: normal;
     @media(min-width: 1240px){
         font-size: 1.1rem;
         line-height: 1.8rem;
+        margin-bottom: 4rem;
     }
 `
 const BennieButton = styled.div`
