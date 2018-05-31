@@ -1,12 +1,12 @@
 import React, { Component } from "react"
-// import styled from "styled-components"
+import styled, { keyframes } from "styled-components"
 
 export default class Button extends Component {
   render() {
     const { type, children } = this.props
     const styleChoice = styles[type ? type : styles.default]
     return (
-      <button style={Object.assign({}, btnBase, styleChoice)}>
+      <BtnBase style={Object.assign({}, BtnBase, styleChoice)}>
         <g
           style={Object.assign({}, styleChoice, {
             border: "none",
@@ -15,54 +15,102 @@ export default class Button extends Component {
             alignItems: "center"
           })}
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 13 18"
-            width=".9rem"
-            height=".5rem"
-            marginLeft="1rem"
-          >
-            <path d="M1.6 17.8l11-8a1 1 0 0 0 .2-1.4l-.2-.2-11-8A1 1 0 0 0 0 1v16a1 1 0 0 0 1 1z" />
-          </svg>
+          <LeftArrowContainer>
+            <svg style={leftArrow} viewBox="0 0 13 18">
+              <path d="M1.6 17.8l11-8a1 1 0 0 0 .2-1.4l-.2-.2-11-8A1 1 0 0 0 0 1v16a1 1 0 0 0 1 1z" />
+            </svg>
+          </LeftArrowContainer>
           {children}
-          <svg width=".9rem" height=".5rem" viewBox="0 0 13 18">
-            <path
-              d="M1.6 17.8l11-8a1 1 0 0 0 .2-1.4l-.2-.2-11-8A1 1 0 0 0 0 1v16a1 1 0 0 0 1 1z"
-              // fill="#fff"
-            />
-          </svg>
+          <RightArrowContainer>
+            <svg style={rightArrow} viewBox="0 0 13 18">
+              <path
+                d="M1.6 17.8l11-8a1 1 0 0 0 .2-1.4l-.2-.2-11-8A1 1 0 0 0 0 1v16a1 1 0 0 0 1 1z"
+                // fill="#fff"
+              />
+            </svg>
+          </RightArrowContainer>
         </g>
-      </button>
+      </BtnBase>
     )
   }
 }
 
+const ArrowAnimateIn = keyframes`
+  0% {
+    transform: scaleY(0.1);
+    margin-right: .5rem;
+    opacity: 0;
+  }
+  50% {
+    transform: scaleY(.5);
+    opacity: .5;
+  }
+  100% {
+    transform: scaleY(1);
+    margin-right: 0;
+    opacity: 1;
+  }
+`
+const ArrowAnimateOut = keyframes`
+  0% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scaleY(.5);
+    opacity: .5;
+  }
+  100% {
+    display: none;
+    transform: scaleY(0);
+    opacity: 0;
+    transform: translateX(7px);
+  }
+`
+
+let BtnBase = styled.button`
+  border-radius: 2.4rem;
+  cursor: pointer;
+  background: white;
+  text-transform: uppercase;
+  height: 52px;
+  font-weight: 100;
+  font-size: 0.86rem;
+  min-width: 14rem;
+  outline: none;
+  fill: white;
+`
+let LeftArrowContainer = styled.section`
+  display: none;
+  ${BtnBase}:hover & {
+    animation: ${ArrowAnimateIn} 0.3s linear;
+    tranistion-delay: 0.4s;
+    display: inline-block;
+  }
+`
+let RightArrowContainer = styled.section`
+  ${BtnBase}:hover & {
+    animation: ${ArrowAnimateOut} 0.3s forwards;
+    tranistion-delay: 0.4s;
+  }
+`
+
 let leftArrow = {
-  marginRight: "1rem",
-  display: "none"
+  width: ".9rem",
+  height: ".5rem",
+  marginRight: ".3rem"
 }
 
 let rightArrow = {
-  marginLeft: "1rem"
-}
-
-let btnBase = {
-  padding: 12,
-  borderRadius: "2.4rem",
-  cursor: "pointer",
-  textTransform: "uppercase",
-  height: 50,
-  fontWeight: 100,
-  fontSize: ".86rem",
-  minWidth: "14rem",
-  outline: "none",
-  fill: "white"
+  width: ".9rem",
+  height: ".5rem",
+  marginLeft: ".3rem"
 }
 
 let white = {
   border: ".219rem solid transparent",
   borderColor: "#f1f4f6",
-  fontWeight: "bold",
+  fontWeight: 700,
   fill: "black"
 }
 
@@ -76,5 +124,5 @@ let pink = {
 let styles = {
   white: white,
   pink: pink,
-  default: btnBase
+  default: BtnBase
 }

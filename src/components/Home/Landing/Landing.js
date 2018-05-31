@@ -1,8 +1,8 @@
 import React, { Component } from "react"
 import ReactFontFace from "react-font-face"
-import styled, {keyframes} from "styled-components"
+import styled, { keyframes } from "styled-components"
 import hatdog from "./img/hotdog.mov"
-import timer_icon from './img/timer_icon.svg';
+import timer_icon from "./img/timer_icon.svg"
 import Button from "../../Button/Button"
 
 class Landing extends Component {
@@ -50,10 +50,7 @@ class Landing extends Component {
           {/* <video src="">VID</video>
             <video src="">VDI</video> */}
         </TitleContainer>
-        <Button type="white">Get Started</Button>
-        <Button type="pink">Get Started</Button>
-        <Button>test</Button>
-        <RotateTimer src={timer_icon} alt="animated rotating timer"/>
+        <RotateTimer src={timer_icon} alt="animated rotating timer" />
       </FrontWrapper>
     )
   }
@@ -144,10 +141,10 @@ const rotate360 = keyframes`
 `
 
 const RotateTimer = styled.img`
-height: 25px;
-width: 25px;
+  height: 25px;
+  width: 25px;
   animation: ${rotate360} 15s linear infinite;
-  @media(max-width: 768px){
+  @media (max-width: 768px) {
     display: none;
   }
 `
