@@ -15,16 +15,13 @@ class TimersList extends Component{
         let timersList = timers.map( (e, i) => {
             return(
                 <TimerItem key={i}>
-                    <NameInput type="text" value={timerNameEdits[i]} onChange={(e) => handleTimerName(timerNameEdits, e.target.value, i)}/>
-                    <button onClick={() => updateName(timerNameEdits[i], e.timer_id)}>Edit Name</button>
+                    <NameInput placeholder='Add Description' type="text" value={timerNameEdits[i]} onChange={(e) => handleTimerName(timerNameEdits, e.target.value, i)}/>
+                    <span onClick={() => updateName(timerNameEdits[i], e.timer_id)}>Edit Name</span>
                     <div>
-
-                    <Moment format="hh:mm a">{e.start_time}</Moment> - <Moment format="hh:mm a">{e.end_time}</Moment>
+                    <Moment format="hh:mm A">{e.start_time}</Moment> - <Moment format="h:mm A">{e.end_time}</Moment>
                     </div>
-                    <button onClick={() => deleteTimer(e.timer_id)}>Delete</button>
-                    {/* <span>{e.start_time}  </span>
-                    <span>{e.end_time}</span> */}
-                
+                    <div>{e.total_time}</div>
+                    <span onClick={() => deleteTimer(e.timer_id)}>Delete</span>                
                 </TimerItem>
             )
         })
@@ -48,9 +45,14 @@ const TimerItem = styled.div`
     height: 50px;
     display: flex;
     justify-content: space-between;
+    box-shadow: inset 0 -1px 0 0 #f3f3f3;
+    &:hover {
+        background-color: #fafbfc;
+    }
 `
 const NameInput = styled.input`
     border-width: 0;
+    background-color: inherit;
     &:focus {
         outline-width: 0;
     }

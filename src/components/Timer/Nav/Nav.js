@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import {Link} from 'react-router-dom'
 
 import logo from './img/logo.svg';
+import full_logo from './img/full_logo.svg';
 import timer_icon from './img/timer_icon.svg';
 import dash_icon from './img/dash_icon.svg';
 import summary_icon from './img/summary_icon.svg';
@@ -18,7 +19,7 @@ import help_icon from './img/help_icon.svg';
 export default function Nav(){
     return(
         <NavContainer> 
-            <LogoContainer to={"/timer"}>
+            <LogoContainer to={"/"}>
                 <Logo/>
             </LogoContainer>
             <IconContainer to={"/timer"}>
@@ -99,6 +100,11 @@ const Logo = styled.span`
     flex: 0 0 auto;
     background-repeat: no-repeat;
     background-position: 2px center;
+    @media(min-width: 1024px){
+        background-image: url(${full_logo});
+        background-size: 75px 23px;
+        background-position: 5px center;
+    }
 }
 `
 const IconContainer = styled(Link)`
