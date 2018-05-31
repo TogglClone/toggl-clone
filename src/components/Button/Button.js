@@ -7,12 +7,20 @@ export default class Button extends Component {
     const styleChoice = styles[type ? type : styles.default]
     return (
       <button style={Object.assign({}, btnBase, styleChoice)}>
-        <g style={Object.assign({}, styleChoice, { border: "none" })}>
+        <g
+          style={Object.assign({}, styleChoice, {
+            border: "none",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center"
+          })}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 13 18"
             width=".9rem"
             height=".5rem"
+            marginLeft="1rem"
           >
             <path d="M1.6 17.8l11-8a1 1 0 0 0 .2-1.4l-.2-.2-11-8A1 1 0 0 0 0 1v16a1 1 0 0 0 1 1z" />
           </svg>
