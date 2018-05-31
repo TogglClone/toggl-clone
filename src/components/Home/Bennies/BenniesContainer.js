@@ -48,7 +48,7 @@ export default class BenniesContainer extends Component {
             </BennieIndContainer>
         )
     }
-}
+  }
 
 //  ↓↓↓↓↓  STYLES  ↓↓↓↓↓↓↓
 const BennieIndContainer = styled.div`
