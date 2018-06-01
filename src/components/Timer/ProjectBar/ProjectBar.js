@@ -79,7 +79,6 @@ class ProjectBar extends Component{
         })
     }
     render(){
-        console.log(this.state.timer_name)
         let {seconds, minutes, hours, timer_name, timerMode} = this.state
         return(
             <MainBar>

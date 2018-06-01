@@ -35,7 +35,7 @@ const BennieH1 = styled.h1`
     font-size: 1.65rem;
     line-height: 2.14rem;
     font-weight: 700;
-    margin: 0;
+    margin: 0 0 .2rem 0;
     @media(min-width: 768px){
         text-align: left
         font-size: 1.65rem;
@@ -49,6 +49,7 @@ const BennieH1 = styled.h1`
         width: calc(100vw - 9rem);
         margin-left: 3rem;
         padding-left: 8.33%;
+        box-sizing: border-box;
     }
     @media(min-width: 1240px){
         font-size: 3.2rem;
@@ -58,8 +59,7 @@ const BennieH2 = styled.h2`
     font-size: .8rem;
     line-height: 2.14rem;
     font-weight: 400;
-    margin: 0;
-    margin-bottom: 1.5rem;
+    margin: 0 0 1.45rem 0;
     @media(min-width: 768px){
         text-align: left
         width: 609px;
