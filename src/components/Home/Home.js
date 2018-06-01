@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 import Landing from "./Landing/Landing"
 import Bennies from "./Bennies/Bennies"
 import Reviews from  "./Reviews/Reviews"
+import Packages from "./Packages/Packages"
 import Footer from './Footer/Footer'
 
 class Home extends Component {
@@ -18,8 +19,9 @@ class Home extends Component {
           <button>Timer</button>
         </Link>
         <Landing />
-        <Bennies/>
+        <Bennies />
         <Reviews />
+        <Packages />
         <Footer />
       </div>
     )

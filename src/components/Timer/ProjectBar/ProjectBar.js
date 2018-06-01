@@ -9,6 +9,8 @@ import stop_icon from './img/stop_icon.svg';
 import folder_icon from './img/folder_icon.svg';
 import tag_icon from './img/tag_icon.svg';
 import billable_icon from './img/billable_icon.svg';
+import timer_mode_icon from './img/timer_mode_icon.svg';
+import manual_mode_icon from './img/manual_mode_icon.svg';
 
 class ProjectBar extends Component{
     constructor(){
@@ -83,17 +85,25 @@ class ProjectBar extends Component{
             <MainBar>
                 <NameInput type="text" value={timer_name} placeholder='What are you working on?' onChange={(e) => this.setState({timer_name: e.target.value})}/>
                 <TimerContainer>
+                    <FolderIcon/>
+                    <TagIcon/>
+                    <BillableIcon/>
                     <TimeDisplay>
                         {hours}:{minutes}:{seconds}
                     </TimeDisplay>
+                    {/* Start/Stop button section */}
                     {
                         timerMode 
-                        ?
+                        ? 
                         (
                             <StartButton onClick={() => this.toggleTimer()}/>
                         ) : 
                         <StopButton onClick={() => this.toggleTimer()}></StopButton>
                     }
+                    <ModeOptionsContainer>
+                        <TimerModeIcon />
+                        <ManualModeIcon />
+                    </ModeOptionsContainer>
                 </TimerContainer>
             </MainBar>
         )
@@ -101,29 +111,41 @@ class ProjectBar extends Component{
 }
 
 const MainBar = styled.section`
-    height: 66px;
+    height: 120px;
     width: 100%;
     display: grid;
-    background-color: rgb(255, 255, 255);
+    background-color: #fff;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px;
     margin-bottom: 20px;
-    z-index: 100;
     @media(min-width: 768px){
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 3fr 2fr;
+        height: 66px;
     }
 `
 
 const NameInput = styled.input`
     border-width: 0;
-    margin-left: 10px;
+    margin-left: 20px;
+    font-size: 16px;
+    &:focus {
+        outline-width: 0;
+    }
+    @media(mix-width: 768px){
+        margin: auto;
+    }
 `
 
 const TimerContainer = styled.section`
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 2fr 1fr 1fr;
+    justify-items: center;
+    align-items: center;
 `
-const TimeDisplay = styled.div`
-
+const TimeDisplay = styled.span`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #7b7b7b;
 `
 const StartButton = styled.div`
     width: 42px;
@@ -134,6 +156,7 @@ const StartButton = styled.div`
     background: url(${start_icon}) no-repeat 50%;
     cursor: pointer;
     user-select: none;
+
 `
 const StopButton = styled.div`
     width: 42px;
@@ -145,19 +168,53 @@ const StopButton = styled.div`
     cursor: pointer;
     user-select: none;
 `
-const BillableIcon = styled.span`
-    display: inline-block;
+const FolderIcon = styled.span`
     width: 30px;
     height: 30px;
     background-color: transparent;
     background-position: 50%;
     background-repeat: no-repeat;
-    background-image: url();
-    opacity: 0;
+    background-image: url(${folder_icon});
+    cursor: pointer;
 `
-
-//start button
-/* <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36"><g fill="none" fill-rule="evenodd"><rect width="36" height="36" fill="#4BC800" rx="18"/><path fill="#FFF" d="M13 11.994c0-1.101.773-1.553 1.745-.997l10.51 6.005c.964.55.972 1.439 0 1.994l-10.51 6.007c-.964.55-1.745.102-1.745-.997V11.994z"/></g></svg> */
-//stop button
-/* <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36"><g fill="none" fill-rule="evenodd"><rect width="36" height="36" fill="#E20505" rx="18"/><rect width="14" height="14" x="11" y="11" fill="#FFF" rx="1.5"/></g></svg> */
+const TagIcon = styled.span`
+    width: 30px;
+    height: 30px;
+    background-color: transparent;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-image: url(${tag_icon});
+    cursor: pointer;
+`
+const BillableIcon = styled.span`
+    width: 30px;
+    height: 30px;
+    background-color: transparent;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-image: url(${billable_icon});
+    cursor: pointer;
+`
+const ModeOptionsContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 66px;
+    padding-left: 14px;
+    padding-right: 2px;
+`
+const TimerModeIcon = styled.span`
+    width: 28px;
+    height: 28px;
+    margin-top: 4px;
+    background: url(${timer_mode_icon}) no-repeat 50%;
+    cursor: pointer;
+`
+const ManualModeIcon = styled.span`
+    width: 28px;
+    height: 28px;
+    margin-top: 4px;
+    background: url(${manual_mode_icon}) no-repeat 50%;
+    cursor: pointer;
+`
 export default connect(null, {addTimer})(ProjectBar)
