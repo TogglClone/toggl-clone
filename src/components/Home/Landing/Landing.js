@@ -4,7 +4,7 @@ import hatdog from "./img/hotdog.mov"
 import timer_icon from "./img/timer_icon.svg"
 import Button from "../../Button/Button"
 import BottomLoginSvg from "./SignUpBottomSvg/SignUpBottomSvg"
-//testtttttinngggg this merge request pleaseeeee
+//testtttttinngggg this merge request pleaseeeeeeee
 
 class Landing extends Component {
   constructor() {
