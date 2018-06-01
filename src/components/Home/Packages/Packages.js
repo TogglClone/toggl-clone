@@ -33,7 +33,7 @@ const PackagesSectionContainer = styled.div`
         align-items: center;
         justify-content: center;
         flex-direction: row;
-        // margin: 0rem 10rem 0rem 10rem;
+        margin: 0rem 10rem 0rem 10rem;
     }
 `
 const PackH1 = styled.h1`
