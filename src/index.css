@@ -1,5 +1,11 @@
+@font-face {
+  font-family: "testicles";
+  src: url(./fonts/GT-Walsheim-Pro-Regular.woff) format("woff");
+}
+
 body {
+  font-family: testicles;
+  font-family: "testicles";
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
 }
