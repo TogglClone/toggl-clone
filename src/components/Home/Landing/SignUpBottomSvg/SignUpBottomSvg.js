@@ -1,5 +1,4 @@
 import React, { Component } from "react"
-import styled from "styled-components"
 
 export default class BottomLoginSvg extends Component {
   render() {
@@ -36,12 +35,12 @@ export default class BottomLoginSvg extends Component {
   }
 }
 
-const svgStyle = {
-  strokeDashoffset: "0",
-  strokeMiterlimit: "4",
-  stroke: "black",
-  strokeLinecap: "round"
-}
+// const svgStyle = {
+//   strokeDashoffset: "0",
+//   strokeMiterlimit: "4",
+//   stroke: "black",
+//   strokeLinecap: "round"
+// }
 
 const svgSize = {
   width: "1rem",

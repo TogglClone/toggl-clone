@@ -1,5 +1,4 @@
 import React, { Component } from "react"
-import { Link } from "react-router-dom"
 import Landing from "./Landing/Landing"
 import Bennies from "./Bennies/Bennies"
 import Reviews from "./Reviews/Reviews"

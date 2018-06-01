@@ -12,7 +12,8 @@ class Landing extends Component {
       burgerOpen: null,
       background: "#a4cfdc",
       displayMain: "none",
-      displayNav: "none"
+      displayNav: "none",
+      burger: null
     }
   }
 
@@ -69,13 +70,25 @@ class Landing extends Component {
             <BurgerNav>Features</BurgerNav>
             <BurgerNav>Pricing</BurgerNav>
             <BurgerNav>Training</BurgerNav>
-            <LoginCont>
-              <a href={process.env.REACT_APP_LOGIN} className="login-font">
-                Log in
-              </a>
+
+            <LoginCont
+              href={process.env.REACT_APP_LOGIN}
+              className="login-font"
+            >
+              Log in
             </LoginCont>
             <BottomLoginSvg />
-            <SignUp>Sign Up</SignUp>
+            <SignUp>
+              <LoginCont
+                href={process.env.REACT_APP_LOGIN}
+                className="login-font"
+              >
+                Sign Up
+              </LoginCont>
+            </SignUp>
+            <div>
+              <Button type="white">DOWNLOAD THE APP</Button>
+            </div>
           </BurgerWrapper>
         </FrontWrapper>
       </div>
@@ -100,15 +113,16 @@ const BurgerWrapper = styled.section`
 `
 
 const BurgerNav = styled.nav`
-  border-bottom: 1px solid lightgray;
+  border-bottom: 1.5px solid lightgray;
 `
 
-const deskTop = styled.section`
-  display: ${props => props.display};
-`
+// const deskTop = styled.section`
+//   display: ${props => props.display};
+// `
 
-const LoginCont = styled.nav`
+const LoginCont = styled.a`
   text-decoration: none;
+  color: black;
 `
 
 const SignUp = styled.nav`
@@ -132,26 +146,36 @@ const Header = styled.section`
   align-items: center;
 `
 
-// const mobileNav = styled.nav`
-//   display: flex;
-//   justify-content: space-between;
-// `
-
 const Logo = styled.section`
   width: 6rem;
 `
 
+const xBurger = keyframes`
+  from {
+    background: green;
+    ${"" /* transform: translateT(0) rotate(0deg); */}
+  }
+
+  to {
+    background: red;
+    ${"" /* transform: translateT(15px) rotate(45deg); */}
+  }
+`
+
+const BurgerContainer = styled.section`
+  display: flex;
+  flex-direction: column;
+`
 const Burger = styled.section`
   background-color: #000;
   border-radius: 0.2rem;
   margin-top: 6px;
   height: 3px;
   width: 34px;
-`
-
-const BurgerContainer = styled.section`
-  display: flex;
-  flex-direction: column;
+  ${BurgerContainer}:hover & {
+    animation: ${xBurger} 0.3s linear infinite;
+    tranistion-delay: 0.4s;
+  }
 `
 
 // const Video = styled.video``
