@@ -49,6 +49,7 @@ const BennieH1 = styled.h1`
         width: calc(100vw - 9rem);
         margin-left: 3rem;
         padding-left: 8.33%;
+        box-sizing: border-box;
     }
     @media(min-width: 1240px){
         font-size: 3.2rem;

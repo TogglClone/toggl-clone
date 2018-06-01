@@ -33,9 +33,15 @@ export default class PackagesContainer extends Component {
 //  ↓↓↓↓↓  STYLES  ↓↓↓↓↓↓↓
 const IndividPack = styled.div`
     height: auto;
-    width: auto;
+    width: 15rem;
+    margin: auto;
     @media(min-width: 1024px){
-        height:20rem;
+        box-sizing: border-box;
+        margin: 0;
+        height: 20rem;
+    }
+    @media(min-width: 1240px){
+        width: 18rem;
     }
 `
 const PackTitleContainer = styled.h1`
@@ -46,6 +52,9 @@ const PackTitleContainer = styled.h1`
     @media(min-width: 1024px){
         margin: .2rem 2rem .2rem 2rem;
     }
+    @media(min-width: 1240px){
+        font-size: 1.7rem;
+    }
 `
 const PackDescContainer = styled.h2`
     font-size: .8rem;
@@ -54,8 +63,18 @@ const PackDescContainer = styled.h2`
         margin: 0rem 2rem 0rem 2rem;
         line-height: 1.3rem;
     }
+    @media(min-width: 1240px){
+        font-size: 1rem;
+        line-height: 1.65rem;
+    }
 `
 const PackImg = styled.img`
     height: 69px;
     margin: 2.8rem 0 2.8rem 0;
+    @media(min-width: 1024px){
+        height: 75px;
+    }
+    @media(min-width: 1240px){
+        height: 70px;
+    }
 `
