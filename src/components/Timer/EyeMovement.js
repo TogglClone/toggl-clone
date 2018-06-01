@@ -25,6 +25,7 @@ export default class EyeMovement extends Component{
     }
 
     render(){
+        console.log(window)
         const { x, y } = this.state;
         return(
             <BigContainer onMouseMove={this._onMouseMove.bind(this)}>
@@ -47,7 +48,6 @@ const PupilWrap = styled.div`
     border: 1px black dashed;
     top: calc(50% - 47px);
     left: calc(50% - 30px);
-    background: ${props => props.background ? 'palevioletred' : 'white'};
     `
 const Pupil = styled.div`
     border-radius: 50%;
