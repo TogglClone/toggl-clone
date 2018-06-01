@@ -20,9 +20,12 @@ export default function Packages() {
 //  ↓↓↓↓↓  STYLES  ↓↓↓↓↓↓↓
 const OuterPackageDiv = styled.div`
     background: #ED6368;
-    width: 100%;
+    width: 100vw;
     padding: 3rem 0 5rem 0;
     color: white;
+    // @media(min-width: 1024px){
+    //     padding: 3rem 3rem 3rem 3rem;
+    // }
 `
 const PackagesSectionContainer = styled.div`
     @media(min-width: 1024px){
@@ -30,6 +33,7 @@ const PackagesSectionContainer = styled.div`
         align-items: center;
         justify-content: center;
         flex-direction: row;
+        // margin: 0rem 10rem 0rem 10rem;
     }
 `
 const PackH1 = styled.h1`
@@ -40,6 +44,10 @@ const PackageDivider = styled.div`
     height:2px;
     background: white;
     opacity: .1;
+    @media(min-width: 768px){
+        width: 400px;
+        margin: 4rem auto 2.5rem auto;
+    }
     @media(min-width: 1024px){
         height: 304px;
         width: 2px;
