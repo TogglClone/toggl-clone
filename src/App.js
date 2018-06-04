@@ -7,7 +7,6 @@ import gwBold from "./fonts/GT-Walsheim-Pro-Bold.woff"
 import gwMed from "./fonts/GT-Walsheim-Pro-Medium.woff"
 import ReactFontFace from "react-font-face"
 import Footer from "./components/Home/Footer/Footer"
-import Sweet from "./components/Home/Sweet"
 const fontConfig = {
   file: [
     {

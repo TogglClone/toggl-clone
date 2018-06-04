@@ -117,7 +117,7 @@ const ReviewText = styled.h3`
     font-size: 1.1rem;
     font-weight:100;
     line-height: 1.7rem;
-    margin-bottom: 0;
+    margin-bottom: 6rem;
     padding-left:.8rem;
     padding-right:.8rem;
     position:relative;
@@ -144,7 +144,7 @@ const Worm = styled.section`
     width:3.3rem;
 `
 const ImageContainer = styled.section`
-    height:6.4rem;
+    // height:6.4rem;
     margin-top:2rem;
-    position:relative;
+    // position:relative;
 `
