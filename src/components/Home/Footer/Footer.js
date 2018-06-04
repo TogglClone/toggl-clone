@@ -30,7 +30,7 @@ class Footer extends Component {
                             </div>
                         </Toggl>
                         <div>
-                            <Toggl>
+                            <Product>
                                 <TogglTitle>PRODUCT ADD-ONS</TogglTitle>
                                 <List>
                                     <ListItems><a>Intergrations</a></ListItems>
@@ -41,10 +41,10 @@ class Footer extends Component {
                                     <ListItems><a>Desktop App</a></ListItems>
                                     <ListItems><a>Superday-Time Logging App</a></ListItems>
                                 </List>
-                            </Toggl>
+                            </Product>
                         </div>
                         <div>
-                            <Toggl>
+                            <Resources>
                                 <TogglTitle>RESOURCES & USEFUL LINKS</TogglTitle>
                                 <List>
                                     <ListItems><a>Toggl Blog</a></ListItems>
@@ -55,7 +55,7 @@ class Footer extends Component {
                                     <ListItems><a>Out of Office - Remote Working Guide</a></ListItems>
                                     <ListItems><a>Unicorn Startup Simulator</a></ListItems>
                                 </List>
-                            </Toggl>
+                            </Resources>
                         </div>
                     </Columns>
                     <IconsBody >
@@ -82,19 +82,8 @@ class Footer extends Component {
 
 export default Footer;
 
-// ::before/::after
+
  const FooterMain = styled.section `
- ::before{
-     background-color:#fff;
-     bottom:0px;
-     box-sizing:inherit;
-     content:'';
-     left:0px;
-     position:absolute;
-     right:0px;
-     top:0px;
-     z-index:2;
- }
  display:flex;
  justifyContent:space-between;
  paddingBottom:5.3rem;
@@ -102,31 +91,20 @@ export default Footer;
  position:relative;
  backgroundColor:#fff;
  fontWeight:500;
- boxSizing:inherit;
  fontFamily:GTWalsheim,Arial,sans-serif;
  fontSize:14px;
- z-index:2
+ z-index:2;
+ width:100%;
+ margin-top:100px;
+ @media(min-width: 768px){
+
+}
+@media(min-width: 1024px){
+}
 
  `
 
  const Top = styled.section`
- ::before{
-     background-image: url(https://www.toggl.com/common/images/button-arrow-1deed00dda5d8041c47eeca866d67f0e.svg);
-     background-position-x:center;
-     background-position-y:center;
-     background-repeat-x: no-repeat;
-     background-repeat-y: no-repeat;
-     background-size:contain;
-     box-sizing:border-box;
-     content:"";
-     display:block;
-     font-size:0px;
-     height:8px;
-     left:24px;
-     position:absolute;
-     top:11px;
-     transform:translateX(-50%) translateY(0) scaleX(1) rotate(-90
- }
 
  background-color:#dee1e3;
  border-bottom-left:50%;
@@ -143,6 +121,8 @@ export default Footer;
  width:2.8rem;
  z-index:5;
  transform:translateX(1.6rem) translateY(-.8rem);
+ @media(min-width: 1024px){
+}
  `
  const TopHeader = styled.h5`
  bottom:12px;
@@ -152,14 +132,8 @@ export default Footer;
  display:block;
  font-size:11px;
  font-weight:700;
-//  left:24px;
-//  letter-spacing:.55px;
-//  line-height:15.95px;
-//  position:absolute;
-//  text-align:center;
-//  text-transform:uppercase;
-//  transform:translateX(-50%) translateY;
-//  transition-delay:
+ @media(min-width: 1024px){
+}
  `
  const FooterBody = styled.section `
  box-sizing:inherit;
@@ -170,15 +144,43 @@ export default Footer;
  padding-left:22px;
  padding-right:22px;
  position:relative;
- width:375px;
-
+ width: 100%;
+ @media(min-width: 768px){
+display:wrap
+}
+@media(min-width: 1024px){
+}
  `
 const Columns = styled.section `
 margin-left:-5px;
 margin-right:-5px;
-// padding-left:calc(16.6666666667% * 1);
 text-align:left;
 display:inline-block;
+width: 100%;
+padding-left:calc(16.6666666667% * 1);
+box-sizing:border-box;
+@media(min-width: 768px){
+    // margin-left:-.8px;
+    // margin-right:-.8px;
+    // display:flex-wrap;
+   wrap:flex-wrap;
+   display:inline-block;
+}
+@media(min-width: 1024px){
+    display:flex;
+    max-width:none;
+    width:100%;
+    padding-right:6.2rem;
+    padding-left:6.2rem;
+    justify-content:space-between;
+    position:relative;
+    // margin-left:-.8px;
+    // margin-right:-.8px;
+//    wrap:flex-wrap;
+//    flex:wrap
+
+   
+}
 
 `
 const Toggl = styled.section `
@@ -189,8 +191,68 @@ font-weight:500;
 padding-left:.5rem;
 padding-top:4px;
 vertical-align:top;
-width:100%;
+// width:100%;
+box-sizing:border-box;
+@media(min-width: 768px){
+    // margin-left:-.8px;
+    // margin-right:-.8px;
+    // display:block;
 
+}
+@media(min-width: 1024px){
+//     display:flex-wrap;
+//    wrap:flex-wrap;
+// margin:auto
+   
+}
+
+`
+const Product = styled.section `
+text-align:left;
+display:inline-block;
+font-size:16px;
+font-weight:500;
+padding-left:.5rem;
+padding-top:4px;
+vertical-align:top;
+width:100%;
+box-sizing:border-box;
+@media(min-width: 768px){
+    // margin-left:-.8px;
+    // margin-right:-.8px;
+    // display:flex-wrap;
+    // float:right ;  
+    // width:50%;
+}
+@media(min-width: 1024px){
+    margin:auto;
+    position:center;
+    padding:0;
+    // margin-right:100px
+    
+    
+}
+`
+const Resources = styled.section `
+text-align:left;
+display:inline-block;
+font-size:16px;
+font-weight:500;
+padding-left:.5rem;
+padding-top:4px;
+vertical-align:top;
+width:100%;
+box-sizing:border-box;
+@media(min-width: 768px){
+    // margin-left:-.8px;
+    // margin-right:-.8px;
+    // display:block;
+   
+}
+@media(min-width: 1024px){
+    // margin-right:400px;
+    // margin-left:100px
+}
 
 `
 const TogglTitle =styled.h5 `
@@ -207,7 +269,7 @@ display:block;
 font-size:14px;
 font-weight:300;
 list-style-type:none;
-padding:0
+padding:0;
 `
 const ListItems = styled.li `
 text-align:left;
@@ -219,11 +281,15 @@ font-weight:600;
 `
 const IconsBody = styled.section `
 
-box-sizing: inherit;
+width:80%vw;
 display:block;
 margin-bottom: px;
 margin-top:30px;
-text-align:center
+text-align:center;
+margin-left:auto;
+margin-right:auto;
+justify-content:center;
+
 `
 const IconsList =styled.ul `
 
@@ -232,6 +298,9 @@ max-width:320px;
 text-align:center;
 list-style-type:none;
 padding:0;
+@media(min-width: 768px){
+  max-width:none
+}
 
 `
 const IconsListItems = styled.li `
@@ -256,7 +325,9 @@ font-size:12px;
 display:block;
 color:#848687;
 font-family:GTWalsheim,Arial,sans-serifbody;
-
+box-sizing:inherit;
+margin-left:auto;
+margin-right:auto
 
 `
 const BottomSVG = styled.a`
@@ -265,12 +336,18 @@ fill:#bcc2c6;
 display:block;
 width:75px;
 color:black;
-bottom:53px;
+bottom:33px;
 font-size:14px;
 position:absolute;
 z-index:10;
 transform:translateX(-50%);
-left:187.5px;
+left:50%;
 stroke:#bcc2c6;
-padding-top:30px
+padding-top:0px;
+margin-bottom:10px;
+@media(min-width: 1024px){
+    left:90%;
+    padding-bottom:50px
+}
+
 `
