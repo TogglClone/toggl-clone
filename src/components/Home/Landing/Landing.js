@@ -4,7 +4,6 @@ import hatdog from "./img/hotdog.mov"
 import timer_icon from "./img/timer_icon.svg"
 import Button from "../../Button/Button"
 import BottomLoginSvg from "./SignUpBottomSvg/SignUpBottomSvg"
-//testtttttinngggg this merge request pleaseeeeeeee
 
 class Landing extends Component {
   constructor() {
@@ -14,7 +13,7 @@ class Landing extends Component {
       background: "#a4cfdc",
       displayMain: "none",
       displayNav: "none",
-      burger: null
+      clicked: false
     }
   }
 
@@ -24,13 +23,15 @@ class Landing extends Component {
           burgerOpen: false,
           background: "#a4cfdc",
           display: "block",
-          displayNav: "none"
+          displayNav: "none",
+          clicked: false
         })
       : this.setState({
           burgerOpen: true,
           background: "white",
           display: "none",
-          displayNav: "block"
+          displayNav: "block",
+          clicked: true
         })
   }
 
@@ -50,9 +51,28 @@ class Landing extends Component {
               </svg>
             </Logo>
             <BurgerContainer onClick={_ => this.burgerToggle()}>
-              <Burger />
-              <Burger />
+              <div style={this.state.clicked ? Clicked1 : Burger1} />
+              <div style={this.state.clicked ? Clicked2 : Burger2} />
             </BurgerContainer>
+            <DesktopNav>
+              <DesktopSpan>Features</DesktopSpan>
+              <DesktopSpan>Pricing</DesktopSpan>
+              <DesktopSpan>Training</DesktopSpan>
+              <LoginCont
+                href={process.env.REACT_APP_LOGIN}
+                className="login-font"
+              >
+                Log in
+              </LoginCont>
+              <SignUp>
+                <LoginCont
+                  href={process.env.REACT_APP_LOGIN}
+                  className="login-font"
+                >
+                  Sign Up
+                </LoginCont>
+              </SignUp>
+            </DesktopNav>
           </Header>
           <TitleContainer displayTitle={this.state.display}>
             <TitleText>Everything works much better with Toggl</TitleText>
@@ -60,13 +80,14 @@ class Landing extends Component {
               Hassle-free time tracking so your business runs like clockwork.
             </Ptag>
             <VideoContainer>
-              <video src={hatdog} style={videoSize} autoPlay loop />
+              <VideoSize src={hatdog} autoPlay loop />
             </VideoContainer>
             <Button type="pink">Get Started</Button>
             {/* <video src="">VID</video>
             <video src="">VDI</video> */}
+            <RotateTimer src={timer_icon} alt="animated rotating timer" />
+            <Scroller>Scroll</Scroller>
           </TitleContainer>
-          <RotateTimer src={timer_icon} alt="animated rotating timer" />
           <BurgerWrapper displayNav={this.state.displayNav}>
             <BurgerNav>Features</BurgerNav>
             <BurgerNav>Pricing</BurgerNav>
@@ -87,9 +108,9 @@ class Landing extends Component {
                 Sign Up
               </LoginCont>
             </SignUp>
-            <div>
+            <NavButtonContainer>
               <Button type="white">DOWNLOAD THE APP</Button>
-            </div>
+            </NavButtonContainer>
           </BurgerWrapper>
         </FrontWrapper>
       </div>
@@ -110,20 +131,25 @@ const BurgerWrapper = styled.section`
   line-height: 3.16;
   text-decoration: none;
   display: ${props => props.displayNav};
-  padding: 0 10.6rem;
+  padding: 0 8.25rem;
+`
+
+const NavButtonContainer = styled.section`
+  display: flex;
+  justify-content: center;
+  margin-top: 78%;
 `
 
 const BurgerNav = styled.nav`
-  border-bottom: 1.5px solid lightgray;
+  border-bottom: 1px solid lightgray;
 `
-
-// const deskTop = styled.section`
-//   display: ${props => props.display};
-// `
 
 const LoginCont = styled.a`
   text-decoration: none;
   color: black;
+  @media (min-width: 770px) {
+    margin-right: 1rem;
+  }
 `
 
 const SignUp = styled.nav`
@@ -145,41 +171,70 @@ const Header = styled.section`
   justify-content: space-between;
   padding: 27px 1.3rem;
   align-items: center;
+  position: relative;
+  @media (min-width: 1024px) {
+    padding: 27px 1.75rem;
+    padding-bottom: 0;
+  }
 `
 
 const Logo = styled.section`
   width: 6rem;
 `
 
-const xBurger = keyframes`
-  from {
-    background: green;
-    ${"" /* transform: translateT(0) rotate(0deg); */}
-  }
-
-  to {
-    background: red;
-    ${"" /* transform: translateT(15px) rotate(45deg); */}
-  }
-`
-
 const BurgerContainer = styled.section`
   display: flex;
+  justify-content: center;
   flex-direction: column;
-`
-const Burger = styled.section`
-  background-color: #000;
-  border-radius: 0.2rem;
-  margin-top: 6px;
-  height: 3px;
-  width: 34px;
-  ${BurgerContainer}:hover & {
-    animation: ${xBurger} 0.3s linear infinite;
-    tranistion-delay: 0.4s;
+  align-items: center;
+  width: 3rem;
+  height: 2rem;
+  @media (min-width: 768px) {
+    display: none;
   }
 `
 
-// const Video = styled.video``
+const Burger1 = {
+  backgroundColor: "#000",
+  // position: "absolute",
+  // right: "10px",
+  borderRadius: "0.2rem",
+  marginTop: "6px",
+  height: "3px",
+  width: "34px"
+}
+
+const Burger2 = {
+  backgroundColor: "#000",
+  borderRadius: "0.2rem",
+  // right: "10px",
+  marginTop: "6px",
+  height: "3px",
+  width: "34px"
+  // position: "absolute"
+}
+
+let Clicked1 = {
+  backgroundColor: "#000",
+  borderRadius: "0.2rem",
+  position: "absolute",
+  height: "3px",
+  right: "25px",
+  width: "34px",
+  transform: "rotate(45deg)"
+}
+
+let Clicked2 = {
+  backgroundColor: "#000",
+  position: "absolute",
+  borderRadius: "0.2rem",
+  right: "25px",
+  height: "3px",
+  width: "34px",
+  transition: "all",
+  tranistionDelay: "1s",
+  transform: "rotate(-45deg)"
+}
 
 const TitleContainer = styled.section`
   width: calc(100% - (2.2rem * 2));
@@ -194,6 +249,37 @@ const TitleText = styled.h1`
   margin-top: 1.2rem;
   margin: 0;
   margin-top: 1.75rem;
+  @media (min-width: 454px) {
+    padding: 0 11%;
+  }
+  @media (min-width: 557px) {
+    padding: 0 19%;
+  }
+  @media (min-width: 676px) {
+    padding: 0 25.9%;
+  }
+  @media (min-width: 768px) {
+    font-size: 3rem;
+    line-height: 3.25rem;
+    padding: 0 5%;
+  }
+  @media (min-width: 813px) {
+    padding: 0 15%;
+  }
+  @media (min-width: 1020px) {
+    padding: 0 21%;
+    margin-top: 1rem;
+  }
+  @media (min-width: 1214px) {
+    padding: 0 27%;
+  }
+  @media (min-width: 1240px) {
+    font-size: 3.2rem;
+    padding: 0 26%;
+  }
+  @media (min-width: 1580px) {
+    padding: 0 33%;
+  }
 `
 const Ptag = styled.p`
   font-size: 1rem;
@@ -201,19 +287,75 @@ const Ptag = styled.p`
   margin: 0;
   margin-top: 1rem;
   line-height: 1.52;
+  @media (min-width: 390px) {
+    padding: 0 9%;
+  }
+  @media (min-width: 440px) {
+    padding: 0 13%;
+  }
+  @media (min-width: 530px) {
+    padding: 0 21%;
+  }
+  @media (min-width: 651px) {
+    padding: 0 27%;
+  }
+  @media (min-width: 768px) {
+    font-size: 1.1rem;
+    font-weight: 100;
+  }
+  @media (min-width: 676px) {
+    padding: 0;
+  }
+`
+
+const VideoSize = styled.video`
+  min-width: 17rem;
+  max-width: 90%;
+  left: 50%;
+  margin-left: -45%;
+  position: absolute;
+  bottom: 11.5rem;
+  margin-bottom: -2%;
+  @media (min-width: 651px) {
+    max-width: 80%;
+    margin-left: -40%;
+  }
+  @media (min-width: 735px) {
+    max-width: 75%;
+    margin-left: -38%;
+  }
+  @media (min-width: 769px) {
+    max-width: 55%;
+    margin-left: -26%;
+  }
+  @media (min-width: 917px) {
+    max-width: 50%;
+    margin-left: -25%;
+  }
+  @media (min-width: 1230px) {
+    max-width: 43%;
+    margin-left: -22%;
+  }
+  @media (min-width: 1300px) {
+    max-width: 40%;
+    margin-left: -20%;
+  }
+  @media (min-width: 1485px) {
+    max-width: 36%;
+    margin-left: -17%;
+  }
 `
 
 const VideoContainer = styled.section`
   display: flex;
   justify-content: center;
+  @media (min-width: 370px) {
+    width: calc(100% - (2.2rem * 2));
+  }
+  @media (min-width: 651px) {
+    padding: 0 27%;
+  }
 `
-const videoSize = {
-  minWidth: "17rem",
-  // width: "calc(100% - (2.5rem * 2))",
-  maxWidth: "39rem",
-  height: "16rem",
-  marginBottom: "-2%"
-}
 
 const rotate360 = keyframes`
   from {
@@ -226,10 +368,45 @@ const rotate360 = keyframes`
 `
 
 const RotateTimer = styled.img`
-  height: 25px;
-  width: 25px;
+  width: 1.25rem;
+  position: absolute;
+  bottom: 2.6rem;
+  right: 2.7rem;
   animation: ${rotate360} 15s linear infinite;
   @media (max-width: 768px) {
     display: none;
   }
+  @media (min-width: 1241px) {
+    width: 2rem;
+  }
+`
+
+const Scroller = styled.span`
+  transform: rotate(90deg);
+  position: absolute;
+  bottom: 4rem;
+  left: 0.7rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  @media (max-width: 768px) {
+    display: none;
+  }
+  @media (min-width: 1241px) {
+    left: 1.5rem;
+  }
+`
+
+const DesktopNav = styled.section`
+  display: flex;
+  font-size: 0.75rem;
+  @media (max-width: 768px) {
+    display: none;
+  }
+  @media (min-width: 1240px) {
+    font-size: 1rem;
+  }
+`
+
+const DesktopSpan = styled.span`
+  margin-right: 1rem;
 `
