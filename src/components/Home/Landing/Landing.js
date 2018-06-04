@@ -82,7 +82,9 @@ class Landing extends Component {
             <VideoContainer>
               <VideoSize src={hatdog} autoPlay loop />
             </VideoContainer>
-            <Button type="pink">Get Started</Button>
+            <ButtonContain>
+              <Button type="pink">Get Started</Button>
+            </ButtonContain>
             {/* <video src="">VID</video>
             <video src="">VDI</video> */}
             <RotateTimer src={timer_icon} alt="animated rotating timer" />
@@ -131,14 +133,26 @@ const BurgerWrapper = styled.section`
   line-height: 3.16;
   text-decoration: none;
   display: ${props => props.displayNav};
-  padding: 0 8.25rem;
+  padding: 4.7rem;
+`
+
+const ButtonContain = styled.section`
+  position: absolute;
+  left: 50%;
+  bottom: 2.5rem;
 `
 
 const NavButtonContainer = styled.section`
   display: flex;
   justify-content: center;
-  margin-top: 78%;
 `
+
+let zIndexT = {
+  zIndex: -1
+}
+let zIndexF = {
+  zIndex: 0
+}
 
 const BurgerNav = styled.nav`
   border-bottom: 1px solid lightgray;
@@ -176,10 +190,17 @@ const Header = styled.section`
     padding: 27px 1.75rem;
     padding-bottom: 0;
   }
+  @media (min-width: 1240px) {
+    padding: 27px 2.1rem;
+    padding-bottom: 0;
+  }
 `
 
 const Logo = styled.section`
   width: 6rem;
+  @media (min-width: 1240px) {
+    width: 7.75rem;
+  }
 `
 
 const BurgerContainer = styled.section`

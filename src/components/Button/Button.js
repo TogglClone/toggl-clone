@@ -124,10 +124,7 @@ let pink = {
   border: "none",
   outline: "none",
   fill: "white",
-  position: "absolute",
-  left: "50%",
-  marginLeft: "-7rem",
-  bottom: "2.5rem"
+  marginLeft: "-7rem"
 }
 let styles = {
   white: white,
