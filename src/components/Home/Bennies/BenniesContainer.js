@@ -77,17 +77,17 @@ export default class BenniesContainer extends Component {
 
 //  ↓↓↓↓↓  STYLES  ↓↓↓↓↓↓↓
 const BennieIndContainer = styled.div`
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
-    margin: 0rem 1.5rem 2rem 1.5rem;
-    @media(min-width: 768px){
-        width: 609px;
-        margin: 0rem auto 2rem auto;
-    }
-    @media(min-width: 1024px){
-        width: calc(100vw - 9rem);
-        margin: 2rem 6.2rem 2 6.2rem;
-    }
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  margin: 0rem 1.5rem 2rem 1.5rem;
+  @media (min-width: 768px) {
+    width: 609px;
+    margin: 0rem auto 2rem auto;
+  }
+  @media (min-width: 1024px) {
+    width: calc(100vw - 9rem);
+    margin: 2rem 6.2rem 2 6.2rem;
+  }
 `
 const BennieColorContainer = styled.div`
     background: ${props=> props.color};
@@ -201,12 +201,12 @@ const BennieTextCont = styled.div`
     }
 `
 const BennieMiniTitle = styled.h2`
-    font-size: .6rem; 
-    color: ${props=> props.fontColor};
-    @media(min-width: 1240px){
-        font-size: .8rem;
-        font-weight: 800;
-    }
+  font-size: 0.6rem;
+  color: ${props => props.fontColor};
+  @media (min-width: 1240px) {
+    font-size: 0.8rem;
+    font-weight: 800;
+  }
 `
 const BennieTitle = styled.h1`
     font-size: 1.2rem;
