@@ -52,13 +52,14 @@ export default class BenniesContainer extends Component {
             <BennieIndContainer>
                 <BennieColorContainer color={this.state.colors[version]} onMouseMove={this._onMouseMove.bind(this)}>
                     <BennieImgContainer side={this.state.imgMargin[version%2]} >
-                        <BennieImg src={this.state.img[version]} />
+                        <BennieImg backgroundUrl={this.state.img[version]}>
                         { version === '1' ? (
                             <EyeBall>
                                 <Pupil top={y} left={x}/>
                             </EyeBall>
                         ) : null}
                         <br/>
+                        </BennieImg>
                     </BennieImgContainer>
                 <BennieTextCont side={this.state.textMargin[version%2]} sideBig={this.state.textMarginBig[version%2]}>
                     <BennieMiniTitle fontColor={this.state.fontColors[version]}>{this.state.miniTitle[version]}</BennieMiniTitle>
@@ -118,17 +119,18 @@ const BennieImgContainer = styled.div`
         width: 100%;
     }
     @media(min-width: 1024px){
-       height: 100%;
-       width: 50%;
+       height: 300px;
        margin: ${props=> props.side};
        position: relative;
     }
 `
-const BennieImg = styled.img`
+const BennieImg = styled.div`
+    background-image: url(${props => props.backgroundUrl});
+    background-size: cover;
+    background-repeat: no-repeat;
     z-index: 5;
     height: 9.4rem;
     width: auto;
-    margin: 1rem 0 1.8rem 0;
     @media(min-width: 415px){
         margin-top: 2rem;
         margin-bottom: 2.5rem;
@@ -142,26 +144,33 @@ const BennieImg = styled.img`
         margin-top: 20%;
     }
     @media(min-width: 1240px){
-        height: 325px;
-        margin-top: 18vh;
+        height: 100%;
+        width: 100%;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        margin: 0;
     }
 `
 
 const EyeBall = styled.div`
-    border-radius: 50%;
-    height: 74px;
-    width: 68px;
-    background: url(${eyeball});
-    background-repeat: no-repeat;
-    position: absolute;
-    top: calc(28.5%);
-    left: calc(29.5%);
-    overflow: hidden;
+    @media(min-width: 1240px){
+        border-radius: 50%;
+        height: 74px;
+        width: 68px;
+        background: url(${eyeball});
+        background-repeat: no-repeat;
+        position: absolute;
+        top: calc(5%);
+        left: calc(29.5%);
+        overflow: hidden;
+    }
 `
 const Pupil = styled.div`
     @media(min-width: 1240px){
         border-radius: 50%;
         background-image: url(${pupil});
+        background-size: contain;
         height: 30px;
         width: 30px;
         position: absolute;

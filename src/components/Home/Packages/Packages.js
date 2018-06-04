@@ -23,9 +23,6 @@ const OuterPackageDiv = styled.div`
     width: 100%;
     padding: 3rem 0 5rem 0;
     color: white;
-    // @media(min-width: 1024px){
-    //     padding: 3rem 3rem 3rem 3rem;
-    // }
 `
 const PackagesSectionContainer = styled.div`
     @media(min-width: 1024px){
@@ -51,5 +48,8 @@ const PackageDivider = styled.div`
     @media(min-width: 1024px){
         height: 304px;
         width: 2px;
+    }
+    @media(min-width: 1240px){
+        margin: 0 50px;
     }
 `
