@@ -7,15 +7,17 @@ class Footer extends Component {
         return(
             <FooterMain>
                 <Top>
-                  
+                <svg style={topArrow} viewBox="0 0 13 18">
+              <path d="M1.6 17.8l11-8a1 1 0 0 0 .2-1.4l-.2-.2-11-8A1 1 0 0 0 0 1v16a1 1 0 0 0 1 1z" />
+            </svg>
                     <TopHeader>TOP</TopHeader>
-                 
+                    <svg style={bottomArrow} viewBox="0 0 13 18">
+              <path d="M1.6 17.8l11-8a1 1 0 0 0 .2-1.4l-.2-.2-11-8A1 1 0 0 0 0 1v16a1 1 0 0 0 1 1z" />
+            </svg>
                 </Top>
                 <FooterBody>
                     <Columns>
-                        <div>
-                            <span><a></a></span>
-                        </div>
+                      
                         <Toggl>
                             <div>
                                 <TogglTitle>TOGGL</TogglTitle>
@@ -39,7 +41,7 @@ class Footer extends Component {
                                     <ListItems><a>Andriod App</a></ListItems>
                                     <ListItems><a>iPhone App</a></ListItems>
                                     <ListItems><a>Desktop App</a></ListItems>
-                                    <ListItems><a>Superday-Time Logging App</a></ListItems>
+                                    <ListItems><a>Superday - Time Logging App</a></ListItems>
                                 </List>
                             </Product>
                         </div>
@@ -81,8 +83,14 @@ class Footer extends Component {
 }
 
 export default Footer;
-
-
+let topArrow = {
+    height: ".5rem",
+    transform: 'rotate(-90deg)'
+  }
+  let bottomArrow ={
+    height: ".5rem",
+    transform: 'rotate(90deg)'
+}
  const FooterMain = styled.section `
  display:flex;
  justifyContent:space-between;
@@ -107,10 +115,6 @@ export default Footer;
  const Top = styled.section`
 
  background-color:#dee1e3;
- border-bottom-left:50%;
- border-bottom-right:50%;
- border-top-left:50%;
- border-top-right:50%;
  border-radius:50%;
  color:#000;
  cursor:pointer;
@@ -128,10 +132,12 @@ export default Footer;
  bottom:12px;
  box-sizing:inherit;
  color:#000;
+ margin: 0;
  cursor:pointer;
  display:block;
  font-size:11px;
  font-weight:700;
+ 
  @media(min-width: 1024px){
 }
  `
@@ -160,28 +166,28 @@ width: 100%;
 padding-left:calc(16.6666666667% * 1);
 box-sizing:border-box;
 @media(min-width: 768px){
-    // margin-left:-.8px;
-    // margin-right:-.8px;
-    // display:flex-wrap;
-   wrap:flex-wrap;
-   display:inline-block;
+    width:80%;
+    padding-left:200px;
+    max-width:60rem;
+   display:grid;
+   grid-template-columns:50% 50%
 }
 @media(min-width: 1024px){
-    display:flex;
-    max-width:none;
     width:100%;
-    padding-right:6.2rem;
-    padding-left:6.2rem;
-    justify-content:space-between;
-    position:relative;
-    // margin-left:-.8px;
-    // margin-right:-.8px;
-//    wrap:flex-wrap;
-//    flex:wrap
-
-   
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    // margin-left:40px;
 }
+@media(min-width: 1240px){
+    // width:calc(8.333333333% *2);
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    margin-left:300px;
+    width:630px;
+    justify-content:center;
+    padding:0
 
+}
 `
 const Toggl = styled.section `
 text-align:left;
@@ -197,15 +203,18 @@ box-sizing:border-box;
     // margin-left:-.8px;
     // margin-right:-.8px;
     // display:block;
-
+    // width:50%;
 }
 @media(min-width: 1024px){
 //     display:flex-wrap;
 //    wrap:flex-wrap;
-// margin:auto
-   
+margin:auto
 }
-
+@media(min-width: 1240px){
+    // width:calc(8.333333333% *2);
+    width:40%;
+    margin:0
+}
 `
 const Product = styled.section `
 text-align:left;
@@ -215,22 +224,15 @@ font-weight:500;
 padding-left:.5rem;
 padding-top:4px;
 vertical-align:top;
-width:100%;
+// width:100%;
 box-sizing:border-box;
 @media(min-width: 768px){
-    // margin-left:-.8px;
-    // margin-right:-.8px;
-    // display:flex-wrap;
-    // float:right ;  
-    // width:50%;
 }
 @media(min-width: 1024px){
-    margin:auto;
-    position:center;
-    padding:0;
-    // margin-right:100px
-    
-    
+}
+@media(min-width: 1240px){
+    // width:calc(8.333333333% *2)
+    width:55%;
 }
 `
 const Resources = styled.section `
@@ -241,17 +243,20 @@ font-weight:500;
 padding-left:.5rem;
 padding-top:4px;
 vertical-align:top;
-width:100%;
+// width:100%;
 box-sizing:border-box;
 @media(min-width: 768px){
-    // margin-left:-.8px;
-    // margin-right:-.8px;
-    // display:block;
    
 }
 @media(min-width: 1024px){
     // margin-right:400px;
     // margin-left:100px
+    // width:90%
+}
+@media(min-width: 1240px){
+    // width:calc(8.333333333% *2);
+    // padding-left: calc(.8% *3)
+    width:63%;
 }
 
 `
@@ -262,6 +267,9 @@ font-weight:600;
 letter-spacing:.55px;
 line-height:15.95px;
 margin-bottom:10px;
+@media(min-width: 1240px){
+    font-size:11px;
+}
 
 `
 const List = styled.ul `
@@ -277,6 +285,9 @@ margin-bottom:10px;
 line-height:23.94px;
 font-size:13px;
 font-weight:600;
+@media(min-width: 1240px){
+    font-size:18px
+}
 
 `
 const IconsBody = styled.section `

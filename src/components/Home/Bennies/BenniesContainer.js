@@ -73,7 +73,7 @@ export default class BenniesContainer extends Component {
         )
     }
   }
-}
+
 
 //  ↓↓↓↓↓  STYLES  ↓↓↓↓↓↓↓
 const BennieIndContainer = styled.div`
@@ -90,73 +90,6 @@ const BennieIndContainer = styled.div`
   }
 `
 const BennieColorContainer = styled.div`
-<<<<<<< HEAD
-  background: ${props => props.color};
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
-  width: 100%;
-  padding-top: 1rem;
-  @media (min-width: 1024px) {
-    width: calc(100vw - 9rem);
-    height: 22rem;
-    border-radius: 3px;
-    // margin: 0rem 6.2rem 2 6.2rem;
-    margin-top: 4.5rem;
-    padding-top: 0;
-    display: flex;
-    flex-direction: row;
-    position: relative;
-  }
-  @media (min-width: 1240px) {
-    height: 41rem;
-  }
-`
-const BennieImgContainer = styled.div`
-  @media (min-width: 1024px) {
-    height: 100%;
-    width: 50%;
-    margin: ${props => props.side};
-  }
-`
-const BennieImg = styled.img`
-  height: 153px;
-  width: auto;
-  margin: 1rem 0 1.5 rem 0;
-  @media (min-width: 768px) {
-    margin-top: 2rem;
-    margin-bottom: 2.5rem;
-  }
-  @media (min-width: 1024px) {
-    height: 200px;
-    margin-top: 20%;
-  }
-  @media (min-width: 1240px) {
-    height: 325px;
-    margin-top: 35%;
-  }
-`
-const BennieTextCont = styled.div`
-  background: white;
-  padding: 2rem 3rem 0 3rem;
-  width: 100% -2rem;
-  text-align: left;
-  padding-bottom: 2rem;
-  @media (min-width: 1024px) {
-    border-top-left-radius: 2px;
-    border-top-right-radius: 2px;
-    position: absolute;
-    margin: ${props => props.side};
-    top: -30px;
-  }
-  @media (min-width: 1240px) {
-    border-top-left-radius: 2px;
-    border-top-right-radius: 2px;
-    position: absolute;
-    margin: ${props => props.sideBig};
-    padding: 5rem;
-    top: -20px;
-  }
-=======
     background: ${props=> props.color};
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
@@ -258,7 +191,6 @@ const BennieTextCont = styled.div`
         padding: 5rem;
         top: -35px;
     }
->>>>>>> master
 `
 const BennieMiniTitle = styled.h2`
   font-size: 0.6rem;
@@ -269,23 +201,6 @@ const BennieMiniTitle = styled.h2`
   }
 `
 const BennieTitle = styled.h1`
-<<<<<<< HEAD
-  font-size: 1.2rem;
-  font-weight: 700;
-  margin-bottom: 1.5rem;
-  @media (min-width: 1240px) {
-    font-size: 1.5rem;
-  }
-`
-const BennieDesc = styled.h3`
-  font-size: 0.8rem;
-  line-height: 1.4rem;
-  margin-bottom: 3rem;
-  @media (min-width: 1240px) {
-    font-size: 1.1rem;
-    line-height: 1.8rem;
-  }
-=======
     font-size: 1.2rem;
     font-weight: 700;
     margin-bottom: 1.4rem;
@@ -303,7 +218,6 @@ const BennieDesc = styled.h3`
         line-height: 1.8rem;
         margin-bottom: 4rem;
     }
->>>>>>> master
 `
 const BennieButton = styled.div`
   text-align: center;
