@@ -4,6 +4,10 @@ import annika from "./img/annika.jpg"
 import brad from "./img/brad.jpg"
 import tasha from "./img/tasha.jpg"
 import background from "./img/bg.png"
+import './Slick.css'
+// import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel';
+// import 'pure-react-carousel/dist/react-carousel.es.css';
+import Slider from 'react-slick'
 
 export default class Reviews extends Component {
     constructor(){
@@ -17,10 +21,38 @@ export default class Reviews extends Component {
         }
     }
     render() {
+        var settings = {
+            fade:true,
+            dots: true,
+            speed: 2000,
+            swipe: true,
+            slidesToShow:1,
+            slidesToScroll: 1,
+            arrows:false,
+            // dotsClass:'Dot'
+          };
         return(
             <ReviewsContainer>
                 <ReviewTitle> Sweet Nothings </ReviewTitle>
                 <ReviewMini> Some client love. </ReviewMini>
+                <Slider {...settings}>
+            <div>
+            <ReviewText>{this.state.review[0]}</ReviewText>
+                <ImageWormBody><Worm><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45.8 69.6"><path d="M23.5 68.1V63a5.6 5.6 0 0 1 5.6-5.6h1a5.6 5.6 0 0 0 5.6-5.6 5.6 5.6 0 0 0-5.6-5.6h-13a5.6 5.6 0 0 1-5.6-5.6 5.6 5.6 0 0 1 5.6-5.6h21.5a5.6 5.6 0 0 0 5.6-5.6 5.6 5.6 0 0 0-5.6-5.6H7.1a5.6 5.6 0 0 1-5.6-5.6 5.6 5.6 0 0 1 5.6-5.6h10.8A5.6 5.6 0 0 0 23.5 7V1.8" fill="none" stroke="#ffacba" stroke-linecap="round" stroke-miterlimit="10" stroke-width="3" ></path></svg></Worm>
+             <ImageContainer> <img style={{height:'65px',width:'65px',borderRadius:'50%',margin:'auto'}} src={this.state.img[0]}alt="tasha" /></ImageContainer></ImageWormBody>
+            </div>
+            <div>
+            <ReviewText>{this.state.review[1]}</ReviewText>
+            <ImageWormBody><Worm><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45.8 69.6"><path d="M23.5 68.1V63a5.6 5.6 0 0 1 5.6-5.6h1a5.6 5.6 0 0 0 5.6-5.6 5.6 5.6 0 0 0-5.6-5.6h-13a5.6 5.6 0 0 1-5.6-5.6 5.6 5.6 0 0 1 5.6-5.6h21.5a5.6 5.6 0 0 0 5.6-5.6 5.6 5.6 0 0 0-5.6-5.6H7.1a5.6 5.6 0 0 1-5.6-5.6 5.6 5.6 0 0 1 5.6-5.6h10.8A5.6 5.6 0 0 0 23.5 7V1.8" fill="none" stroke="#ffacba" stroke-linecap="round" stroke-miterlimit="10" stroke-width="3" ></path></svg></Worm>
+                <ImageContainer> <img style={{height:'65px',width:'65px',borderRadius:'50%',margin:'auto'}} src={this.state.img[1]} alt="brad" /></ImageContainer></ImageWormBody>
+            </div>
+            <div>
+            <ReviewText>{this.state.review[2]}</ReviewText>
+            <ImageWormBody><Worm><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45.8 69.6"><path d="M23.5 68.1V63a5.6 5.6 0 0 1 5.6-5.6h1a5.6 5.6 0 0 0 5.6-5.6 5.6 5.6 0 0 0-5.6-5.6h-13a5.6 5.6 0 0 1-5.6-5.6 5.6 5.6 0 0 1 5.6-5.6h21.5a5.6 5.6 0 0 0 5.6-5.6 5.6 5.6 0 0 0-5.6-5.6H7.1a5.6 5.6 0 0 1-5.6-5.6 5.6 5.6 0 0 1 5.6-5.6h10.8A5.6 5.6 0 0 0 23.5 7V1.8" fill="none" stroke="#ffacba" stroke-linecap="round" stroke-miterlimit="10" stroke-width="3" ></path></svg></Worm>
+                <ImageContainer>  <img style={{height:'65px',width:'65px',borderRadius:'50%',margin:'auto'}} src={this.state.img[2]} alt="annika" /></ImageContainer></ImageWormBody>
+            </div>
+          </Slider>
+       
                 {/* <ReviewContent>  */}
                 {/* <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45.8 69.6"><path d="M23.5 68.1V63a5.6 5.6 0 0 1 5.6-5.6h1a5.6 5.6 0 0 0 5.6-5.6 5.6 5.6 0 0 0-5.6-5.6h-13a5.6 5.6 0 0 1-5.6-5.6 5.6 5.6 0 0 1 5.6-5.6h21.5a5.6 5.6 0 0 0 5.6-5.6 5.6 5.6 0 0 0-5.6-5.6H7.1a5.6 5.6 0 0 1-5.6-5.6 5.6 5.6 0 0 1 5.6-5.6h10.8A5.6 5.6 0 0 0 23.5 7V1.8" fill="none" stroke="#ffacba" stroke-linecap="round" stroke-miterlimit="10" stroke-width="3" style="stroke-dashoffset: 0px;"></path></svg> */}
             </ReviewsContainer>
@@ -29,17 +61,90 @@ export default class Reviews extends Component {
 }
 //  ↓↓↓↓↓  STYLES  ↓↓↓↓↓↓↓
 const ReviewsContainer = styled.div`
-    height: 45rem;
+    height: 43rem;
     width: 100% -4rem;
     background-color:#FEEEDE;
     background-image: url(${background});
     background-repeat: repeat;
     padding: 3rem 2rem 0 2rem;
+    @media(min-width:1240px){
+        padding-bottom:15rem;
+        padding-top:8.5rem;
+        padding-left:280px;
+        padding-right:280px
+    }
+    @media(min-width:768px){
+        padding-top:5.5rem;
+        padding-left:80px;
+        padding-right:80px;
+        
+    }
+    @media(min-width:1024px){
+        padding-left:200px;
+        padding-right:200px;
+        // max-width: 70rem;
+    }
 `
 const ReviewTitle = styled.h1`
     font-size: 1.75rem; 
     line-height: 2rem;
+    @media(min-width:1240px){
+        font-size:3.4rem;
+        line-height:1.03;
+        font-weight:900;
+        margin-bottom:.5rem;
+        margin-top:6rem
+    }
 `
 const ReviewMini = styled.h2`
     font-size: .75rem;
+    margin-bottom: 1.5em;
+    margin-top:0;
+    line-height:1.71;
+    letter-spacing:-.02em;
+    @media(min-width:768px){
+        font-size: .85rem;
+    }
+    @media(min-width:1240px){
+        font-size:1.2rem;
+        line-height:2rem;
+        margin-bottom:5.5rem;
+        font-weight:100;
+    }
+    
+`
+const ReviewText = styled.h3`
+    font-size: 1.1rem;
+    font-weight:100;
+    line-height: 1.7rem;
+    margin-bottom: 6rem;
+    padding-left:.8rem;
+    padding-right:.8rem;
+    position:relative;
+    display:block;
+    @media(min-width:1240px){
+        font-size:1.8rem;
+        line-height:1.5;
+        font-weight:100;
+        
+    }
+    @media(min-width:768px){
+        line-height:2.3rem;
+    }
+    
+`
+const ImageWormBody = styled.section`
+    padding-top:1.5rem;
+    position:relative;
+`
+const Worm = styled.section`
+    height:4.7rem;
+    margin-left:auto;
+    margin-right:auto;
+    width:3.3rem;
+`
+const ImageContainer = styled.section`
+    // height:6.4rem;
+    margin-top:2rem;
+    // position:relative;
 `
