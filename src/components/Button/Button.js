@@ -35,83 +35,6 @@ export default class Button extends Component {
   }
 }
 
-const ArrowAnimateRightIn = keyframes`
-  0% {
-    margin-right: 0;
-    opacity: 0;
-  }
-  50% {
-    transform: scaleY(0);
-    opacity: 0;
-  }
-  75%{
-    transform: scaleY(.65)
-  }
-  100% {
-    transform: scaleY(1);
-    margin-right: 1rem;
-    opacity: 1;
-  }
-`
-const ArrowAnimateRightOut = keyframes`
-  0% {
-    transform: scaleY(1);
-    opacity: 1;
-    margin-right: 1rem;
-  }
-  25% {
-    transform: scaleY(.35)
-    opacity: .25;
-  }
-  50% {
-    transform: scaleY(0);
-    opacity: .5;
-  }
-  100% {
-    opacity: 0;
-    margin-right: 0;
-  }
-`
-const ArrowAnimateLeftIn = keyframes`
-0% {
-  margin-left: 0;
-  opacity: 0;
-  transform: scaleY(0)
-}
-50% {
-  transform: scaleY(0);
-  opacity: 0;
-}
-75%{
-  transform: scaleY(.65)
-}
-100% {
-  transform: scaleY(1);
-  opacity: 1;
-  margin-left: 1rem;
-}
-`
-
-const ArrowAnimateLeftOut = keyframes`
-0% {
-  transform: scaleY(1);
-  opacity: 1;
-  margin-left: 1rem;
-}
-25% {
-  transform: scaleY(.35)
-  opacity: .25;
-}
-50% {
-  transform: scaleY(0);
-  opacity: .5;
-}
-100% {
-  opacity: 0;
-  margin-left: 0;
-}
-`
-
 let BtnBase = styled.button`
   border-radius: 2.4rem;
   cursor: pointer;
@@ -125,29 +48,25 @@ let BtnBase = styled.button`
   fill: white;
 `
 let LeftArrowContainer = styled.section`
-  // animation: ${ArrowAnimateLeftOut} 0.3s ease-in;
-  // animation-fill-mode: both;
-  // animation-delay: 0.2s;
-  transition: transform .4s cubic-bezier(.755,.050,.855,.060),
-  ${BtnBase}:hover & {
-    // animation: ${ArrowAnimateLeftIn} 0.3s ease-in;
-    // animation-fill-mode: both;
-    // animation-delay: 0.2s;
-    // display: inline-block;
-    transform: translateX(1.3rem) translateY(-.1rem) scaleY(0);
-  }
+opacity: 0;
+transition: transform .5s cubic-bezier(.645,.045,.355,1), opacity .5s cubic-bezier(.645,.045,.355,1), margin-left .5s cubic-bezier(.645,.045,.355,1);
+transition-delay: .2s;
+transform: scaleY(0) translateX(0);
+${BtnBase}:hover & {
+  transform: scaleY(1);
+  opacity: 1;
+  margin-left: 1.3rem;
+}
 `
 let RightArrowContainer = styled.section`
-  margin-right: .5rem;
-  animation: ${ArrowAnimateRightIn} 0.3s ease-in;
-  animation-fill-mode: both;
-  animation-delay: 0.2s;
-  display: none;
-  ${BtnBase}:hover & {
-    animation: ${ArrowAnimateRightOut} 0.3s ease-in;
-    animation-fill-mode: both;
-    animation-delay: 0.2s;
-  }
+margin-right: 1.3rem;
+transition: transform .5s cubic-bezier(.645,.045,.355,1), opacity .5s cubic-bezier(.645,.045,.355,1), margin-right .5s cubic-bezier(.645,.045,.355,1) ;
+transition-delay: .2s;
+${BtnBase}:hover & {
+  transform: scaleY(0);
+  opacity: 0;
+  margin-right: 0;
+}
 `
 
 let leftArrow = {
