@@ -2,18 +2,35 @@ import React, {Component} from 'react';
 import styled from 'styled-components'
 
 class Footer extends Component {
+    constructor(){
+        super();
+        this.state ={
+            intervalId: 0
+        }
+    }
+    scrollStep() {
+        if (window.pageYOffset === 0) {
+            clearInterval(this.state.intervalId);
+        }
+        window.scroll(0, window.pageYOffset - 50);
+      }
+      
+      scrollToTop(delayInMs) {
+        let intervalId = setInterval(this.scrollStep.bind(this), delayInMs);
+        this.setState({ intervalId: intervalId });
+      }
 
     render(){
         return(
             <FooterMain>
                 <Top>
-                <svg style={topArrow} viewBox="0 0 13 18">
+               <button style={{border:'none',borderRadius:'50%',backgroundColor:'#dee1e3'}} scrollStepInPx="50" delayInMs="16.66" onClick={ () => { this.scrollToTop('16.6'); }}> <TopArrowContainer><svg style={topArrow} viewBox="0 0 13 18">
               <path d="M1.6 17.8l11-8a1 1 0 0 0 .2-1.4l-.2-.2-11-8A1 1 0 0 0 0 1v16a1 1 0 0 0 1 1z" />
-            </svg>
+            </svg></TopArrowContainer>
                     <TopHeader>TOP</TopHeader>
-                    <svg style={bottomArrow} viewBox="0 0 13 18">
+                    <BottomArrowContainer><svg style={bottomArrow} viewBox="0 0 13 18">
               <path d="M1.6 17.8l11-8a1 1 0 0 0 .2-1.4l-.2-.2-11-8A1 1 0 0 0 0 1v16a1 1 0 0 0 1 1z" />
-            </svg>
+            </svg></BottomArrowContainer></button>
                 </Top>
                 <FooterBody>
                     <Columns>
@@ -87,9 +104,9 @@ let topArrow = {
     height: ".5rem",
     transform: 'rotate(-90deg)'
   }
-  let bottomArrow ={
+let bottomArrow ={
     height: ".5rem",
-    transform: 'rotate(90deg)'
+    transform: 'rotate(-90deg)'
 }
  const FooterMain = styled.section `
  display:flex;
@@ -107,9 +124,12 @@ let topArrow = {
  @media(min-width: 768px){
 
 }
-@media(min-width: 1024px){
-}
+@media(min-width: 1240px){
+  
+    // justify-content:center;
+ 
 
+}
  `
 
  const Top = styled.section`
@@ -118,16 +138,37 @@ let topArrow = {
  border-radius:50%;
  color:#000;
  cursor:pointer;
- height:2.8rem;
+ height:3rem;
  position:absolute;
  right:16.6666666667%;
  text-align:center;
- width:2.8rem;
+ width:3rem;
  z-index:5;
  transform:translateX(1.6rem) translateY(-.8rem);
  @media(min-width: 1024px){
 }
  `
+ let TopArrowContainer = styled.section`
+ transition: transform .5s cubic-bezier(.645,.045,.355,1), opacity .5s cubic-bezier(.645,.045,.355,1);
+ transition-delay: .2s;
+ ${Top}:hover & {
+     transform: scaleX(0);
+     opacity: 0;
+     //   margin-top: 1.3rem;
+    }
+    `
+    let BottomArrowContainer = styled.section`
+    // margin-right: 1.3rem;
+    opacity: 0;
+transform: scaleY(0) translateX(0);
+transition: transform .5s cubic-bezier(.645,.045,.355,1), opacity .5s cubic-bezier(.645,.045,.355,1), margin-right .5s cubic-bezier(.645,.045,.355,1) ;
+transition-delay: .2s;
+${Top}:hover & {
+  transform: scaleX(1);
+  opacity: 1;
+//   margin-bottom: 0;
+}
+`
  const TopHeader = styled.h5`
  bottom:12px;
  box-sizing:inherit;
@@ -156,6 +197,12 @@ display:wrap
 }
 @media(min-width: 1024px){
 }
+@media(min-width: 1240px){
+  
+    justify-content:center;
+ 
+
+}
  `
 const Columns = styled.section `
 margin-left:-5px;
@@ -179,13 +226,12 @@ box-sizing:border-box;
     // margin-left:40px;
 }
 @media(min-width: 1240px){
-    // width:calc(8.333333333% *2);
     display:grid;
     grid-template-columns:1fr 1fr 1fr;
-    margin-left:300px;
-    width:630px;
+    width:660px;
     justify-content:center;
-    padding:0
+    padding:0;
+    margin:auto
 
 }
 `
@@ -212,7 +258,7 @@ margin:auto
 }
 @media(min-width: 1240px){
     // width:calc(8.333333333% *2);
-    width:40%;
+    width:90%;
     margin:0
 }
 `
@@ -232,7 +278,7 @@ box-sizing:border-box;
 }
 @media(min-width: 1240px){
     // width:calc(8.333333333% *2)
-    width:55%;
+    width:90%;
 }
 `
 const Resources = styled.section `
@@ -254,9 +300,7 @@ box-sizing:border-box;
     // width:90%
 }
 @media(min-width: 1240px){
-    // width:calc(8.333333333% *2);
-    // padding-left: calc(.8% *3)
-    width:63%;
+    width:90%;
 }
 
 `
@@ -286,7 +330,8 @@ line-height:23.94px;
 font-size:13px;
 font-weight:600;
 @media(min-width: 1240px){
-    font-size:18px
+    font-size:18px;
+    line-height:1.8rem
 }
 
 `
