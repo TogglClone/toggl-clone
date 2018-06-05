@@ -1,6 +1,8 @@
 import React, { Component } from "react"
 import styled, { keyframes } from "styled-components"
 import hatdog from "./img/hotdog.mov"
+import robot from "./img/robot.mov"
+import piggy from "./img/piggy.mov"
 import timer_icon from "./img/timer_icon.svg"
 import Button from "../../Button/Button"
 import BottomLoginSvg from "./SignUpBottomSvg/SignUpBottomSvg"
@@ -14,7 +16,9 @@ class Landing extends Component {
       background: "#a4cfdc",
       displayMain: "none",
       displayNav: "none",
-      clicked: false
+      clicked: false,
+      vidList: [hatdog, robot, piggy],
+      beingPlayed: 0
     }
   }
 
@@ -34,6 +38,20 @@ class Landing extends Component {
           displayNav: "block",
           clicked: true
         })
+  }
+
+  componentDidMount() {
+    let count = 0
+
+    setInterval(() => {
+      console.log(count++)
+      if (count >= 3) {
+        count = 0
+      }
+      this.setState({
+        beingPlayed: count
+      })
+    }, 3000)
   }
 
   render() {
@@ -83,7 +101,10 @@ class Landing extends Component {
               Hassle-free time tracking so your business runs like clockwork.
             </Ptag>
             <VideoContainer>
-              <VideoSize src={hatdog} autoPlay loop />
+              <VideoSize
+                src={this.state.vidList[this.state.beingPlayed]}
+                autoPlay
+              />
             </VideoContainer>
             <ButtonContain>
               <Button type="pink">Get Started</Button>
@@ -149,13 +170,6 @@ const NavButtonContainer = styled.section`
   display: flex;
   justify-content: center;
 `
-
-let zIndexT = {
-  zIndex: -1
-}
-let zIndexF = {
-  zIndex: 0
-}
 
 const BurgerNav = styled.nav`
   border-bottom: 1px solid lightgray;
@@ -227,7 +241,8 @@ const Burger1 = {
   borderRadius: "0.2rem",
   marginTop: "6px",
   height: "3px",
-  width: "34px"
+  width: "34px",
+  transitionDuration: ".3s"
 }
 
 const Burger2 = {
@@ -236,7 +251,8 @@ const Burger2 = {
   // right: "10px",
   marginTop: "6px",
   height: "3px",
-  width: "34px"
+  width: "34px",
+  transitionDuration: ".3s"
   // position: "absolute"
 }
 
@@ -247,6 +263,7 @@ let Clicked1 = {
   height: "3px",
   right: "25px",
   width: "34px",
+  transition: "all .3s",
   transform: "rotate(45deg)"
 }
 
@@ -257,8 +274,7 @@ let Clicked2 = {
   right: "25px",
   height: "3px",
   width: "34px",
-  transition: "all",
-  tranistionDelay: "1s",
+  transition: "all .3s",
   transform: "rotate(-45deg)"
 }
 
