@@ -43,10 +43,6 @@ export default class BenniesContainer extends Component {
     tempY -= 223 // gives range from 0 to 600
     tempX -= 1717 - 180 // gives range from 0 to innerwidth including the side width on the timer bar
 
-    tempY = tempY / 300 * 47 - 47
-    tempX = tempX / (e.view.innerWidth / 2) * 40 - 40
-    // top 223 bottom 822 left 1717 right 3136
-
     //max up 47 max down 47 max left 40 max right 40
     this.setState({ x: tempX, y: tempY })
   }
@@ -61,13 +57,14 @@ export default class BenniesContainer extends Component {
           onMouseMove={this._onMouseMove.bind(this)}
         >
           <BennieImgContainer side={this.state.imgMargin[version % 2]}>
-            <BennieImg src={this.state.img[version]} />
-            {version === "1" ? (
-              <EyeBall>
-                <Pupil top={y} left={x} />
-              </EyeBall>
-            ) : null}
-            <br />
+            <BennieImg backgroundUrl={this.state.img[version]}>
+              {version === "1" ? (
+                <EyeBall>
+                  <Pupil top={y} left={x} />
+                </EyeBall>
+              ) : null}
+              <br />
+            </BennieImg>
           </BennieImgContainer>
           <BennieTextCont
             side={this.state.textMargin[version % 2]}
@@ -132,17 +129,18 @@ const BennieImgContainer = styled.div`
     width: 100%;
   }
   @media (min-width: 1024px) {
-    height: 100%;
-    width: 50%;
+    height: 300px;
     margin: ${props => props.side};
     position: relative;
   }
 `
-const BennieImg = styled.img`
+const BennieImg = styled.div`
+  background-image: url(${props => props.backgroundUrl});
+  background-size: cover;
+  background-repeat: no-repeat;
   z-index: 5;
   height: 9.4rem;
   width: auto;
-  margin: 1rem 0 1.8rem 0;
   @media (min-width: 415px) {
     margin-top: 2rem;
     margin-bottom: 2.5rem;
@@ -156,25 +154,33 @@ const BennieImg = styled.img`
     margin-top: 20%;
   }
   @media (min-width: 1240px) {
-    height: 325px;
-    margin-top: 18vh;
+    height: 100%;
+    width: 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin: 0;
   }
 `
 
 const EyeBall = styled.div`
-  border-radius: 50%;
-  height: 74px;
-  width: 68px;
-  ${"" /* background: url(${eyeball}); */} background-repeat: no-repeat;
-  position: absolute;
-  top: calc(28.5%);
-  left: calc(29.5%);
-  overflow: hidden;
+  @media (min-width: 1240px) {
+    border-radius: 50%;
+    height: 74px;
+    width: 68px;
+    background: url(${eyeball});
+    background-repeat: no-repeat;
+    position: absolute;
+    top: calc(5%);
+    left: calc(29.5%);
+    overflow: hidden;
+  }
 `
 const Pupil = styled.div`
   @media (min-width: 1240px) {
     border-radius: 50%;
     background-image: url(${pupil});
+    background-size: contain;
     height: 30px;
     width: 30px;
     position: absolute;
@@ -213,6 +219,7 @@ const BennieMiniTitle = styled.h2`
   }
 `
 const BennieTitle = styled.h1`
+  <<<<<<<HEAD
   font-size: 1.2rem;
   font-weight: 700;
   margin-bottom: 1.4rem;
@@ -230,6 +237,24 @@ const BennieDesc = styled.h3`
     line-height: 1.8rem;
     margin-bottom: 4rem;
   }
+  =======font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 1.4rem;
+  @media (min-width: 1240px) {
+    font-size: 1.5rem;
+  }
+`
+const BennieDesc = styled.h3`  
+    font-size: .8rem;
+    line-height: 1.4rem;
+    margin-bottom: 2.8rem;
+    font-weight: normal;
+    @media(min-width: 1240px){
+        font-size: 1.1rem;
+        line-height: 1.8rem;
+        margin-bottom: 4rem;
+    }
+>>>>>>> master
 `
 const BennieButton = styled.div`
   text-align: center;

@@ -64,4 +64,7 @@ const PackageDivider = styled.div`
         width: 2px;
         margin: 0 2rem;
     }
+    @media(min-width: 1240px){
+        margin: 0 50px;
+    }
 `

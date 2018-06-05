@@ -39,39 +39,6 @@ export default class Button extends Component {
   }
 }
 
-const ArrowAnimateIn = keyframes`
-  0% {
-    transform: scaleY(0.1);
-    margin-right: .5rem;
-    opacity: 0;
-  }
-  50% {
-    transform: scaleY(.5);
-    opacity: .5;
-  }
-  100% {
-    transform: scaleY(1);
-    margin-right: 0;
-    opacity: 1;
-  }
-`
-const ArrowAnimateOut = keyframes`
-  0% {
-    transform: scaleY(1);
-    opacity: 1;
-  }
-  50% {
-    transform: scaleY(.5);
-    opacity: .5;
-  }
-  100% {
-    display: none;
-    transform: scaleY(0);
-    opacity: 0;
-    transform: translateX(7px);
-  }
-`
-
 let BtnBase = styled.button`
   border-radius: 2.4rem;
   cursor: pointer;
@@ -85,18 +52,25 @@ let BtnBase = styled.button`
   fill: white;
 `
 let LeftArrowContainer = styled.section`
-  display: none;
-  ${BtnBase}:hover & {
-    animation: ${ArrowAnimateIn} 0.3s linear;
-    tranistion-delay: 0.4s;
-    display: inline-block;
-  }
+opacity: 0;
+transition: transform .5s cubic-bezier(.645,.045,.355,1), opacity .5s cubic-bezier(.645,.045,.355,1), margin-left .5s cubic-bezier(.645,.045,.355,1);
+transition-delay: .2s;
+transform: scaleY(0) translateX(0);
+${BtnBase}:hover & {
+  transform: scaleY(1);
+  opacity: 1;
+  margin-left: 1.3rem;
+}
 `
 let RightArrowContainer = styled.section`
-  ${BtnBase}:hover & {
-    animation: ${ArrowAnimateOut} 0.3s forwards;
-    tranistion-delay: 0.4s;
-  }
+margin-right: 1.3rem;
+transition: transform .5s cubic-bezier(.645,.045,.355,1), opacity .5s cubic-bezier(.645,.045,.355,1), margin-right .5s cubic-bezier(.645,.045,.355,1) ;
+transition-delay: .2s;
+${BtnBase}:hover & {
+  transform: scaleY(0);
+  opacity: 0;
+  margin-right: 0;
+}
 `
 
 let leftArrow = {
