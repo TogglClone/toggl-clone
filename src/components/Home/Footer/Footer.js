@@ -2,20 +2,39 @@ import React, {Component} from 'react';
 import styled from 'styled-components'
 
 class Footer extends Component {
+    constructor(){
+        super();
+        this.state ={
+            intervalId: 0
+        }
+    }
+    scrollStep() {
+        if (window.pageYOffset === 0) {
+            clearInterval(this.state.intervalId);
+        }
+        window.scroll(0, window.pageYOffset - 50);
+      }
+      
+      scrollToTop(delayInMs) {
+        let intervalId = setInterval(this.scrollStep.bind(this), delayInMs);
+        this.setState({ intervalId: intervalId });
+      }
 
     render(){
         return(
             <FooterMain>
                 <Top>
-                  
+               <button style={{border:'none',borderRadius:'50%',backgroundColor:'#dee1e3'}} scrollStepInPx="50" delayInMs="16.66" onClick={ () => { this.scrollToTop('16.6'); }}> <TopArrowContainer><svg style={topArrow} viewBox="0 0 13 18">
+              <path d="M1.6 17.8l11-8a1 1 0 0 0 .2-1.4l-.2-.2-11-8A1 1 0 0 0 0 1v16a1 1 0 0 0 1 1z" />
+            </svg></TopArrowContainer>
                     <TopHeader>TOP</TopHeader>
-                 
+                    <BottomArrowContainer><svg style={bottomArrow} viewBox="0 0 13 18">
+              <path d="M1.6 17.8l11-8a1 1 0 0 0 .2-1.4l-.2-.2-11-8A1 1 0 0 0 0 1v16a1 1 0 0 0 1 1z" />
+            </svg></BottomArrowContainer></button>
                 </Top>
                 <FooterBody>
                     <Columns>
-                        <div>
-                            <span><a></a></span>
-                        </div>
+                      
                         <Toggl>
                             <div>
                                 <TogglTitle>TOGGL</TogglTitle>
@@ -30,7 +49,7 @@ class Footer extends Component {
                             </div>
                         </Toggl>
                         <div>
-                            <Toggl>
+                            <Product>
                                 <TogglTitle>PRODUCT ADD-ONS</TogglTitle>
                                 <List>
                                     <ListItems><a>Intergrations</a></ListItems>
@@ -39,12 +58,12 @@ class Footer extends Component {
                                     <ListItems><a>Andriod App</a></ListItems>
                                     <ListItems><a>iPhone App</a></ListItems>
                                     <ListItems><a>Desktop App</a></ListItems>
-                                    <ListItems><a>Superday-Time Logging App</a></ListItems>
+                                    <ListItems><a>Superday - Time Logging App</a></ListItems>
                                 </List>
-                            </Toggl>
+                            </Product>
                         </div>
                         <div>
-                            <Toggl>
+                            <Resources>
                                 <TogglTitle>RESOURCES & USEFUL LINKS</TogglTitle>
                                 <List>
                                     <ListItems><a>Toggl Blog</a></ListItems>
@@ -55,7 +74,7 @@ class Footer extends Component {
                                     <ListItems><a>Out of Office - Remote Working Guide</a></ListItems>
                                     <ListItems><a>Unicorn Startup Simulator</a></ListItems>
                                 </List>
-                            </Toggl>
+                            </Resources>
                         </div>
                     </Columns>
                     <IconsBody >
@@ -81,20 +100,15 @@ class Footer extends Component {
 }
 
 export default Footer;
-
-// ::before/::after
+let topArrow = {
+    height: ".5rem",
+    transform: 'rotate(-90deg)'
+  }
+let bottomArrow ={
+    height: ".5rem",
+    transform: 'rotate(-90deg)'
+}
  const FooterMain = styled.section `
- ::before{
-     background-color:#fff;
-     bottom:0px;
-     box-sizing:inherit;
-     content:'';
-     left:0px;
-     position:absolute;
-     right:0px;
-     top:0px;
-     z-index:2;
- }
  display:flex;
  justifyContent:space-between;
  paddingBottom:5.3rem;
@@ -102,64 +116,71 @@ export default Footer;
  position:relative;
  backgroundColor:#fff;
  fontWeight:500;
- boxSizing:inherit;
  fontFamily:GTWalsheim,Arial,sans-serif;
  fontSize:14px;
- z-index:2
+ z-index:2;
+ width:100%;
+ margin-top:100px;
+ @media(min-width: 768px){
 
+}
+@media(min-width: 1240px){
+  
+    // justify-content:center;
+ 
+
+}
  `
 
  const Top = styled.section`
- ::before{
-     background-image: url(https://www.toggl.com/common/images/button-arrow-1deed00dda5d8041c47eeca866d67f0e.svg);
-     background-position-x:center;
-     background-position-y:center;
-     background-repeat-x: no-repeat;
-     background-repeat-y: no-repeat;
-     background-size:contain;
-     box-sizing:border-box;
-     content:"";
-     display:block;
-     font-size:0px;
-     height:8px;
-     left:24px;
-     position:absolute;
-     top:11px;
-     transform:translateX(-50%) translateY(0) scaleX(1) rotate(-90
- }
 
  background-color:#dee1e3;
- border-bottom-left:50%;
- border-bottom-right:50%;
- border-top-left:50%;
- border-top-right:50%;
  border-radius:50%;
  color:#000;
  cursor:pointer;
- height:2.8rem;
+ height:3rem;
  position:absolute;
  right:16.6666666667%;
  text-align:center;
- width:2.8rem;
+ width:3rem;
  z-index:5;
  transform:translateX(1.6rem) translateY(-.8rem);
+ @media(min-width: 1024px){
+}
  `
+ let TopArrowContainer = styled.section`
+ transition: transform .5s cubic-bezier(.645,.045,.355,1), opacity .5s cubic-bezier(.645,.045,.355,1);
+ transition-delay: .2s;
+ ${Top}:hover & {
+     transform: scaleX(0);
+     opacity: 0;
+     //   margin-top: 1.3rem;
+    }
+    `
+    let BottomArrowContainer = styled.section`
+    // margin-right: 1.3rem;
+    opacity: 0;
+transform: scaleY(0) translateX(0);
+transition: transform .5s cubic-bezier(.645,.045,.355,1), opacity .5s cubic-bezier(.645,.045,.355,1), margin-right .5s cubic-bezier(.645,.045,.355,1) ;
+transition-delay: .2s;
+${Top}:hover & {
+  transform: scaleX(1);
+  opacity: 1;
+//   margin-bottom: 0;
+}
+`
  const TopHeader = styled.h5`
  bottom:12px;
  box-sizing:inherit;
  color:#000;
+ margin: 0;
  cursor:pointer;
  display:block;
  font-size:11px;
  font-weight:700;
-//  left:24px;
-//  letter-spacing:.55px;
-//  line-height:15.95px;
-//  position:absolute;
-//  text-align:center;
-//  text-transform:uppercase;
-//  transform:translateX(-50%) translateY;
-//  transition-delay:
+ 
+ @media(min-width: 1024px){
+}
  `
  const FooterBody = styled.section `
  box-sizing:inherit;
@@ -170,16 +191,49 @@ export default Footer;
  padding-left:22px;
  padding-right:22px;
  position:relative;
- width:375px;
+ width: 100%;
+ @media(min-width: 768px){
+display:wrap
+}
+@media(min-width: 1024px){
+}
+@media(min-width: 1240px){
+  
+    justify-content:center;
+ 
 
+}
  `
 const Columns = styled.section `
 margin-left:-5px;
 margin-right:-5px;
-// padding-left:calc(16.6666666667% * 1);
 text-align:left;
 display:inline-block;
+width: 100%;
+padding-left:calc(16.6666666667% * 1);
+box-sizing:border-box;
+@media(min-width: 768px){
+    width:80%;
+    padding-left:200px;
+    max-width:60rem;
+   display:grid;
+   grid-template-columns:50% 50%
+}
+@media(min-width: 1024px){
+    width:100%;
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    // margin-left:40px;
+}
+@media(min-width: 1240px){
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    width:660px;
+    justify-content:center;
+    padding:0;
+    margin:auto
 
+}
 `
 const Toggl = styled.section `
 text-align:left;
@@ -189,8 +243,65 @@ font-weight:500;
 padding-left:.5rem;
 padding-top:4px;
 vertical-align:top;
-width:100%;
-
+// width:100%;
+box-sizing:border-box;
+@media(min-width: 768px){
+    // margin-left:-.8px;
+    // margin-right:-.8px;
+    // display:block;
+    // width:50%;
+}
+@media(min-width: 1024px){
+//     display:flex-wrap;
+//    wrap:flex-wrap;
+margin:auto
+}
+@media(min-width: 1240px){
+    // width:calc(8.333333333% *2);
+    width:90%;
+    margin:0
+}
+`
+const Product = styled.section `
+text-align:left;
+display:inline-block;
+font-size:16px;
+font-weight:500;
+padding-left:.5rem;
+padding-top:4px;
+vertical-align:top;
+// width:100%;
+box-sizing:border-box;
+@media(min-width: 768px){
+}
+@media(min-width: 1024px){
+}
+@media(min-width: 1240px){
+    // width:calc(8.333333333% *2)
+    width:90%;
+}
+`
+const Resources = styled.section `
+text-align:left;
+display:inline-block;
+font-size:16px;
+font-weight:500;
+padding-left:.5rem;
+padding-top:4px;
+vertical-align:top;
+// width:100%;
+box-sizing:border-box;
+@media(min-width: 768px){
+   
+}
+@media(min-width: 1024px){
+    // margin-right:400px;
+    // margin-left:100px
+    // width:90%
+}
+@media(min-width: 1240px){
+    width:90%;
+}
 
 `
 const TogglTitle =styled.h5 `
@@ -200,6 +311,9 @@ font-weight:600;
 letter-spacing:.55px;
 line-height:15.95px;
 margin-bottom:10px;
+@media(min-width: 1240px){
+    font-size:11px;
+}
 
 `
 const List = styled.ul `
@@ -207,7 +321,7 @@ display:block;
 font-size:14px;
 font-weight:300;
 list-style-type:none;
-padding:0
+padding:0;
 `
 const ListItems = styled.li `
 text-align:left;
@@ -215,15 +329,23 @@ margin-bottom:10px;
 line-height:23.94px;
 font-size:13px;
 font-weight:600;
+@media(min-width: 1240px){
+    font-size:18px;
+    line-height:1.8rem
+}
 
 `
 const IconsBody = styled.section `
 
-box-sizing: inherit;
+width:80%vw;
 display:block;
 margin-bottom: px;
 margin-top:30px;
-text-align:center
+text-align:center;
+margin-left:auto;
+margin-right:auto;
+justify-content:center;
+
 `
 const IconsList =styled.ul `
 
@@ -232,6 +354,9 @@ max-width:320px;
 text-align:center;
 list-style-type:none;
 padding:0;
+@media(min-width: 768px){
+  max-width:none
+}
 
 `
 const IconsListItems = styled.li `
@@ -256,7 +381,9 @@ font-size:12px;
 display:block;
 color:#848687;
 font-family:GTWalsheim,Arial,sans-serifbody;
-
+box-sizing:inherit;
+margin-left:auto;
+margin-right:auto
 
 `
 const BottomSVG = styled.a`
@@ -265,12 +392,18 @@ fill:#bcc2c6;
 display:block;
 width:75px;
 color:black;
-bottom:53px;
+bottom:33px;
 font-size:14px;
 position:absolute;
 z-index:10;
 transform:translateX(-50%);
-left:187.5px;
+left:50%;
 stroke:#bcc2c6;
-padding-top:30px
+padding-top:0px;
+margin-bottom:10px;
+@media(min-width: 1024px){
+    left:90%;
+    padding-bottom:50px
+}
+
 `
