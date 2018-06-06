@@ -42,16 +42,20 @@ class Landing extends Component {
 
   componentDidMount() {
     let count = 0
+    let mili = 13000
 
     setInterval(() => {
-      console.log(count++)
+      count++
       if (count >= 3) {
         count = 0
+      }
+      if (count === 3) {
+        mili = 10000
       }
       this.setState({
         beingPlayed: count
       })
-    }, 3000)
+    }, mili)
   }
 
   render() {
@@ -388,9 +392,11 @@ const VideoSize = styled.video`
   }
 `
 
-const VideoContainer = styled.section`
+let VideoContainer = styled.section`
   display: flex;
   justify-content: center;
+  transition: 
+  transition-delay: 1s;
   @media (min-width: 370px) {
     width: calc(100% - (2.2rem * 2));
   }

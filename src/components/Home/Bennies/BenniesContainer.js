@@ -219,7 +219,6 @@ const BennieMiniTitle = styled.h2`
   }
 `
 const BennieTitle = styled.h1`
-  <<<<<<<HEAD
   font-size: 1.2rem;
   font-weight: 700;
   margin-bottom: 1.4rem;
@@ -237,24 +236,6 @@ const BennieDesc = styled.h3`
     line-height: 1.8rem;
     margin-bottom: 4rem;
   }
-  =======font-size: 1.2rem;
-  font-weight: 700;
-  margin-bottom: 1.4rem;
-  @media (min-width: 1240px) {
-    font-size: 1.5rem;
-  }
-`
-const BennieDesc = styled.h3`  
-    font-size: .8rem;
-    line-height: 1.4rem;
-    margin-bottom: 2.8rem;
-    font-weight: normal;
-    @media(min-width: 1240px){
-        font-size: 1.1rem;
-        line-height: 1.8rem;
-        margin-bottom: 4rem;
-    }
->>>>>>> master
 `
 const BennieButton = styled.div`
   text-align: center;
