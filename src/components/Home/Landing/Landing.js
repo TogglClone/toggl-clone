@@ -18,7 +18,8 @@ class Landing extends Component {
       displayNav: "none",
       clicked: false,
       vidList: [hatdog, robot, piggy],
-      beingPlayed: 0
+      beingPlayed: 0,
+      vidTran: null
     }
   }
 
@@ -41,21 +42,38 @@ class Landing extends Component {
   }
 
   componentDidMount() {
-    let count = 0
-    let mili = 13000
+    var count = 1
+    var mili = 13000
+    var miliTran = mili - 750
 
     setInterval(() => {
+      console.log("count", count)
+      this.setState({
+        beingPlayed: count
+      })
       count++
       if (count >= 3) {
         count = 0
       }
-      if (count === 3) {
+      if (count === 0) {
+        mili = 12500
+      } else if (count === 1) {
+        mili = 12200
+      } else if (count === 2) {
         mili = 10000
       }
-      this.setState({
-        beingPlayed: count
-      })
+      setTimeout(() => {
+        this.setState({
+          vidTran: null
+        })
+      }, 300)
     }, mili)
+
+    setInterval(_ => {
+      this.setState({
+        vidTran: testingBro
+      })
+    }, miliTran)
   }
 
   render() {
@@ -106,6 +124,7 @@ class Landing extends Component {
             </Ptag>
             <VideoContainer>
               <VideoSize
+                vidTran={this.state.vidTran}
                 src={this.state.vidList[this.state.beingPlayed]}
                 autoPlay
               />
@@ -196,7 +215,7 @@ const mobile = styled.section`
 `
 
 const FrontWrapper = styled.section`
-  background: ${props => props.color}
+  background: ${props => props.color};
   height: 100vh;
   letter-spacing: 0.04em;
 `
@@ -354,6 +373,61 @@ const Ptag = styled.p`
   }
 `
 
+// const testingBro = keyframes`
+// 0% {
+//   transform: translateY(0);
+//   transform: translateX(0)
+// }
+// 25% {
+//   transform: translate(-120px, 80px);
+// opacity: 0;
+// }
+
+// 75%{
+//   transform: translate (60px, -40px);
+//   opacity: 0;
+// }
+// 100% {
+//   transform: translate (120px, -80px);
+//   opacity: 1;
+// }
+// `
+
+const testingBro = keyframes`
+12.5% {
+  transform: translateY(0);
+  transform: translateX(0)
+}
+25% {
+  transform: translate(-120px, 80px);
+opacity: 0;
+}
+
+37.5%{
+  transform: translate (60px, -40px);
+  opacity: 0;
+}
+50% {
+  transform: translate (120px, -80px);
+  opacity: 0;
+}
+${"" /* 62.5% {
+  opacity: 0;
+} */}
+65% {
+  transform: translate(90px, -60px);
+opacity: .1;
+}
+87.5%{
+  transform: translate (-60px, 40px);
+  opacity: .5;
+}
+100% {
+  transform: translate (-120px, 80px);
+  opacity: 1;
+}
+`
+
 const VideoSize = styled.video`
   min-width: 17rem;
   max-width: 90%;
@@ -362,6 +436,10 @@ const VideoSize = styled.video`
   position: absolute;
   bottom: 11.5rem;
   margin-bottom: -2%;
+  animation: ${props => props.vidTran};
+  animation-delay: 0.1s;
+  animation-timing-function: ease-in-out;
+  animation-duration: 1s;
   @media (min-width: 651px) {
     max-width: 80%;
     margin-left: -40%;
@@ -395,8 +473,7 @@ const VideoSize = styled.video`
 let VideoContainer = styled.section`
   display: flex;
   justify-content: center;
-  transition: 
-  transition-delay: 1s;
+
   @media (min-width: 370px) {
     width: calc(100% - (2.2rem * 2));
   }
