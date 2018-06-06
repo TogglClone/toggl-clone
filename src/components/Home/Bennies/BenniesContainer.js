@@ -210,7 +210,7 @@ const EyeBall = styled.div`
         top: calc(5%);
         left: calc(29.5%);
         overflow: hidden;
-        z-index: 1;
+        z-index: -2;
     }
 `
 const PupilWrap = styled.div`
@@ -224,7 +224,7 @@ const PupilWrap = styled.div`
     top: calc(5%);
     left: calc(29.5%);
     overflow: hidden;
-    z-index: 2;
+    z-index: -1;
 }
 `
 const Pupil = styled.div`
@@ -274,6 +274,7 @@ const moveDown = keyframes`
 const SvgContainer = styled.div`
   position: absolute;
   opacity: 0;
+  pointer-events: none;
   ${( {animateCalled} ) => animateCalled && `
     animation: ${moveDown} 200ms forwards;
   `}
