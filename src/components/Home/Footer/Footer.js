@@ -2,20 +2,39 @@ import React, {Component} from 'react';
 import styled from 'styled-components'
 
 class Footer extends Component {
+    constructor(){
+        super();
+        this.state ={
+            intervalId: 0
+        }
+    }
+    scrollStep() {
+        if (window.pageYOffset === 0) {
+            clearInterval(this.state.intervalId);
+        }
+        window.scroll(0, window.pageYOffset - 50);
+      }
+      
+      scrollToTop(delayInMs) {
+        let intervalId = setInterval(this.scrollStep.bind(this), delayInMs);
+        this.setState({ intervalId: intervalId });
+      }
 
     render(){
         return(
             <FooterMain>
                 <Top>
-                  
+               <button style={{border:'none',borderRadius:'50%',backgroundColor:'#dee1e3'}} scrollStepInPx="50" delayInMs="16.66" onClick={ () => { this.scrollToTop('16.6'); }}> <TopArrowContainer><svg style={topArrow} viewBox="0 0 13 18">
+              <path d="M1.6 17.8l11-8a1 1 0 0 0 .2-1.4l-.2-.2-11-8A1 1 0 0 0 0 1v16a1 1 0 0 0 1 1z" />
+            </svg></TopArrowContainer>
                     <TopHeader>TOP</TopHeader>
-                 
+                    <BottomArrowContainer><svg style={bottomArrow} viewBox="0 0 13 18">
+              <path d="M1.6 17.8l11-8a1 1 0 0 0 .2-1.4l-.2-.2-11-8A1 1 0 0 0 0 1v16a1 1 0 0 0 1 1z" />
+            </svg></BottomArrowContainer></button>
                 </Top>
                 <FooterBody>
                     <Columns>
-                        <div>
-                            <span><a></a></span>
-                        </div>
+                      
                         <Toggl>
                             <div>
                                 <TogglTitle>TOGGL</TogglTitle>
@@ -39,7 +58,7 @@ class Footer extends Component {
                                     <ListItems><a>Andriod App</a></ListItems>
                                     <ListItems><a>iPhone App</a></ListItems>
                                     <ListItems><a>Desktop App</a></ListItems>
-                                    <ListItems><a>Superday-Time Logging App</a></ListItems>
+                                    <ListItems><a>Superday - Time Logging App</a></ListItems>
                                 </List>
                             </Product>
                         </div>
@@ -81,8 +100,14 @@ class Footer extends Component {
 }
 
 export default Footer;
-
-
+let topArrow = {
+    height: ".5rem",
+    transform: 'rotate(-90deg)'
+  }
+let bottomArrow ={
+    height: ".5rem",
+    transform: 'rotate(-90deg)'
+}
  const FooterMain = styled.section `
  display:flex;
  justifyContent:space-between;
@@ -99,39 +124,61 @@ export default Footer;
  @media(min-width: 768px){
 
 }
-@media(min-width: 1024px){
-}
+@media(min-width: 1240px){
+  
+    // justify-content:center;
+ 
 
+}
  `
 
  const Top = styled.section`
 
  background-color:#dee1e3;
- border-bottom-left:50%;
- border-bottom-right:50%;
- border-top-left:50%;
- border-top-right:50%;
  border-radius:50%;
  color:#000;
  cursor:pointer;
- height:2.8rem;
+ height:3rem;
  position:absolute;
  right:16.6666666667%;
  text-align:center;
- width:2.8rem;
+ width:3rem;
  z-index:5;
  transform:translateX(1.6rem) translateY(-.8rem);
  @media(min-width: 1024px){
 }
  `
+ let TopArrowContainer = styled.section`
+ transition: transform .5s cubic-bezier(.645,.045,.355,1), opacity .5s cubic-bezier(.645,.045,.355,1);
+ transition-delay: .2s;
+ ${Top}:hover & {
+     transform: scaleX(0);
+     opacity: 0;
+     //   margin-top: 1.3rem;
+    }
+    `
+    let BottomArrowContainer = styled.section`
+    // margin-right: 1.3rem;
+    opacity: 0;
+transform: scaleY(0) translateX(0);
+transition: transform .5s cubic-bezier(.645,.045,.355,1), opacity .5s cubic-bezier(.645,.045,.355,1), margin-right .5s cubic-bezier(.645,.045,.355,1) ;
+transition-delay: .2s;
+${Top}:hover & {
+  transform: scaleX(1);
+  opacity: 1;
+//   margin-bottom: 0;
+}
+`
  const TopHeader = styled.h5`
  bottom:12px;
  box-sizing:inherit;
  color:#000;
+ margin: 0;
  cursor:pointer;
  display:block;
  font-size:11px;
  font-weight:700;
+ 
  @media(min-width: 1024px){
 }
  `
@@ -150,6 +197,12 @@ display:wrap
 }
 @media(min-width: 1024px){
 }
+@media(min-width: 1240px){
+  
+    justify-content:center;
+ 
+
+}
  `
 const Columns = styled.section `
 margin-left:-5px;
@@ -160,27 +213,27 @@ width: 100%;
 padding-left:calc(16.6666666667% * 1);
 box-sizing:border-box;
 @media(min-width: 768px){
-    // margin-left:-.8px;
-    // margin-right:-.8px;
-    // display:flex-wrap;
-    display: grid;
-    grid-template-columns: 50% 50%;
-    max-width: 60rem;
+    width:80%;
+    padding-left:200px;
+    max-width:60rem;
+   display:grid;
+   grid-template-columns:50% 50%
 }
 @media(min-width: 1024px){
-    display:flex;
-    max-width:none;
     width:100%;
-    padding-right:6.2rem;
-    padding-left:6.2rem;
-    justify-content:space-between;
-    position:relative;
- 
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    // margin-left:40px;
 }
-@media(min-width: 1240){
-    max-width: 70rem;
-}
+@media(min-width: 1240px){
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    width:660px;
+    justify-content:center;
+    padding:0;
+    margin:auto
 
+}
 `
 const Toggl = styled.section `
 text-align:left;
@@ -196,14 +249,18 @@ box-sizing:border-box;
     // margin-left:-.8px;
     // margin-right:-.8px;
     // display:block;
+    // width:50%;
 }
 @media(min-width: 1024px){
 //     display:flex-wrap;
 //    wrap:flex-wrap;
-// margin:auto
-   
+margin:auto
 }
-
+@media(min-width: 1240px){
+    // width:calc(8.333333333% *2);
+    width:90%;
+    margin:0
+}
 `
 const Product = styled.section `
 text-align:left;
@@ -213,22 +270,15 @@ font-weight:500;
 padding-left:.5rem;
 padding-top:4px;
 vertical-align:top;
-width:100%;
+// width:100%;
 box-sizing:border-box;
 @media(min-width: 768px){
-    // margin-left:-.8px;
-    // margin-right:-.8px;
-    // display:flex-wrap;
-    // float:right ;  
-    // width:50%;
 }
 @media(min-width: 1024px){
-    margin:auto;
-    position:center;
-    padding:0;
-    // margin-right:100px
-    
-    
+}
+@media(min-width: 1240px){
+    // width:calc(8.333333333% *2)
+    width:90%;
 }
 `
 const Resources = styled.section `
@@ -239,17 +289,18 @@ font-weight:500;
 padding-left:.5rem;
 padding-top:4px;
 vertical-align:top;
-width:100%;
+// width:100%;
 box-sizing:border-box;
 @media(min-width: 768px){
-    // margin-left:-.8px;
-    // margin-right:-.8px;
-    // display:block;
    
 }
 @media(min-width: 1024px){
     // margin-right:400px;
     // margin-left:100px
+    // width:90%
+}
+@media(min-width: 1240px){
+    width:90%;
 }
 
 `
@@ -260,6 +311,9 @@ font-weight:600;
 letter-spacing:.55px;
 line-height:15.95px;
 margin-bottom:10px;
+@media(min-width: 1240px){
+    font-size:11px;
+}
 
 `
 const List = styled.ul `
@@ -275,6 +329,10 @@ margin-bottom:10px;
 line-height:23.94px;
 font-size:13px;
 font-weight:600;
+@media(min-width: 1240px){
+    font-size:18px;
+    line-height:1.8rem
+}
 
 `
 const IconsBody = styled.section `
