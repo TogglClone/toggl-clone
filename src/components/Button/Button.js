@@ -12,7 +12,11 @@ export default class Button extends Component {
             border: "none",
             display: "flex",
             justifyContent: "center",
-            alignItems: "center"
+            alignItems: "center",
+            position: "relative",
+            left: 0,
+            marginLeft: 0,
+            bottom: 0
           })}
         >
           <LeftArrowContainer>
@@ -40,7 +44,7 @@ let BtnBase = styled.button`
   cursor: pointer;
   background: white;
   text-transform: uppercase;
-  height: 52px;
+  height: 51px;
   font-weight: 100;
   font-size: 0.86rem;
   min-width: 14rem;
@@ -93,7 +97,8 @@ let pink = {
   color: "white",
   border: "none",
   outline: "none",
-  fill: "white"
+  fill: "white",
+  marginLeft: "-7rem"
 }
 let styles = {
   white: white,
