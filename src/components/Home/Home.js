@@ -2,8 +2,8 @@ import React, { Component } from "react"
 import Landing from "./Landing/Landing"
 import Bennies from "./Bennies/Bennies"
 import Reviews from "./Reviews/Reviews"
-import Packages from "./Packages/Packages"
-import Footer from './Footer/Footer'
+// import Packages from "./Packages/Packages"
+import Footer from "./Footer/Footer"
 
 class Home extends Component {
   render() {
@@ -12,7 +12,7 @@ class Home extends Component {
         <Landing />
         <Bennies />
         <Reviews />
-        <Packages />
+        {/* <Packages /> */}
         <Footer />
       </div>
     )
