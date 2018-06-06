@@ -26,27 +26,23 @@ export default class BenniesContainer extends Component {
             imgMargin: ["auto 52% auto 5rem", "auto 5rem auto 52%" ],
             colors: ["#FFACBA", "#F8CE6A", "#88CF8F", "#CA99D7"],
             fontColors: ["#E3677C", "#F69F09", "#31AA53", "#A857BD"],
-            x: 0,
+            x: -15,
             y: 0,
-            topCurve: 150, //even is 250
-            bottomCurve: 650, //even is 750
+            topCurve: 175, //even is 250
+            bottomCurve: 675, //even is 750
             animateCalled: [false, false, false, false],
             intervalFn: null
         }
         this.animateBox = this.animateBox.bind( this )
     }
-    // componentDidMount(){
-    //     window.addEventListener('scroll', this.animateBox)
-    //   }
       animateBox(version){
-          console.log(version)
         if(!this.state.animateCalled[version]){
             let tempAnimate = this.state.animateCalled.slice()
             tempAnimate[version] = true
           this.setState({
             animateCalled: tempAnimate
           })
-          let curves = [175, 180, 185, 190, 195, 200, 205, 210, 215, 220, 225, 230, 235, 240, 245, 250, 255, 260, 265, 270, 275, 280, 285, 290, 295, 300, 305, 310, 315, 320, 325, 320, 315, 310, 305, 300, 295, 290, 285, 280, 275, 270, 265, 260, 255, 250, 245, 240, 235, 230, 225, 230, 235, 240, 245, 250]
+          let curves = [175, 180, 195, 190, 195, 200, 205, 210, 215, 220, 225, 230, 235, 240, 245, 250, 255, 260, 265, 270, 275, 280, 285, 290, 295, 300, 305, 310, 315, 320, 325, 320, 315, 310, 305, 300, 295, 290, 285, 280, 275, 270, 265, 260, 255, 250, 245, 240, 235, 230, 225, 230, 235, 240, 245, 250]
           let i=0;
           var x = setInterval( () =>{
               this.setState({
@@ -77,6 +73,12 @@ export default class BenniesContainer extends Component {
       //max up 47 max down 47 max left 40 max right 40
       this.setState({ x: tempX, y: tempY });
     }
+    _onMouseLeave(){
+        this.setState({
+            x: -15,
+            y: 0
+        })
+    }
     render() {
         const { version } = this.props;
         const {x, y} = this.state
@@ -84,22 +86,26 @@ export default class BenniesContainer extends Component {
         return (
             
             <BennieIndContainer onMouseEnter={() => this.animateBox(this.props.version)} >
-                <BennieColorContainer color={this.state.colors[version]} onMouseMove={this._onMouseMove.bind(this)}>
+                <BennieColorContainer color={this.state.colors[version]} onMouseMove={version === '1' ? this._onMouseMove.bind(this) : null}  onMouseOut={version === '1' ? this._onMouseLeave.bind(this) : null}>
                     <BennieImgContainer side={this.state.imgMargin[version%2]} >
-                        <BennieImg backgroundUrl={this.state.img[version]}>
                         { version === '1' ? (
-                            <EyeBall>
+                        <BennieImg backgroundUrl={this.state.img[version]}>
+                            <EyeBall/>
+                            <PupilWrap>
                                 <Pupil top={y} left={x}/>
-                            </EyeBall>
-                        ) : null}
+                            </PupilWrap>
                         <br/>
                         </BennieImg>
+                        ) :
+                        <BennieImg backgroundUrl={this.state.img[version]}>
+                        </BennieImg>
+                        }
                     </BennieImgContainer>
                 <BennieTextCont side={this.state.textMargin[version%2]} sideBig={this.state.textMarginBig[version%2]}>
                     <SvgContainer animateCalled={this.state.animateCalled[version]}>
                         <svg opacity="1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 1000" width="500" height="1000" preserveAspectRatio="none"><path fill="#fff"  d={pathD}/></svg>
                     </SvgContainer>
-                    <ContentContainer>
+                    <ContentContainer animateCalled={this.state.animateCalled[version]}>
                         <BennieMiniTitle fontColor={this.state.fontColors[version]}>{this.state.miniTitle[version]}</BennieMiniTitle>
                         <BennieTitle>{this.state.title[version]}</BennieTitle>
                         <BennieDesc>{this.state.description[version]}</BennieDesc>
@@ -161,13 +167,13 @@ const BennieImgContainer = styled.div`
        height: 300px;
        margin: ${props=> props.side};
        position: relative;
+       z-index: 2;
     }
 `
 const BennieImg = styled.div`
     background-image: url(${props => props.backgroundUrl});
     background-size: cover;
     background-repeat: no-repeat;
-    z-index: 5;
     height: 9.4rem;
     width: auto;
     @media(min-width: 415px){
@@ -189,6 +195,7 @@ const BennieImg = styled.div`
         background-repeat: no-repeat;
         background-size: contain;
         margin: 0;
+        z-index: 3;
     }
 `
 
@@ -203,7 +210,22 @@ const EyeBall = styled.div`
         top: calc(5%);
         left: calc(29.5%);
         overflow: hidden;
+        z-index: 1;
     }
+`
+const PupilWrap = styled.div`
+@media(min-width: 1240px){
+    border-radius: 50%;
+    height: 74px;
+    width: 68px;
+    background: url(${eyeball});
+    background-repeat: no-repeat;
+    position: absolute;
+    top: calc(5%);
+    left: calc(29.5%);
+    overflow: hidden;
+    z-index: 2;
+}
 `
 const Pupil = styled.div`
     @media(min-width: 1240px){
@@ -215,7 +237,8 @@ const Pupil = styled.div`
         position: absolute;
         top: calc(50% - 15px);
         left: calc(50% - 15px);
-        transform: translate(${props => props.left}px,${props => props.top}px)
+        transform: translate(${props => props.left}px,${props => props.top}px);
+        z-index: 3;
     }
 `
 const BennieTextCont = styled.div`
@@ -241,7 +264,7 @@ const BennieTextCont = styled.div`
         top: -35px;
     }
 `
-const move = keyframes`
+const moveDown = keyframes`
   0% { top: -400px; opacity: 0; }
   // 25%
   // 50%
@@ -252,13 +275,24 @@ const SvgContainer = styled.div`
   position: absolute;
   opacity: 0;
   ${( {animateCalled} ) => animateCalled && `
-    animation: ${move} 200ms forwards;
+    animation: ${moveDown} 200ms forwards;
   `}
+`
+const moveUp = keyframes`
+0% { top: -75px; opacity: 0; }
+// 25%
+// 50%
+// 75%
+100% { top: -175px; opacity: 1;}
 `
 const ContentContainer = styled.div`
   position: absolute;
-  top: -150px;
   padding: 9.5rem 7.65rem 9.25rem;
+  opacity: 0;
+  ${( {animateCalled} ) => animateCalled && `
+  animation: ${moveUp} 500ms forwards;
+  animation-delay: 200ms;
+`}
 `
 
 const BennieMiniTitle = styled.h2`

@@ -10,7 +10,6 @@ export default class EyeMovement extends Component{
 
     }
     _onMouseMove(e) {
-        console.log(e.view.innerWidth)
         let tempY = e.screenY
         let tempX = e.screenX
         tempY -= 223 // gives range from 0 to 600
@@ -23,12 +22,17 @@ export default class EyeMovement extends Component{
       //max up 47 max down 47 max left 40 max right 40
       this.setState({ x: tempX, y: tempY });
     }
+    _onMouseLeave(){
+        this.setState({
+            x: 0,
+            y: 0
+        })
+    }
 
     render(){
-        console.log(window)
         const { x, y } = this.state;
         return(
-            <BigContainer onMouseMove={this._onMouseMove.bind(this)}>
+            <BigContainer onMouseMove={this._onMouseMove.bind(this)} onMouseOut={this._onMouseLeave.bind(this)}>
             {x}, {y}
                 <PupilWrap>
                         <Pupil top={y} left={x}></Pupil>       
@@ -67,7 +71,5 @@ const BigContainer = styled.div`
     background-repeat: no-repeat;
     background-size: 309px 312px;
     height: 600px;
-    &:hover ${Pupil} {
-        background-color: blue;
-    }
+
 `
