@@ -119,6 +119,44 @@ export default class BenniesContainer extends Component {
         )
     }
   }
+  render() {
+    const { version } = this.props
+    const { x, y } = this.state
+
+    return (
+      <BennieIndContainer>
+        <BennieColorContainer
+          color={this.state.colors[version]}
+          onMouseMove={this._onMouseMove.bind(this)}
+        >
+          <BennieImgContainer side={this.state.imgMargin[version % 2]}>
+            <BennieImg backgroundUrl={this.state.img[version]}>
+              {version === "1" ? (
+                <EyeBall>
+                  <Pupil top={y} left={x} />
+                </EyeBall>
+              ) : null}
+              <br />
+            </BennieImg>
+          </BennieImgContainer>
+          <BennieTextCont
+            side={this.state.textMargin[version % 2]}
+            sideBig={this.state.textMarginBig[version % 2]}
+          >
+            <BennieMiniTitle fontColor={this.state.fontColors[version]}>
+              {this.state.miniTitle[version]}
+            </BennieMiniTitle>
+            <BennieTitle>{this.state.title[version]}</BennieTitle>
+            <BennieDesc>{this.state.description[version]}</BennieDesc>
+            <BennieButton>
+              <Button type="white">{this.state.btnText}</Button>
+            </BennieButton>
+          </BennieTextCont>
+        </BennieColorContainer>
+      </BennieIndContainer>
+    )
+  }
+}
 
 //  ↓↓↓↓↓  STYLES  ↓↓↓↓↓↓↓
 const BennieIndContainer = styled.div`
@@ -135,24 +173,24 @@ const BennieIndContainer = styled.div`
   }
 `
 const BennieColorContainer = styled.div`
-    background: ${props=> props.color};
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
-    width: 100%;
-    padding-top: 1rem;
-    @media(min-width: 1024px){
-        width: calc(100vw - 9rem);
-        height: 22rem;
-        border-radius: 3px;
-        margin-top: 4.5rem;
-        padding-top: 0;
-        display: flex;
-        flex-direction: row;
-        position: relative;
-    }
-    @media(min-width: 1240px){
-        height: 40rem;
-    }
+  background: ${props => props.color};
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  width: 100%;
+  padding-top: 1rem;
+  @media (min-width: 1024px) {
+    width: calc(100vw - 9rem);
+    height: 22rem;
+    border-radius: 3px;
+    margin-top: 4.5rem;
+    padding-top: 0;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+  }
+  @media (min-width: 1240px) {
+    height: 40rem;
+  }
 `
 const BennieImgContainer = styled.div`
     @media(min-width: 415px){
@@ -171,8 +209,28 @@ const BennieImgContainer = styled.div`
     }
 `
 const BennieImg = styled.div`
-    background-image: url(${props => props.backgroundUrl});
-    background-size: cover;
+  background-image: url(${props => props.backgroundUrl});
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: 5;
+  height: 9.4rem;
+  width: auto;
+  @media (min-width: 415px) {
+    margin-top: 2rem;
+    margin-bottom: 2.5rem;
+  }
+  @media (min-width: 768px) {
+    margin-top: 2rem;
+    margin-bottom: 2.5rem;
+  }
+  @media (min-width: 1024px) {
+    height: 200px;
+    margin-top: 20%;
+  }
+  @media (min-width: 1240px) {
+    height: 100%;
+    width: 100%;
+    background-position: center center;
     background-repeat: no-repeat;
     height: 9.4rem;
     width: auto;
@@ -305,23 +363,23 @@ const BennieMiniTitle = styled.h2`
   }
 `
 const BennieTitle = styled.h1`
-    font-size: 1.2rem;
-    font-weight: 700;
-    margin-bottom: 1.4rem;
-    @media(min-width: 1240px){
-        font-size: 1.5rem;
-    }
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 1.4rem;
+  @media (min-width: 1240px) {
+    font-size: 1.5rem;
+  }
 `
-const BennieDesc = styled.h3`  
-    font-size: .8rem;
-    line-height: 1.4rem;
-    margin-bottom: 2.8rem;
-    font-weight: normal;
-    @media(min-width: 1240px){
-        font-size: 1.1rem;
-        line-height: 1.8rem;
-        margin-bottom: 4rem;
-    }
+const BennieDesc = styled.h3`
+  font-size: 0.8rem;
+  line-height: 1.4rem;
+  margin-bottom: 2.8rem;
+  font-weight: normal;
+  @media (min-width: 1240px) {
+    font-size: 1.1rem;
+    line-height: 1.8rem;
+    margin-bottom: 4rem;
+  }
 `
 const BennieButton = styled.div`
   text-align: center;
