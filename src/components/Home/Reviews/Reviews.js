@@ -8,66 +8,93 @@ export default class Reviews extends Component {
     constructor(){
         super();
         this.state = {
-            review: [`"We're using Toggl to analyze the profitability of the projects we do for our clients, and for tracking our internal ROI. But sometimes we also show the data to our clients - that makes negotiations a lot easier!"`
-            ,`"Using Toggl is helping us get a handle on our time allocation for different customers and projects. Before we had no idea of what people were spending their work time on - I had to check in on that all the time. Now I can just focus on the important things, instead of micromanaging."`
-            , `"It's always hard to predict how much time a project is going to take. Having stats on how much time different things have taken in the past is great for getting accurate predictions for the future."`
-            ],
-            img: [tasha, brad, annika]
+            tasha:[tasha,`"We're using Toggl to analyze the profitability of the projects we do for our clients, and for tracking our internal ROI. But sometimes we also show the data to our clients - that makes negotiations a lot easier!"`],
+            brad:[brad,`"Using Toggl is helping us get a handle on our time allocation for different customers and projects. Before we had no idea of what people were spending their work time on - I had to check in on that all the time. Now I can just focus on the important things, instead of micromanaging."`],
+            annika:[annika,`"It's always hard to predict how much time a project is going to take. Having stats on how much time different things have taken in the past is great for getting accurate predictions for the future."`],
+            currentReviewie:[tasha,"We're using Toggl to analyze the profitability of the projects we do for our clients, and for tracking our internal ROI. But sometimes we also show the data to our clients - that makes negotiations a lot easier!"],
+            wiggle: null,
+            buttonBackgroundTasha:false,
+            buttonBackgroundBrad:true,
+            buttonBackgroundAnnika:true
         }
     }
-    wiggleWiggle(){
-        //Make the worm wiggle and maybe update user text and image.
+    reset() {
+        this.setState({
+            wiggle: null
+        })
     }
-  
-    render() {
-         
-        return(
-            <ReviewsContainer>
-            <ReviewTitle> Sweet Nothings </ReviewTitle>
-            <ReviewMini> Some client love. </ReviewMini>
+    handleButtonOne(){
+        this.setState({
+            buttonBackgroundTasha:false,
+            buttonBackgroundBrad:true,
+            buttonBackgroundAnnika:true
+        })
+    }
+    handleButtonTwo(){
+        this.setState({
+            buttonBackgroundBrad:false,
+            buttonBackgroundAnnika:true,
+            buttonBackgroundTasha:true
+        })
+    }
+    handleButtonThree(){
+        this.setState({
+            buttonBackgroundAnnika:false,
+            buttonBackgroundBrad:true,
+            buttonBackgroundTasha:true
+        })
+    }
+    wiggle(){
+        this.setState({
+            wiggle: dash
            
-        <div>
-        <ReviewText>{this.state.review[0]}</ReviewText>
-            <ImageWormBody><Worm><Crypto xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45.8 69.6"><path d="M23.5 68.1V63a5.6 5.6 0 0 1 5.6-5.6h1a5.6 5.6 0 0 0 5.6-5.6 5.6 5.6 0 0 0-5.6-5.6h-13a5.6 5.6 0 0 1-5.6-5.6 5.6 5.6 0 0 1 5.6-5.6h21.5a5.6 5.6 0 0 0 5.6-5.6 5.6 5.6 0 0 0-5.6-5.6H7.1a5.6 5.6 0 0 1-5.6-5.6 5.6 5.6 0 0 1 5.6-5.6h10.8A5.6 5.6 0 0 0 23.5 7V1.8" fill="none" stroke="#ffacba" stroke-linecap="round" stroke-miterlimit="10" stroke-width="3" ></path></Crypto></Worm>
-         <ImageContainer > <img style={{height:'65px',width:'65px',borderRadius:'50%',margin:'auto'}} src={this.state.img[0]}alt="tasha" /></ImageContainer></ImageWormBody>
-        </div>
-        <ButtonBody>
-            <Button onClick={()=>this.wiggleWiggle()}></Button>
-            <Button></Button>
-            <Button></Button>
-        </ButtonBody>
-        {/* <div>
-        <ReviewText>{this.state.review[1]}</ReviewText>
-        <ImageWormBody><Worm ><Crypto xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45.8 69.6"><path d="M23.5 68.1V63a5.6 5.6 0 0 1 5.6-5.6h1a5.6 5.6 0 0 0 5.6-5.6 5.6 5.6 0 0 0-5.6-5.6h-13a5.6 5.6 0 0 1-5.6-5.6 5.6 5.6 0 0 1 5.6-5.6h21.5a5.6 5.6 0 0 0 5.6-5.6 5.6 5.6 0 0 0-5.6-5.6H7.1a5.6 5.6 0 0 1-5.6-5.6 5.6 5.6 0 0 1 5.6-5.6h10.8A5.6 5.6 0 0 0 23.5 7V1.8" fill="none" stroke="#ffacba" stroke-linecap="round" stroke-miterlimit="10" stroke-width="3" ></path></Crypto></Worm>
-            <ImageContainer> <img style={{height:'65px',width:'65px',borderRadius:'50%',margin:'auto'}} src={this.state.img[1]} alt="brad"/></ImageContainer></ImageWormBody>
-        </div>
-        <div>
-        <ReviewText>{this.state.review[2]}</ReviewText>
-        <ImageWormBody><Worm><Crypto xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45.8 69.6"><path d="M23.5 68.1V63a5.6 5.6 0 0 1 5.6-5.6h1a5.6 5.6 0 0 0 5.6-5.6 5.6 5.6 0 0 0-5.6-5.6h-13a5.6 5.6 0 0 1-5.6-5.6 5.6 5.6 0 0 1 5.6-5.6h21.5a5.6 5.6 0 0 0 5.6-5.6 5.6 5.6 0 0 0-5.6-5.6H7.1a5.6 5.6 0 0 1-5.6-5.6 5.6 5.6 0 0 1 5.6-5.6h10.8A5.6 5.6 0 0 0 23.5 7V1.8" fill="none" stroke="#ffacba" stroke-linecap="round" stroke-miterlimit="10" stroke-width="3" ></path></Crypto></Worm>
-            <ImageContainer>  <img style={{height:'65px',width:'65px',borderRadius:'50%',margin:'auto'}} src={this.state.img[2]} alt="annika" /></ImageContainer></ImageWormBody>
-        </div> */}
-    
-   
-         </ReviewsContainer>
+        })
+        setTimeout(_ => {
+            this.reset()
+        }, 2000)
+    }
+
+
+    updateReviewie(reviewie){
+        this.setState({currentReviewie:reviewie})
+    }
+    render() {
+         const {tasha,brad,annika,wiggle}=this.state
+        return(
+        <ReviewsContainer>
+                <ReviewTitle> Sweet Nothings </ReviewTitle>
+                <ReviewMini> Some client love. </ReviewMini>
+                <ReviewText>{this.state.currentReviewie[1]}</ReviewText>
+            <AvatarContainer>
+                <ImageWormBody>
+                    <Worm><Crypto wiggle={wiggle} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45.8 69.6"><path d="M23.5 68.1V63a5.6 5.6 0 0 1 5.6-5.6h1a5.6 5.6 0 0 0 5.6-5.6 5.6 5.6 0 0 0-5.6-5.6h-13a5.6 5.6 0 0 1-5.6-5.6 5.6 5.6 0 0 1 5.6-5.6h21.5a5.6 5.6 0 0 0 5.6-5.6 5.6 5.6 0 0 0-5.6-5.6H7.1a5.6 5.6 0 0 1-5.6-5.6 5.6 5.6 0 0 1 5.6-5.6h10.8A5.6 5.6 0 0 0 23.5 7V1.8" fill="none" stroke="#ffacba" stroke-linecap="round" stroke-miterlimit="10" stroke-width="3" ></path></Crypto></Worm>
+                    <ImageContainer > 
+                        {/* <Image src={this.state.currentReviewie[0]}alt="current"/> */}
+                        <Tasha onClick={()=>{this.wiggle(),this.updateReviewie(tasha)}}><Image src={tasha[0]}alt="tasha" /></Tasha>
+                        <Brad onClick={()=>{this.wiggle(),this.updateReviewie(brad)}}><Image  src={brad[0]}alt="brad" /></Brad>
+                        <Annika onClick={()=>{this.wiggle(),this.updateReviewie(annika)}}><Image  src={annika[0]}alt="annika" /></Annika>
+                    </ImageContainer>
+                </ImageWormBody>
+        
+             {/*<ButtonBody>
+                    {this.state.buttonBackgroundTasha ? 
+                        <ButtonWhite onClick={()=>{this.wiggle(),this.updateReviewie(tasha),this.handleButtonOne()}}></ButtonWhite>:
+                        <ButtonRed onClick={()=>{this.wiggle(),this.updateReviewie(tasha),this.handleButtonOne()}}></ButtonRed>}
+                    {this.state.buttonBackgroundBrad ? 
+                        <ButtonWhite onClick={()=>{this.wiggle(),this.updateReviewie(brad),this.handleButtonTwo()}}></ButtonWhite>:
+                        <ButtonRed onClick={()=>{this.wiggle(),this.updateReviewie(tasha),this.handleButtonTwo()}}></ButtonRed>}
+                    {this.state.buttonBackgroundAnnika ? 
+                        <ButtonWhite onClick={()=>{this.wiggle(),this.updateReviewie(annika),this.handleButtonThree()}}></ButtonWhite>:
+                        <ButtonRed onClick={()=>{this.wiggle(),this.updateReviewie(tasha),this.handleButtonThree()}}></ButtonRed>}
+                </ButtonBody> */}
+            </AvatarContainer>
+        </ReviewsContainer>
 
         )
     }
 }
 //  ↓↓↓↓↓  STYLES  ↓↓↓↓↓↓↓
-const Crypto =styled.svg `
-    fill: white;
-    stroke: black;
-    stroke-dasharray: 800;
-    animation: ${dash} 2s ease-in-out infinite;
-    height:4.7rem;
-    margin-left:auto;
-    margin-right:auto;
-    width:3.3rem;
-  }
-  
-`
 const dash = keyframes `
-     
         from {
           stroke-dashoffset: -800;
         }
@@ -76,6 +103,21 @@ const dash = keyframes `
           stroke-dashoffset: 0;
       }
     `
+const Crypto =styled.svg `
+    fill: white;
+    stroke: black;
+    stroke-dasharray: 800;
+    animation: ${props=>props.wiggle};
+    animation-duration: 2s;
+    animation-timing-function: ease-in-out;
+    // animation-iteration-count: infinite;
+    height:4.7rem;
+    margin-left:auto;
+    margin-right:auto;
+    width:3.3rem;
+  }
+  
+`
 const ReviewsContainer = styled.div`
     height: 43rem;
     width: 100% -4rem;
@@ -83,6 +125,7 @@ const ReviewsContainer = styled.div`
     background-image: url(${background});
     background-repeat: repeat;
     padding: 3rem 2rem 0 2rem;
+    position: relative;
     @media(min-width:1240px){
         padding-bottom:15rem;
         padding-top:8.5rem;
@@ -98,7 +141,7 @@ const ReviewsContainer = styled.div`
     @media(min-width:1024px){
         padding-left:200px;
         padding-right:200px;
-        // max-width: 70rem;
+        
     }
 `
 const ReviewTitle = styled.h1`
@@ -132,7 +175,6 @@ const ReviewText = styled.h3`
     font-size: 1.1rem;
     font-weight:100;
     line-height: 1.7rem;
-    margin-bottom: 6rem;
     padding-left:.8rem;
     padding-right:.8rem;
     position:relative;
@@ -145,6 +187,14 @@ const ReviewText = styled.h3`
     @media(min-width:768px){
         line-height:2.3rem;
     }
+    @media(min-width:1240px){
+        width:62%;
+        margin:auto
+    }
+`
+const AvatarContainer = styled.section `
+    margin-top:1px
+
 `
 const ImageWormBody = styled.section`
     padding-top:1.5rem;
@@ -159,19 +209,60 @@ const Worm = styled.section`
 const ImageContainer = styled.section`
     // height:6.4rem;
     margin-top:2rem;
-    // position:relative;
+    flex:wrap
+`
+const Image = styled.img`
+    height:65px;
+    width:65px;
+    border-radius:50%;
+    cursor:pointer;
+`
+const Tasha = styled.button`
+    height:65px;
+    width:65px;
+    border-radius:50%;
+    cursor:pointer;
+    margin-left:50px;
+    margin-right:50px;
+`
+const Brad  = styled.button`
+height:65px;
+width:65px;
+border-radius:50%;
+cursor:pointer;
+margin-left:50px;
+margin-right:50px;
+`
+const Annika  = styled.button`
+height:65px;
+width:65px;
+border-radius:50%;
+cursor:pointer;
+margin-left:50px;
+margin-right:50px;
 `
 const ButtonBody = styled.section`
-    width:400px;
+    width:100%;
     height:80px;
-    background-color:red;
     margin:auto;
+    padding-top:80px
 `
-const Button = styled.button`
+const ButtonWhite = styled.button`
     border-radius:50%;
-    height:1px;
-    width:1px;
+    height: 20px;
+    width: 18px;
+    cursor: pointer;
     background-color:white;
     margin-left:2px;
     margin-right:2px
 `
+const ButtonRed = styled.button`
+    border-radius:50%;
+    height: 20px;
+    width: 18px;
+    cursor: pointer;
+    background-color:red;
+    margin-left:2px;
+    margin-right:2px
+`
+
