@@ -26,6 +26,7 @@ export default class BenniesContainer extends Component {
             imgMargin: ["auto 52% auto 5rem", "auto 5rem auto 52%" ],
             colors: ["#FFACBA", "#F8CE6A", "#88CF8F", "#CA99D7"],
             fontColors: ["#E3677C", "#F69F09", "#31AA53", "#A857BD"],
+            mouseActive: false,
             x: -15,
             y: 0,
             topCurve: 175, //even is 250
@@ -71,22 +72,25 @@ export default class BenniesContainer extends Component {
       // top 223 bottom 822 left 1717 right 3136
 
       //max up 47 max down 47 max left 40 max right 40
-      this.setState({ x: tempX, y: tempY });
+      this.setState({ x: tempX, y: tempY, mouseActive: true });
     }
     _onMouseLeave(){
         this.setState({
             x: -15,
-            y: 0
+            y: 0,
+            mouseActive: false
         })
     }
     render() {
+        console.log(this.state.mouseActive);
+        
         const { version } = this.props;
         const {x, y} = this.state
         var pathD = `M0 250 C 250 ${this.state.topCurve}, 500 250, 500 250 C 500 500, 500 750, 500 750 C 250 ${this.state.bottomCurve}, 0 750, 0 750 C 0 500, 0 750, 0 250 Z`
         return (
             
             <BennieIndContainer onMouseEnter={() => this.animateBox(this.props.version)} >
-                <BennieColorContainer color={this.state.colors[version]} onMouseMove={version === '1' ? this._onMouseMove.bind(this) : null}  onMouseOut={version === '1' ? this._onMouseLeave.bind(this) : null}>
+                <BennieColorContainer color={this.state.colors[version]} onMouseMove={version === '1' ? this._onMouseMove.bind(this) : null}  onMouseLeave={version === '1' ? this._onMouseLeave.bind(this) : null}>
                     <BennieImgContainer side={this.state.imgMargin[version%2]} >
                         { version === '1' ? (
                         <BennieImg backgroundUrl={this.state.img[version]}>
@@ -118,46 +122,7 @@ export default class BenniesContainer extends Component {
             </BennieIndContainer>
         )
     }
-  }
-  render() {
-    const { version } = this.props
-    const { x, y } = this.state
-
-    return (
-      <BennieIndContainer>
-        <BennieColorContainer
-          color={this.state.colors[version]}
-          onMouseMove={this._onMouseMove.bind(this)}
-        >
-          <BennieImgContainer side={this.state.imgMargin[version % 2]}>
-            <BennieImg backgroundUrl={this.state.img[version]}>
-              {version === "1" ? (
-                <EyeBall>
-                  <Pupil top={y} left={x} />
-                </EyeBall>
-              ) : null}
-              <br />
-            </BennieImg>
-          </BennieImgContainer>
-          <BennieTextCont
-            side={this.state.textMargin[version % 2]}
-            sideBig={this.state.textMarginBig[version % 2]}
-          >
-            <BennieMiniTitle fontColor={this.state.fontColors[version]}>
-              {this.state.miniTitle[version]}
-            </BennieMiniTitle>
-            <BennieTitle>{this.state.title[version]}</BennieTitle>
-            <BennieDesc>{this.state.description[version]}</BennieDesc>
-            <BennieButton>
-              <Button type="white">{this.state.btnText}</Button>
-            </BennieButton>
-          </BennieTextCont>
-        </BennieColorContainer>
-      </BennieIndContainer>
-    )
-  }
 }
-
 //  ↓↓↓↓↓  STYLES  ↓↓↓↓↓↓↓
 const BennieIndContainer = styled.div`
   border-top-left-radius: 3px;
