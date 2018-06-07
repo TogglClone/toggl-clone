@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import styled from 'styled-components'
+import styled, {keyframes} from 'styled-components'
 
 class Footer extends Component {
     constructor(){
@@ -98,7 +98,6 @@ class Footer extends Component {
         )
     }
 }
-//Things to do for Footer- Make top button transition in on scroll and positioning 
 
 export default Footer;
 let topArrow = {
@@ -128,16 +127,21 @@ let bottomArrow ={
 @media(min-width: 1240px){
 }
  `
-// const TopBounceIn = keyframes`
+const TopBounceIn = keyframes`
 
-// `
+0% { top: -110px; opacity: 0; }
+50%{ top: -150px;}
+ 
+  100% { top: -110px; opacity: 1;}
+`
  const Top = styled.section`
+ animation:${TopBounceIn};
  animation-duration:0.6s;
  animation-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
  animation-delay:0.2s;
  animation-iteration-count:1;
- animation-iteration-count: infinite;
- animation:direction:initial;
+//  animation-iteration-count: infinite;
+ animation-direction:initial;
  animation-fill-mode:forwards;
  animation-play-state:initial; 
  background-color:#dee1e3;
@@ -145,6 +149,7 @@ let bottomArrow ={
  color:#000;
  cursor:pointer;
  height:3rem;
+ top:-120px
  position:absolute;
  right:16.6666666667%;
  text-align:center;
