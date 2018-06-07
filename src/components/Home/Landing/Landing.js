@@ -13,7 +13,7 @@ class Landing extends Component {
     super()
     this.state = {
       burgerOpen: null,
-      background: "#a4cfdc",
+      background: "#a1cbde",
       displayMain: "none",
       displayNav: "none",
       clicked: false,
@@ -42,12 +42,15 @@ class Landing extends Component {
   }
 
   componentDidMount() {
+    // console.time()
     var count = 1
-    var mili = 13000
-    var miliTran = mili - 750
-
+    var mili = 12545
+    var miliTran = 12250
+// hotdog 12500
+// robot 13000
+// piggies 10500
     setInterval(() => {
-      console.log("count", count)
+      // console.log("mili", mili)
       this.setState({
         beingPlayed: count
       })
@@ -56,20 +59,27 @@ class Landing extends Component {
         count = 0
       }
       if (count === 0) {
-        mili = 12500
+        mili = 12545
+        miliTran = 12545
+        // console.log('count 0', mili, miliTran)        
       } else if (count === 1) {
-        mili = 12200
+        mili = 13000
+        miliTran = 13000
+        // console.log('count 1', mili, miliTran)        
       } else if (count === 2) {
-        mili = 10000
+        mili = 10500
+        miliTran = 10500
+        // console.log('count 2', mili, miliTran)        
       }
       setTimeout(() => {
         this.setState({
           vidTran: null
         })
-      }, 300)
+      }, 1000)
     }, mili)
 
     setInterval(_ => {
+      // console.log(miliTran)
       this.setState({
         vidTran: testingBro
       })
@@ -437,8 +447,8 @@ const VideoSize = styled.video`
   bottom: 11.5rem;
   margin-bottom: -2%;
   animation: ${props => props.vidTran};
-  animation-delay: 0.1s;
-  animation-timing-function: ease-in-out;
+  // animation-delay: 0.1s;
+  // animation-timing-function: ease-in-out;
   animation-duration: 1s;
   @media (min-width: 651px) {
     max-width: 80%;
