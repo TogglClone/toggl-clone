@@ -13,6 +13,9 @@ export const BigIndCont = styled.div`
     width: calc(100vw - 9rem);
     margin: auto;
   }
+  @media(min-width: 1546px) {
+      max-width: 1422px
+  }
 `
 
 export const BigColorCont = styled.div`
@@ -20,7 +23,7 @@ export const BigColorCont = styled.div`
   background: ${props=> props.color};
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
-  width: calc(100vw - 9rem);
+  width: 100%;
   height: 22rem;
   border-radius: 3px;
   margin-top: 4.5rem;
@@ -101,49 +104,63 @@ export const BigPupil = styled.div`
 `
 export const BigTextCont = styled.div`
     background: white;
-    padding: 1.8rem 3.5rem 2rem 2.5rem;
     text-align: left;
     border-top-left-radius: 2px;
     border-top-right-radius: 2px;
     position: absolute;
-    margin: ${props=> props.side};
+    // margin: ${props=> props.side};
+    left: ${props => props.left};
+    right: ${props => props.right};
     top: -30px;
     background: transparent;
-    width: 25rem;
+    width: 30%;
     @media(min-width: 1240px){
         border-top-left-radius: 2px;
         border-top-right-radius: 2px;
         position: absolute;
-        margin: ${props=> props.sideBig};
-        padding: 5rem;
+        // margin: ${props=> props.sideBig};
         top: -35px;
     }
 `
+export const AnimationWrapper = styled.div`
+    @media(min-width: 1240px){
+        position: relative;
+        height: auto;
+        width: 100%;
+    }
+`
 const moveDown = keyframes`
-  0% { top: -400px; opacity: 0; }
+  0% { top: -350px; opacity: 0; }
   // 25%
   // 50%
   // 75%
-  100% { top: -300px; opacity: 1;}
+  100% { top: -50%; opacity: 1;}
 `
 export const SvgContainer = styled.div`
+    width: 100%;
+    height: 200%;
     position: absolute;
     opacity: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    pointer-events: none;
     ${( {animateCalled} ) => animateCalled && `
     animation: ${moveDown} 200ms forwards;
-    `} 
+    `}
 `
 
 const moveUp = keyframes`
-0% { top: -75px; opacity: 0; }
+0% { top: 100px; opacity: 0; }
 // 25%
 // 50%
 // 75%
-100% { top: -175px; opacity: 1;}
+100% { top: 0px; opacity: 1;}
 `
 export const BigContentCont = styled.div`
-  position: absolute;
-  padding: 9.5rem 7.65rem 9.25rem;
+  position: relative;
+  padding: 5rem 5rem;
   opacity: 0;
   ${( {animateCalled} ) => animateCalled && `
   animation: ${moveUp} 500ms forwards;

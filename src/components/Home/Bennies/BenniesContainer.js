@@ -7,7 +7,7 @@ import img2 from "./img/img2.png"
 import img3 from "./img/img3.png"
 
 import { MiniIndCont, MiniColorCont, MiniImgCont, MiniImg, MiniTextCont, MiniContentCont, MiniSubtitle, MiniTitle, MiniDesc, MiniButton } from "./BenniesUnder1024"
-import { BigIndCont, BigColorCont, BigImgCont, BigImg, BigEyeBall, BigPupilWrap, BigPupil, BigTextCont, SvgContainer, BigContentCont, BigSubtitle, BigTitle, BigDesc, BigButton} from "./BenniesOver1023"
+import { BigIndCont, BigColorCont, BigImgCont, BigImg, BigEyeBall, BigPupilWrap, BigPupil, BigTextCont, AnimationWrapper, SvgContainer, BigContentCont, BigSubtitle, BigTitle, BigDesc, BigButton} from "./BenniesOver1023"
 
 export default class BenniesContainer extends Component {
     constructor(){
@@ -24,6 +24,8 @@ export default class BenniesContainer extends Component {
             img: [img0, img1, img2, img3],
             textMargin: ["0 4.5rem 0 52%", "0 52% 0 4.5rem" ],
             textMarginBig: ["0 8% 0 59%", "0 59% 0 8%" ],
+            textLeftBig: ["null", "5%"],
+            textRightBig: ["5%", "null"],
             imgMargin: ["auto 52% auto 5rem", "auto 5rem auto 52%" ],
             colors: ["#FFACBA", "#F8CE6A", "#88CF8F", "#CA99D7"],
             fontColors: ["#E3677C", "#F69F09", "#31AA53", "#A857BD"],
@@ -121,18 +123,20 @@ export default class BenniesContainer extends Component {
                         </BigImg>
                         }
                     </BigImgCont>
-                    <BigTextCont side={this.state.textMargin[version%2]} sideBig={this.state.textMarginBig[version%2]}>
-                        <SvgContainer animateCalled={this.state.animateCalled[version]}>
-                            <svg opacity="1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 1000" width="500" height="1000" preserveAspectRatio="none"><path fill="#fff"  d={pathD}/></svg>
-                        </SvgContainer>
-                        <BigContentCont animateCalled={this.state.animateCalled[version]}>
-                            <BigSubtitle fontColor={this.state.fontColors[version]}>{this.state.miniTitle[version]}</BigSubtitle>
-                            <BigTitle>{this.state.title[version]}</BigTitle>
-                            <BigDesc>{this.state.description[version]}</BigDesc>
-                            <BigButton>
-                                <Button type="white">{this.state.btnText}</Button>
-                            </BigButton>
-                        </BigContentCont>
+                    <BigTextCont side={this.state.textMargin[version%2]} sideBig={this.state.textMarginBig[version%2]} left={this.state.textLeftBig[version%2]} right={this.state.textRightBig[version%2]}>
+                        <AnimationWrapper>
+                            <SvgContainer animateCalled={this.state.animateCalled[version]}>
+                                <svg opacity="1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 1000" width="100%" height="100%" preserveAspectRatio="none"><path fill="#fff"  d={pathD}/></svg>
+                            </SvgContainer>
+                            <BigContentCont animateCalled={this.state.animateCalled[version]}>
+                                <BigSubtitle fontColor={this.state.fontColors[version]}>{this.state.miniTitle[version]}</BigSubtitle>
+                                <BigTitle>{this.state.title[version]}</BigTitle>
+                                <BigDesc>{this.state.description[version]}</BigDesc>
+                                <BigButton>
+                                    <Button type="white">{this.state.btnText}</Button>
+                                </BigButton>
+                            </BigContentCont>
+                        </AnimationWrapper>
                     </BigTextCont>
                 </BigColorCont>
             </BigIndCont>
