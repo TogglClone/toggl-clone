@@ -24,9 +24,9 @@ class Footer extends Component {
         return(
             <FooterMain>
                 <Top>
-               <button style={{border:'none',borderRadius:'50%',backgroundColor:'#dee1e3'}} scrollStepInPx="50" delayInMs="16.66" onClick={ () => { this.scrollToTop('16.6'); }}> <TopArrowContainer><svg style={topArrow} viewBox="0 0 13 18">
-              <path d="M1.6 17.8l11-8a1 1 0 0 0 .2-1.4l-.2-.2-11-8A1 1 0 0 0 0 1v16a1 1 0 0 0 1 1z" />
-            </svg></TopArrowContainer>
+               <button style={{ outline:'none',border:'none',borderRadius:'50%',backgroundColor:'#dee1e3'}} scrollStepInPx="50" delayInMs="16.66" onClick={ () => { this.scrollToTop('16.6'); }}> <TopArrowContainer><svg style={topArrow} viewBox="0 0 13 18">
+              <path d="M1.6 17.8l11-8a1 1 0 0 0 .2-1.4l-.2-.2-11-8A1 1 0 0 0 0 1v16a1 1 0 0 0 1 1z" /></svg>
+              </TopArrowContainer>
                     <TopHeader>TOP</TopHeader>
                     <BottomArrowContainer><svg style={bottomArrow} viewBox="0 0 13 18">
               <path d="M1.6 17.8l11-8a1 1 0 0 0 .2-1.4l-.2-.2-11-8A1 1 0 0 0 0 1v16a1 1 0 0 0 1 1z" />
@@ -98,6 +98,7 @@ class Footer extends Component {
         )
     }
 }
+//Things to do for Footer- Make top button transition in on scroll and positioning 
 
 export default Footer;
 let topArrow = {
@@ -125,15 +126,20 @@ let bottomArrow ={
 
 }
 @media(min-width: 1240px){
-  
-    // justify-content:center;
- 
-
 }
  `
+// const TopBounceIn = keyframes`
 
+// `
  const Top = styled.section`
-
+ animation-duration:0.6s;
+ animation-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+ animation-delay:0.2s;
+ animation-iteration-count:1;
+ animation-iteration-count: infinite;
+ animation:direction:initial;
+ animation-fill-mode:forwards;
+ animation-play-state:initial; 
  background-color:#dee1e3;
  border-radius:50%;
  color:#000;
@@ -144,6 +150,8 @@ let bottomArrow ={
  text-align:center;
  width:3rem;
  z-index:5;
+ outline:none;
+ border:none;
  transform:translateX(1.6rem) translateY(-.8rem);
  @media(min-width: 1024px){
 }
@@ -154,11 +162,11 @@ let bottomArrow ={
  ${Top}:hover & {
      transform: scaleX(0);
      opacity: 0;
-     //   margin-top: 1.3rem;
+    margin-top: 1.3rem;
     }
     `
     let BottomArrowContainer = styled.section`
-    // margin-right: 1.3rem;
+    margin-right: 1.3rem;
     opacity: 0;
 transform: scaleY(0) translateX(0);
 transition: transform .5s cubic-bezier(.645,.045,.355,1), opacity .5s cubic-bezier(.645,.045,.355,1), margin-right .5s cubic-bezier(.645,.045,.355,1) ;
@@ -170,6 +178,14 @@ ${Top}:hover & {
 }
 `
  const TopHeader = styled.h5`
+ animation-duration:0.6s;
+ animation-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+ animation-delay:0.2s;
+ animation-iteration-count:1;
+ animation-iteration-count: infinite;
+ animation:direction:initial;
+ animation-fill-mode:forwards;
+ animation-play-state:initial; 
  bottom:12px;
  box-sizing:inherit;
  color:#000;
@@ -178,7 +194,8 @@ ${Top}:hover & {
  display:block;
  font-size:11px;
  font-weight:700;
- 
+ outline:none;
+ border:none;
  @media(min-width: 1024px){
 }
  `

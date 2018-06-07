@@ -37,7 +37,7 @@ export const BigImgCont = styled.div`
     width: 100%;
     margin: ${props=> props.side};
     position: relative;
-    z-index: 2;
+    z-index: 3;
 `
 export const BigImg = styled.div`
     background-image: url(${props => props.backgroundUrl});
@@ -68,7 +68,7 @@ export const BigEyeBall = styled.div`
         top: calc(5%);
         left: calc(29.5%);
         overflow: hidden;
-        z-index: 1;
+        z-index: -2;
     }
 `
 export const BigPupilWrap = styled.div`
@@ -82,7 +82,7 @@ export const BigPupilWrap = styled.div`
     top: calc(5%);
     left: calc(29.5%);
     overflow: hidden;
-    z-index: 2;
+    z-index: -1;
 }
 `
 export const BigPupil = styled.div`
@@ -96,7 +96,7 @@ export const BigPupil = styled.div`
         top: calc(50% - 15px);
         left: calc(50% - 15px);
         transform: translate(${props => props.left}px,${props => props.top}px);
-        z-index: 3;
+        z-index: -1;
     }
 `
 export const BigTextCont = styled.div`
