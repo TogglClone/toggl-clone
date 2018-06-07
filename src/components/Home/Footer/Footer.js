@@ -162,11 +162,11 @@ let bottomArrow ={
  ${Top}:hover & {
      transform: scaleX(0);
      opacity: 0;
-     //   margin-top: 1.3rem;
+    margin-top: 1.3rem;
     }
     `
     let BottomArrowContainer = styled.section`
-    // margin-right: 1.3rem;
+    margin-right: 1.3rem;
     opacity: 0;
 transform: scaleY(0) translateX(0);
 transition: transform .5s cubic-bezier(.645,.045,.355,1), opacity .5s cubic-bezier(.645,.045,.355,1), margin-right .5s cubic-bezier(.645,.045,.355,1) ;
