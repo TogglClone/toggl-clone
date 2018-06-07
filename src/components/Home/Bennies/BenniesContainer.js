@@ -6,7 +6,7 @@ import img1 from "./img/img1.png"
 import img2 from "./img/img2.png"
 import img3 from "./img/img3.png"
 
-import { MiniIndCont, MiniColorCont, MiniImgCont, MiniImg, MiniTextCont, MiniSubtitle, MiniTitle, MiniDesc, MiniButton } from "./BenniesUnder1024"
+import { MiniIndCont, MiniColorCont, MiniImgCont, MiniImg, MiniTextCont, MiniContentCont, MiniSubtitle, MiniTitle, MiniDesc, MiniButton } from "./BenniesUnder1024"
 import { BigIndCont, BigColorCont, BigImgCont, BigImg, BigEyeBall, BigPupilWrap, BigPupil, BigTextCont, SvgContainer, BigContentCont, BigSubtitle, BigTitle, BigDesc, BigButton} from "./BenniesOver1023"
 
 export default class BenniesContainer extends Component {
@@ -129,18 +129,20 @@ export default class BenniesContainer extends Component {
         return (
             <div>
         {/******************************** Media < 1024 **********************************/}
-            <MiniIndCont>
+            <MiniIndCont onMouseEnter={() => this.animateBox(this.props.version)}>
                 <MiniColorCont  color={this.state.colors[version]}>
                     <MiniImgCont> 
                         <MiniImg backgroundUrl={this.state.img[version]}/>
                     </MiniImgCont>
                     <MiniTextCont>
-                        <MiniSubtitle fontColor={this.state.fontColors[version]}>{this.state.miniTitle[version]}</MiniSubtitle>
-                        <MiniTitle>{this.state.title[version]}</MiniTitle>
-                        <MiniDesc>{this.state.description[version]}</MiniDesc>
-                        <MiniButton>
-                            <Button type="white">{this.state.btnText}</Button>
-                        </MiniButton>
+                        <MiniContentCont animateCalled={this.state.animateCalled[version]}>
+                            <MiniSubtitle fontColor={this.state.fontColors[version]}>{this.state.miniTitle[version]}</MiniSubtitle>
+                            <MiniTitle>{this.state.title[version]}</MiniTitle>
+                            <MiniDesc>{this.state.description[version]}</MiniDesc>
+                            <MiniButton>
+                                <Button type="white">{this.state.btnText}</Button>
+                            </MiniButton>
+                        </MiniContentCont>
                     </MiniTextCont>
                 </MiniColorCont>
             </MiniIndCont>
@@ -180,6 +182,5 @@ export default class BenniesContainer extends Component {
         )
     }
 }
-
 
 
