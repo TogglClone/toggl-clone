@@ -11,7 +11,7 @@ export const BigIndCont = styled.div`
   @media (min-width: 1024px) {
     display: block;
     width: calc(100vw - 9rem);
-    margin: 2rem 6.2rem 2 6.2rem;
+    margin: auto;
   }
 `
 
@@ -179,5 +179,5 @@ export const BigDesc = styled.h3`
 `
 export const BigButton = styled.div`
   text-align: center;
-  widrth: 100%;
+  width: 100%;
 `
