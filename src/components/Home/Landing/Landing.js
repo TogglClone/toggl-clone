@@ -20,7 +20,6 @@ class Landing extends Component {
       clicked: false,
       vidList: [hatdog, robot, piggy],
       beingPlayed: 0,
-      count: 1,
       transIn: null,
       transOut: null,
       op: [1, 0, 0]
@@ -50,8 +49,8 @@ class Landing extends Component {
 
   componentDidMount() {
     console.time()
-    var { count } = this.state
-    var mili = 12545
+    var count = 1
+    var mili = 1545
     var miliTran = 12250
     // hotdog 12500
     // robot 13000
@@ -60,9 +59,7 @@ class Landing extends Component {
       this.setState({
         beingPlayed: count
       })
-      this.setState({
-        count: count++
-      })
+      count++
       if (count >= 3) {
         count = 0
       }
