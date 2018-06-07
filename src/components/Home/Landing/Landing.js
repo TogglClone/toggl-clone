@@ -13,7 +13,7 @@ class Landing extends Component {
     super()
     this.state = {
       burgerOpen: null,
-      background: "#a4cfdc",
+      background: "#a1cbde",
       displayMain: "none",
       displayNav: "none",
       clicked: false,
