@@ -21,9 +21,9 @@ class Landing extends Component {
       vidList: [hatdog, robot, piggy],
       beingPlayed: 0,
       count: 1,
-      transIn: "translateX(50%) translateY(-30%) translateZ(0)",
+      transIn: null,
       transOut: null,
-      op: 0
+      op: [1, 0, 0]
     }
   }
 
@@ -358,14 +358,16 @@ const TitleText = styled.h1`
     padding: 0 27%;
   }
   @media (min-width: 1240px) {
-    font-size: 3.2rem;
-    padding: 0 26%;
+    font-size: 4.2rem;
+    padding: 0px 17%;
+    line-height: 4.25rem;
+    margin-top: 5rem;
   }
   @media (min-width: 1537px) {
-    padding: 0 29%;
+    padding: 0 20%;
   }
   @media (min-width: 1580px) {
-    padding: 0 31%;
+    padding: 0 25%;
   }
 `
 const Ptag = styled.p`

@@ -6,8 +6,34 @@ import img1 from "./img/img1.png"
 import img2 from "./img/img2.png"
 import img3 from "./img/img3.png"
 
-import { MiniIndCont, MiniColorCont, MiniImgCont, MiniImg, MiniTextCont, MiniContentCont, MiniSubtitle, MiniTitle, MiniDesc, MiniButton } from "./BenniesUnder1024"
-import { BigIndCont, BigColorCont, BigImgCont, BigImg, BigEyeBall, BigPupilWrap, BigPupil, BigTextCont, SvgContainer, BigContentCont, BigSubtitle, BigTitle, BigDesc, BigButton} from "./BenniesOver1023"
+import {
+  MiniIndCont,
+  MiniColorCont,
+  MiniImgCont,
+  MiniImg,
+  MiniTextCont,
+  MiniContentCont,
+  MiniSubtitle,
+  MiniTitle,
+  MiniDesc,
+  MiniButton
+} from "./BenniesUnder1024"
+import {
+  BigIndCont,
+  BigColorCont,
+  BigImgCont,
+  BigImg,
+  BigEyeBall,
+  BigPupilWrap,
+  BigPupil,
+  BigTextCont,
+  SvgContainer,
+  BigContentCont,
+  BigSubtitle,
+  BigTitle,
+  BigDesc,
+  BigButton
+} from "./BenniesOver1023"
 
 export default class BenniesContainer extends Component {
   constructor() {
@@ -122,65 +148,89 @@ export default class BenniesContainer extends Component {
         intervalFn: x
       })
     }
-    render() {
-        const { version } = this.props;
-        const {x, y} = this.state
-        var pathD = `M0 250 C 250 ${this.state.topCurve}, 500 250, 500 250 C 500 500, 500 750, 500 750 C 250 ${this.state.bottomCurve}, 0 750, 0 750 C 0 500, 0 750, 0 250 Z`
-        return (
-            <div>
+  }
+  render() {
+    const { version } = this.props
+    const { x, y } = this.state
+    var pathD = `M0 250 C 250 ${
+      this.state.topCurve
+    }, 500 250, 500 250 C 500 500, 500 750, 500 750 C 250 ${
+      this.state.bottomCurve
+    }, 0 750, 0 750 C 0 500, 0 750, 0 250 Z`
+    return (
+      <div>
         {/******************************** Media < 1024 **********************************/}
-            <MiniIndCont onMouseEnter={() => this.animateBox(this.props.version)}>
-                <MiniColorCont  color={this.state.colors[version]}>
-                    <MiniImgCont> 
-                        <MiniImg backgroundUrl={this.state.img[version]}/>
-                    </MiniImgCont>
-                    <MiniTextCont>
-                        <MiniContentCont animateCalled={this.state.animateCalled[version]}>
-                            <MiniSubtitle fontColor={this.state.fontColors[version]}>{this.state.miniTitle[version]}</MiniSubtitle>
-                            <MiniTitle>{this.state.title[version]}</MiniTitle>
-                            <MiniDesc>{this.state.description[version]}</MiniDesc>
-                            <MiniButton>
-                                <Button type="white">{this.state.btnText}</Button>
-                            </MiniButton>
-                        </MiniContentCont>
-                    </MiniTextCont>
-                </MiniColorCont>
-            </MiniIndCont>
+        <MiniIndCont onMouseEnter={() => this.animateBox(this.props.version)}>
+          <MiniColorCont color={this.state.colors[version]}>
+            <MiniImgCont>
+              <MiniImg backgroundUrl={this.state.img[version]} />
+            </MiniImgCont>
+            <MiniTextCont>
+              <MiniContentCont
+                animateCalled={this.state.animateCalled[version]}
+              >
+                <MiniSubtitle fontColor={this.state.fontColors[version]}>
+                  {this.state.miniTitle[version]}
+                </MiniSubtitle>
+                <MiniTitle>{this.state.title[version]}</MiniTitle>
+                <MiniDesc>{this.state.description[version]}</MiniDesc>
+                <MiniButton>
+                  <Button type="white">{this.state.btnText}</Button>
+                </MiniButton>
+              </MiniContentCont>
+            </MiniTextCont>
+          </MiniColorCont>
+        </MiniIndCont>
         {/******************************* Media >= 1024 *********************************/}
-            <BigIndCont onMouseEnter={() => this.animateBox(this.props.version)} >
-                <BigColorCont color={this.state.colors[version]} onMouseMove={version === '1' ? this._onMouseMove.bind(this) : null}  onMouseOut={version === '1' ? this._onMouseLeave.bind(this) : null}>
-                    <BigImgCont side={this.state.imgMargin[version%2]} >
-                        { version === '1' ? (
-                        <BigImg backgroundUrl={this.state.img[version]}>
-                            <BigEyeBall/>
-                            <BigPupilWrap>
-                                <BigPupil top={y} left={x}/>
-                            </BigPupilWrap>
-                        <br/>
-                        </BigImg>
-                        ) :
-                        <BigImg backgroundUrl={this.state.img[version]}>
-                        </BigImg>
-                        }
-                    </BigImgCont>
-                    <BigTextCont side={this.state.textMargin[version%2]} sideBig={this.state.textMarginBig[version%2]}>
-                        <SvgContainer animateCalled={this.state.animateCalled[version]}>
-                            <svg opacity="1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 1000" width="500" height="1000" preserveAspectRatio="none"><path fill="#fff"  d={pathD}/></svg>
-                        </SvgContainer>
-                        <BigContentCont animateCalled={this.state.animateCalled[version]}>
-                            <BigSubtitle fontColor={this.state.fontColors[version]}>{this.state.miniTitle[version]}</BigSubtitle>
-                            <BigTitle>{this.state.title[version]}</BigTitle>
-                            <BigDesc>{this.state.description[version]}</BigDesc>
-                            <BigButton>
-                                <Button type="white">{this.state.btnText}</Button>
-                            </BigButton>
-                        </BigContentCont>
-                    </BigTextCont>
-                </BigColorCont>
-            </BigIndCont>
-            </div>
-        )
-    }
+        <BigIndCont onMouseEnter={() => this.animateBox(this.props.version)}>
+          <BigColorCont
+            color={this.state.colors[version]}
+            // onMouseMove={version === "1" ? this._onMouseMove.bind(this) : null}
+            // onMouseOut={version === "1" ? this._onMouseLeave.bind(this) : null}
+          >
+            <BigImgCont side={this.state.imgMargin[version % 2]}>
+              {version === "1" ? (
+                <BigImg backgroundUrl={this.state.img[version]}>
+                  <BigEyeBall />
+                  <BigPupilWrap>
+                    <BigPupil top={y} left={x} />
+                  </BigPupilWrap>
+                  <br />
+                </BigImg>
+              ) : (
+                <BigImg backgroundUrl={this.state.img[version]} />
+              )}
+            </BigImgCont>
+            <BigTextCont
+              side={this.state.textMargin[version % 2]}
+              sideBig={this.state.textMarginBig[version % 2]}
+            >
+              <SvgContainer animateCalled={this.state.animateCalled[version]}>
+                <svg
+                  opacity="1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 500 1000"
+                  width="500"
+                  height="1000"
+                  preserveAspectRatio="none"
+                >
+                  <path fill="#fff" d={pathD} />
+                </svg>
+              </SvgContainer>
+              <BigContentCont animateCalled={this.state.animateCalled[version]}>
+                <BigSubtitle fontColor={this.state.fontColors[version]}>
+                  {this.state.miniTitle[version]}
+                </BigSubtitle>
+                <BigTitle>{this.state.title[version]}</BigTitle>
+                <BigDesc>{this.state.description[version]}</BigDesc>
+                <BigButton>
+                  <Button type="white">{this.state.btnText}</Button>
+                </BigButton>
+              </BigContentCont>
+            </BigTextCont>
+          </BigColorCont>
+        </BigIndCont>
+      </div>
+    )
+  }
 }
-
-
