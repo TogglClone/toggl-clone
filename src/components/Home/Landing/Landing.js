@@ -7,7 +7,8 @@ import timer_icon from "./img/timer_icon.svg"
 import Button from "../../Button/Button"
 import BottomLoginSvg from "./SignUpBottomSvg/SignUpBottomSvg"
 import { Link } from "react-router-dom"
-import { VideoSize0, VideoSize1, VideoSize2 } from "./StyledLanding"
+import { VideoSize, VideoSize1, VideoSize2 } from "./StyledLanding"
+import "./Landing.css"
 
 class Landing extends Component {
   constructor() {
@@ -19,10 +20,19 @@ class Landing extends Component {
       displayNav: "none",
       clicked: false,
       vidList: [hatdog, robot, piggy],
-      beingPlayed: 0,
-      transIn: null,
-      transOut: null,
-      op: [1, 0, 0]
+      beingPlayed: "0",
+      hatdog: {
+        trans: null,
+        opac: 1
+      },
+      robot: {
+        trans: "translateX(50%) translateY(-30%) translateZ(0)",
+        opac: 0
+      },
+      piggy: {
+        trans: "translateX(50%) translateY(-30%) translateZ(0)",
+        opac: 0
+      }
     }
   }
 
@@ -50,42 +60,85 @@ class Landing extends Component {
   componentDidMount() {
     console.time()
     var count = 1
-    var mili = 1545
-    var miliTran = 12250
-    // hotdog 12500
-    // robot 13000
-    // piggies 10500
+    var mili = 3000
+    var transIn = "translateX(50%) translateY(-30%) translateZ(0)"
+    var transOut = "translateX(-50%) translateY(50%) translateZ(0)"
+    var transNull = "translateX(-50%) translateY(50%) translateZ(0)"
+    let first = true
+    let hatdogTime = 12500
+    let robotTime = 13000
+    let piggiesTime = 10500
+
+    setTimeout(_ => {
+      this.setState({
+        hatdog: {
+          trans: transOut, //OUT
+          opac: 0
+        }
+      })
+    }, 10000)
     setInterval(() => {
+      console.log("count", count)
       this.setState({
         beingPlayed: count
       })
+      if (count === 0) {
+        this.setState({
+          hatdog: { trans: null, opac: 1 }, //NULL
+          piggy: { trans: transIn, opac: 0 }
+        })
+        setTimeout(_ => {
+          this.setState({
+            hatdog: {
+              trans: transOut, //OUT
+              opac: 0
+            }
+          })
+        }, 10000)
+      } else if (count === 1) {
+        this.setState({
+          robot: {
+            trans: null, //NULL
+            opac: 1
+          },
+          hatdog: {
+            trans: transIn, //IN
+            opac: 0
+          }
+        })
+        setTimeout(_ => {
+          this.setState({
+            robot: {
+              trans: transOut, //OUT
+              opac: 0
+            }
+          })
+        }, 1000)
+      } else if (count === 2) {
+        this.setState({
+          piggy: {
+            trans: null, //NULL
+            opac: 1
+          },
+          robot: {
+            trans: transIn, //IN
+            opac: 0
+          }
+        })
+        setTimeout(_ => {
+          this.setState({
+            piggy: {
+              trans: transOut, //OUT
+              opac: 0
+            }
+          })
+        }, 10000)
+      }
       count++
       if (count >= 3) {
         count = 0
       }
-      if (count === 0) {
-        mili = 12545
-        miliTran = 12545
-        this.setState({
-          transIn: null,
-          op: 1
-        })
-      } else if (count === 1) {
-        mili = 13000
-        miliTran = 13000
-      } else if (count === 2) {
-        mili = 10500
-        miliTran = 10500
-      }
-      setTimeout(() => {}, 1000)
     }, mili)
-
-    // setInterval(_ => {
-    //   console.log(miliTran)
-    //   this.setState({
-    //     vidAnimationIn: ["translateX(-50%) translateY(50%) translateZ(0)"]
-    //   })
-    // }, miliTran)
   }
 
   render() {
@@ -110,9 +163,15 @@ class Landing extends Component {
               <div style={this.state.clicked ? Clicked2 : Burger2} />
             </BurgerContainer>
             <DesktopNav>
-              <DesktopSpan>Features</DesktopSpan>
-              <DesktopSpan>Pricing</DesktopSpan>
-              <DesktopSpan>Training</DesktopSpan>
+              <DesktopSpan className="nav">
+                <a href="http://localhost:3000/#/">Features</a>
+              </DesktopSpan>
+              <DesktopSpan className="nav">
+                <a href="http://localhost:3000/#/">Pricing</a>
+              </DesktopSpan>
+              <DesktopSpan className="nav">
+                <a href="http://localhost:3000/#/">Training</a>
+              </DesktopSpan>
               <LoginCont
                 href={process.env.REACT_APP_LOGIN}
                 className="login-font"
@@ -135,15 +194,27 @@ class Landing extends Component {
               Hassle-free time tracking so your business runs like clockwork.
             </Ptag>
             <VideoContainer>
-              <VideoSize0
-                transform={this.state.transIn}
-                op={this.state.op}
+              <VideoSize
                 src={this.state.vidList[0]}
+                transform={this.state.hatdog.trans}
+                opac={this.state.hatdog.opac}
                 autoPlay
                 loop
               />
-              <VideoSize1 src={this.state.vidList[1]} autoPlay loop />
-              <VideoSize2 src={this.state.vidList[2]} autoPlay loop />
+              <VideoSize
+                src={this.state.vidList[1]}
+                transform={this.state.robot.trans}
+                opac={this.state.robot.opac}
+                autoPlay
+                loop
+              />
+              <VideoSize
+                src={this.state.vidList[2]}
+                transform={this.state.piggy.trans}
+                opac={this.state.piggy.opac}
+                autoPlay
+                loop
+              />
             </VideoContainer>
             <ButtonContain>
               <Button type="pink">Get Started</Button>
@@ -151,7 +222,12 @@ class Landing extends Component {
             {/* <video src="">VID</video>
             <video src="">VDI</video> */}
             <RotateTimer src={timer_icon} alt="animated rotating timer" />
-            <Scroller>Scroll</Scroller>
+            <Scroller>
+              <Scrollp>Scroll</Scrollp>
+              <Arrow viewBox="0 0 13 18">
+                <path d="M1.6 17.8l11-8a1 1 0 0 0 .2-1.4l-.2-.2-11-8A1 1 0 0 0 0 1v16a1 1 0 0 0 1 1z" />
+              </Arrow>
+            </Scroller>
           </TitleContainer>
           <BurgerWrapper displayNav={this.state.displayNav}>
             <BurgerNav>Features</BurgerNav>
@@ -197,6 +273,47 @@ const BurgerWrapper = styled.section`
   text-decoration: none;
   display: ${props => props.displayNav};
   padding: 4.7rem;
+`
+
+const arrowanim = keyframes`
+0% {
+  opacity: 0;
+    transform: matrix(1, 0, 0, 1, 0, -30);
+}
+25%{
+  opacity: 1;
+    transform: matrix(1, 0, 0, 1, 0, 0);
+    
+}
+50% {
+  opacity: 1;
+    transform: matrix(1, 0, 0, 1, 0, 0);
+    
+}
+75%{
+  opacity: 0;
+    transform: matrix(1, 0, 0, 1, 0, 60);
+}
+100% {
+  opacity: 0;
+    transform: matrix(1, 0, 0, 1, 0, 60);
+    
+}
+`
+
+let Arrow = styled.svg`
+  width: 0.9rem;
+  height: 0.5rem;
+  margin-right: 0.3rem;
+  fill: white;
+  transform: rotate(90deg);
+  left: 1.05rem;
+  position: absolute;
+`
+
+let Scrollp = styled.p`
+  transform: rotate(90deg);
+  margin-bottom: 1.25rem;
 `
 
 const ButtonContain = styled.section`
@@ -448,6 +565,7 @@ const Scroller = styled.span`
   left: 0.7rem;
   font-size: 0.75rem;
   text-transform: uppercase;
+  animation: ${arrowanim} 7s infinite;
   @media (max-width: 768px) {
     display: none;
   }
@@ -459,6 +577,7 @@ const Scroller = styled.span`
 const DesktopNav = styled.section`
   display: flex;
   font-size: 0.75rem;
+
   @media (max-width: 768px) {
     display: none;
   }
@@ -469,4 +588,9 @@ const DesktopNav = styled.section`
 
 const DesktopSpan = styled.span`
   margin-right: 1rem;
+  &:hover {
+    color: white;
+    border-radius: 5px;
+    transform: scaleX(1);
+  }
 `

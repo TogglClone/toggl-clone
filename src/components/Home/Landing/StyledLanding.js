@@ -1,6 +1,21 @@
-import styled from "styled-components"
+import styled, { keyframes } from "styled-components"
 
-export const VideoSize0 = styled.video`
+const videoAnim = keyframes`
+  0% {
+    opacity: 0;
+    transform: translateX(50%) translateY(-30%) translateZ(0);
+  }
+  50%{
+    opacity: 1;
+    transform: none;
+  }
+  100%{
+    opacity: 0;
+    transform: translateX(-50%) translateY(50%) translateZ(0)
+  }
+`
+
+export const VideoSize = styled.video`
   min-width: 17rem;
   max-width: 90%;
   left: 50%;
@@ -8,11 +23,9 @@ export const VideoSize0 = styled.video`
   position: absolute;
   bottom: 11.5rem;
   margin-bottom: -2%;
-  transition: opacity 0.5s;
-  transform: ${props => props.transform};
-  opacity: ${props => props.op};
-  transition-timing-function: ease-in-out;
-  transition-duration: 0.5s;
+  animation: ${videoAnim} infinite;
+  ${"" /* opacity: ${props => props.opac}; */} animation-timing-function: ease-in-out;
+  animation-duration: 10s;
   @media (min-width: 651px) {
     max-width: 80%;
     margin-left: -40%;
