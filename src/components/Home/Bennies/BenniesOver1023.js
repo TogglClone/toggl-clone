@@ -13,6 +13,9 @@ export const BigIndCont = styled.div`
     width: calc(100vw - 9rem);
     margin: auto;
   }
+  @media(min-width: 1546px) {
+      max-width: 1422px
+  }
 `
 
 export const BigColorCont = styled.div`
@@ -20,7 +23,7 @@ export const BigColorCont = styled.div`
   background: ${props=> props.color};
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
-  width: calc(100vw - 9rem);
+  width: 100%;
   height: 22rem;
   border-radius: 3px;
   margin-top: 4.5rem;
@@ -38,54 +41,75 @@ export const BigImgCont = styled.div`
     margin: ${props=> props.side};
     position: relative;
     z-index: 3;
+    background: transparent;
 `
 export const BigImg = styled.div`
+    position: absolute;
     background-image: url(${props => props.backgroundUrl});
     background-size: contain;
+    background-position: center center;
     background-repeat: no-repeat;
-    width: auto;       
+    width: 225px;       
     height: 200px;
-    margin-bottom: 2.5rem;
-    margin-top: 20%;
+    top: 50px;
+    left: 112px;
+    z-index: 5;
     @media(min-width: 1240px){
         height: 100%;
         width: 100%;
-        background-position: center center;
-        background-repeat: no-repeat;
-        background-size: contain;
         margin: 0;
-        z-index: 3;
     }
 `
 export const BigEyeBall = styled.div`
+    border-radius: 50%;
+    height: 58px;
+    width: 42px;
+    background: url(${eyeball});
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: absolute;
+    top: calc(5%);
+    left: calc(21.5%);
+    overflow: hidden;
+    z-index: -3;
+    @media(min-width: 1240px){
+        top: calc(5%);
+        left: calc(29.5%);
+        overflow: hidden;
+    }
+`
+export const BigPupilWrap = styled.div`
+    background: transparent;
+    border-radius: 50%;
+    height: 48px;
+    width: 42px;
+    position: absolute;
+    top: calc(5%);
+    left: calc(21.5%);
+    overflow: hidden;
+    z-index: -1;
     @media(min-width: 1240px){
         border-radius: 50%;
         height: 74px;
         width: 68px;
-        background: url(${eyeball});
-        background-repeat: no-repeat;
         position: absolute;
         top: calc(5%);
         left: calc(29.5%);
         overflow: hidden;
-        z-index: -2;
+        z-index: -1;
     }
 `
-export const BigPupilWrap = styled.div`
-@media(min-width: 1240px){
-    border-radius: 50%;
-    height: 74px;
-    width: 68px;
-    background: url(${eyeball});
-    background-repeat: no-repeat;
-    position: absolute;
-    top: calc(5%);
-    left: calc(29.5%);
-    overflow: hidden;
-    z-index: -1;
-}
-`
 export const BigPupil = styled.div`
+border-radius: 50%;
+background-image: url(${pupil});
+background-size: contain;
+background-repeat: no-repeat;
+height: 20px;
+width: 18px;
+position: absolute;
+top: calc(50% - 10px);
+left: calc(50% - 15px);
+z-index: -1;
     @media(min-width: 1240px){
         border-radius: 50%;
         background-image: url(${pupil});
@@ -101,53 +125,85 @@ export const BigPupil = styled.div`
 `
 export const BigTextCont = styled.div`
     background: white;
-    padding: 1.8rem 3.5rem 2rem 2.5rem;
     text-align: left;
     border-top-left-radius: 2px;
     border-top-right-radius: 2px;
     position: absolute;
-    margin: ${props=> props.side};
+    // margin: ${props=> props.side};
+    left: ${props => props.left};
+    right: ${props => props.right};
     top: -30px;
     background: transparent;
-    width: 25rem;
+    width: 43%;
     @media(min-width: 1240px){
         border-top-left-radius: 2px;
         border-top-right-radius: 2px;
         position: absolute;
-        margin: ${props=> props.sideBig};
-        padding: 5rem;
+        // margin: ${props=> props.sideBig};
         top: -35px;
+        width: 30%;
+    }
+`
+export const AnimationWrapper = styled.div`
+    position: relative;
+    height: auto;
+    width: 100%;
+    @media(min-width: 1240px){
+        position: relative;
+        height: auto;
+        width: 100%;
     }
 `
 const moveDown = keyframes`
-  0% { top: -400px; opacity: 0; }
+  0% { top: -65%; opacity: 0; }
   // 25%
   // 50%
   // 75%
-  100% { top: -300px; opacity: 1;}
+  100% { top: -50%; opacity: 1;}
 `
 export const SvgContainer = styled.div`
+width: 100%;
+height: 200%;
+position: absolute;
+opacity: 0;
+bottom: 0;
+left: 0;
+right: 0;
+top: 0;
+pointer-events: none;
+${( {animateCalled} ) => animateCalled && `
+animation: ${moveDown} 200ms forwards;
+`}
+@media(min-width: 1240px){
+    width: 100%;
+    height: 200%;
     position: absolute;
     opacity: 0;
-    ${( {animateCalled} ) => animateCalled && `
-    animation: ${moveDown} 200ms forwards;
-    `} 
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    pointer-events: none;
+
 `
 
 const moveUp = keyframes`
-0% { top: -75px; opacity: 0; }
+0% { top: 100px; opacity: 0; }
 // 25%
 // 50%
 // 75%
-100% { top: -175px; opacity: 1;}
+100% { top: 0px; opacity: 1;}
 `
 export const BigContentCont = styled.div`
-  position: absolute;
-  padding: 9.5rem 7.65rem 9.25rem;
+  position: relative;
+  padding: 2.5rem 3rem;
   opacity: 0;
   ${( {animateCalled} ) => animateCalled && `
   animation: ${moveUp} 500ms forwards;
   animation-delay: 200ms;
+  @media(min-width: 1240px){
+    padding: 5rem 5rem;
+  }
 `}
 `
 export const BigSubtitle = styled.h2`

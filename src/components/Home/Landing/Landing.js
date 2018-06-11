@@ -113,18 +113,29 @@ class Landing extends Component {
               <DesktopSpan>Features</DesktopSpan>
               <DesktopSpan>Pricing</DesktopSpan>
               <DesktopSpan>Training</DesktopSpan>
-              <LoginCont
+              <DesktopSpan><LoginCont
                 href={process.env.REACT_APP_LOGIN}
                 className="login-font"
               >
                 Log in
               </LoginCont>
+              </DesktopSpan>
               <SignUp>
                 <LoginCont
                   href={process.env.REACT_APP_LOGIN}
                   className="login-font"
                 >
                   Sign Up
+                  <SignUpLineAbove xmlns="http://www.w3.org/2000/svg" width="52.5" height="33.4" viewBox="0 0 52.5 33.4">
+                    <path class="sign-up-line sign-up-line--1" d="M6,18-2.3-.4" transform="translate(4.3 13.4)" fill="#fff" strokeWidth="5" style={{strokeLinecap: "round", strokeMiterlimit: "10", strokeDashoffset: "0px"}}></path>
+                    <path class="sign-up-line sign-up-line--2" d="M22,16.1V-11.4" transform="translate(4.3 13.4)" fill="#fff" strokeWidth="5"></path>
+                    <path class="sign-up-line sign-up-line--3" d="M37.9,18,46.2-1.4" transform="translate(4.3 13.4)" fill="#fff" strokeWidth="5"></path>
+                  </SignUpLineAbove>
+                  <SignUpLineBelow xmlns="http://www.w3.org/2000/svg" width="52.5" height="33.4" viewBox="0 0 52.5 33.4">
+                    <path class="sign-up-line sign-up-line--4" d="M6,18-2.3-.4" transform="translate(4.3 13.4)" style={{strokeLinecap: "round", strokeMiterlimit: "10", strokeDashoffset: "0px"}} fill="none" strokeWidth="5"></path>
+                    <path class="sign-up-line sign-up-line--5" d="M22,16.1V-11.4" transform="translate(4.3 13.4)" style={{strokeLinecap: "round", strokeMiterlimit: "10", strokeDashoffset: "0px"}} fill="none" strokeWidth="5"></path>
+                    <path class="sign-up-line sign-up-line--6" d="M37.9,18,46.2-1.4" transform="translate(4.3 13.4)" style={{strokeLinecap: "round", strokeMiterlimit: "10", strokeDashoffset: "0px"}} fill="none" strokeWidth="5"></path>
+                  </SignUpLineBelow>
                 </LoginCont>
               </SignUp>
             </DesktopNav>
@@ -218,7 +229,7 @@ const LoginCont = styled.a`
   text-decoration: none;
   color: black;
   @media (min-width: 770px) {
-    margin-right: 1rem;
+    cursor: pointer;
   }
 `
 
@@ -469,4 +480,49 @@ const DesktopNav = styled.section`
 
 const DesktopSpan = styled.span`
   margin-right: 1rem;
+  cursor: pointer;
+  position: relative;
+  @media(min-width: 1240px){
+    &:before{
+      transform: scaleX(0);
+      transition: transform .3s;
+      background-color: #fff;
+      border-radius: .1rem;
+      top: 1.2rem;
+      content: "";
+      height: .1rem;
+      left: 0;
+      position: absolute;
+      right: 0;
+      transform-origin: center center;
+      transition-timing-function: cubic-bezier(.665,.14,.785,.285);
+    }
+      &:hover {
+        &:before{
+          transform: scaleX(1);
+          transition-timing-function: cubic-bezier(.12,.845,.305,1);
+      }
+    }
+  }
+`
+
+const SignUpLineAbove = styled.svg`
+stroke: #fff; 
+position: absolute; 
+width: 1rem; 
+transform: translateX(-2rem) translateY(-1.5rem);
+@media(min-width: 1240px){
+  width: 1.2rem; 
+  transform: translateX(-2.4rem) translateY(-1.5rem);
+}
+`
+const SignUpLineBelow = styled.svg`
+stroke: #fff; 
+position: absolute;
+width: 1rem; 
+transform: translateX(-2rem) translateY(.4rem) rotate(180deg); 
+@media(min-width: 1240px){
+  width: 1.2rem; 
+  transform: translateX(-2.4rem) translateY(.8rem) rotate(180deg);
+}
 `
