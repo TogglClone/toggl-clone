@@ -1,0 +1,177 @@
+{
+	"info": {
+		"_postman_id": "904c0729-d293-43c1-877b-9bb3faf0045b",
+		"name": "Toggl Clone Endpoint Tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get - Timers",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2d022287-ae76-4db0-918b-5b415fb9262a",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"There should be more than 0 timer objects returned\", function () {",
+							"    let res = pm.response.json()",
+							"    pm.expect(res.length).to.be.above(0)",
+							"})",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:3005/api/timers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3005",
+					"path": [
+						"api",
+						"timers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post - Timer is added and returned ",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "85cb58a9-fcfa-4497-b0e0-fb94d1c5717e",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"let timer = {",
+							"    \"start_time\": \"2019-05-31T04:13:42.698Z\",",
+							"    \"end_time\": \"2019-05-31T04:13:35.187Z\",",
+							"    \"total_time\": \"0:00:07\",",
+							"    \"timer_name\": \"A great timer\"",
+							"}",
+							"let res = pm.response.json()",
+							"",
+							"pm.test(\"Object start time should be the first in the returned array\", function() {",
+							"    let startTimes = res.map( e => {",
+							"        return e.start_time",
+							"    })",
+							"    pm.expect(startTimes[0]).to.eql(timer.start_time)",
+							"})",
+							"pm.test(\"Object end time should be the first in the returned array\", function() {",
+							"    let endTimes = res.map( e => {",
+							"        return e.end_time",
+							"    })",
+							"    pm.expect(endTimes[0]).to.eql(timer.end_time)",
+							"})",
+							"pm.test(\"Object total time should be the first in the returned array\", function() {",
+							"    let totalTimes = res.map( e => {",
+							"        return e.total_time",
+							"    })",
+							"    pm.expect(totalTimes[0]).to.eql(timer.total_time)",
+							"})",
+							"pm.test(\"Object name should be the first in the returned array\", function() {",
+							"    let names = res.map( e => {",
+							"        return e.timer_name",
+							"    })",
+							"    pm.expect(names[0]).to.eql(timer.timer_name)",
+							"})"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"start_time\": \"2019-05-31T04:13:42.698Z\",\n    \"end_time\": \"2019-05-31T04:13:35.187Z\",\n    \"total_time\": \"0:00:07\",\n    \"timer_name\": \"A great timer\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3005/api/timer",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3005",
+					"path": [
+						"api",
+						"timer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete - Timer by Id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6bafdc54-2027-4eab-86a3-71bc33c27fb5",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Deleted Timer should not be in the return\", function() {",
+							"    let res = pm.response.json()",
+							"    let timerIds = res.map( e => {",
+							"        return e.timer_id",
+							"    })",
+							"    let timerExists = timerIds.indexOf(65)",
+							"    pm.expect(timerExists).to.eql(-1);",
+							"",
+							"})"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:3005/api/timer?timer_id=65",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3005",
+					"path": [
+						"api",
+						"timer"
+					],
+					"query": [
+						{
+							"key": "timer_id",
+							"value": "65"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
