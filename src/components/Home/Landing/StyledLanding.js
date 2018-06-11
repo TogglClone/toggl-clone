@@ -1,21 +1,21 @@
-import styled, { keyframes } from "styled-components"
+import styled, { css, keyframes } from "styled-components"
 
-const videoAnim = keyframes`
-  0% {
+const animateVid = keyframes`
+  0%{
     opacity: 0;
-    transform: translateX(50%) translateY(-30%) translateZ(0);
+    transform: "translateX(50%) translateY(-30%) translateZ(0)";
   }
-  50%{
+  50% {
     opacity: 1;
-    transform: none;
+    transform: "translateX(0%) translateY(0%) translateZ(0)";
   }
   100%{
     opacity: 0;
-    transform: translateX(-50%) translateY(50%) translateZ(0)
+    transform: "translateX(-50%) translateY(50%) translateZ(0)";
   }
 `
 
-export const VideoSize = styled.video`
+export const VideoSize0 = styled.video`
   min-width: 17rem;
   max-width: 90%;
   left: 50%;
@@ -23,9 +23,15 @@ export const VideoSize = styled.video`
   position: absolute;
   bottom: 11.5rem;
   margin-bottom: -2%;
-  animation: ${videoAnim} infinite;
-  ${"" /* opacity: ${props => props.opac}; */} animation-timing-function: ease-in-out;
-  animation-duration: 10s;
+  transition: opacity 0.5s;
+  transform: ${props => props.transform};
+  opacity: ${props => props.opac};
+  transition-timing-function: ease-in-out;
+  transition-duration: 0.5s;
+
+  ${direction => direction === "in" && css``} ${direction =>
+    direction === "out" && css``}
+
   @media (min-width: 651px) {
     max-width: 80%;
     margin-left: -40%;
