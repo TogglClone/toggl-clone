@@ -113,10 +113,9 @@ export default class BenniesContainer extends Component {
                         { version === '1' ? (
                         <BigImg backgroundUrl={this.state.img[version]}>
                             <BigEyeBall/>
-                            <BigPupilWrap>
+                            {/* <BigPupilWrap>
                                 <BigPupil top={y} left={x}/>
-                            </BigPupilWrap>
-                        <br/>
+                            </BigPupilWrap> */}
                         </BigImg>
                         ) :
                         <BigImg backgroundUrl={this.state.img[version]}>

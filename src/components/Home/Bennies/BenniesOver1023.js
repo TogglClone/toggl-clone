@@ -41,54 +41,75 @@ export const BigImgCont = styled.div`
     margin: ${props=> props.side};
     position: relative;
     z-index: 3;
+    background: transparent;
 `
 export const BigImg = styled.div`
+    position: absolute;
     background-image: url(${props => props.backgroundUrl});
     background-size: contain;
+    background-position: center center;
     background-repeat: no-repeat;
-    width: auto;       
+    width: 225px;       
     height: 200px;
-    margin-bottom: 2.5rem;
-    margin-top: 20%;
+    top: 50px;
+    left: 112px;
+    z-index: 5;
     @media(min-width: 1240px){
         height: 100%;
         width: 100%;
-        background-position: center center;
-        background-repeat: no-repeat;
-        background-size: contain;
         margin: 0;
-        z-index: 3;
     }
 `
 export const BigEyeBall = styled.div`
+    border-radius: 50%;
+    height: 58px;
+    width: 42px;
+    background: url(${eyeball});
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: absolute;
+    top: calc(5%);
+    left: calc(21.5%);
+    overflow: hidden;
+    z-index: -3;
+    @media(min-width: 1240px){
+        top: calc(5%);
+        left: calc(29.5%);
+        overflow: hidden;
+    }
+`
+export const BigPupilWrap = styled.div`
+    background: transparent;
+    border-radius: 50%;
+    height: 48px;
+    width: 42px;
+    position: absolute;
+    top: calc(5%);
+    left: calc(21.5%);
+    overflow: hidden;
+    z-index: -1;
     @media(min-width: 1240px){
         border-radius: 50%;
         height: 74px;
         width: 68px;
-        background: url(${eyeball});
-        background-repeat: no-repeat;
         position: absolute;
         top: calc(5%);
         left: calc(29.5%);
         overflow: hidden;
-        z-index: -2;
+        z-index: -1;
     }
 `
-export const BigPupilWrap = styled.div`
-@media(min-width: 1240px){
-    border-radius: 50%;
-    height: 74px;
-    width: 68px;
-    background: url(${eyeball});
-    background-repeat: no-repeat;
-    position: absolute;
-    top: calc(5%);
-    left: calc(29.5%);
-    overflow: hidden;
-    z-index: -1;
-}
-`
 export const BigPupil = styled.div`
+border-radius: 50%;
+background-image: url(${pupil});
+background-size: contain;
+background-repeat: no-repeat;
+height: 20px;
+width: 18px;
+position: absolute;
+top: calc(50% - 10px);
+left: calc(50% - 15px);
+z-index: -1;
     @media(min-width: 1240px){
         border-radius: 50%;
         background-image: url(${pupil});
@@ -113,16 +134,20 @@ export const BigTextCont = styled.div`
     right: ${props => props.right};
     top: -30px;
     background: transparent;
-    width: 30%;
+    width: 43%;
     @media(min-width: 1240px){
         border-top-left-radius: 2px;
         border-top-right-radius: 2px;
         position: absolute;
         // margin: ${props=> props.sideBig};
         top: -35px;
+        width: 30%;
     }
 `
 export const AnimationWrapper = styled.div`
+    position: relative;
+    height: auto;
+    width: 100%;
     @media(min-width: 1240px){
         position: relative;
         height: auto;
@@ -130,13 +155,26 @@ export const AnimationWrapper = styled.div`
     }
 `
 const moveDown = keyframes`
-  0% { top: -350px; opacity: 0; }
+  0% { top: -65%; opacity: 0; }
   // 25%
   // 50%
   // 75%
   100% { top: -50%; opacity: 1;}
 `
 export const SvgContainer = styled.div`
+width: 100%;
+height: 200%;
+position: absolute;
+opacity: 0;
+bottom: 0;
+left: 0;
+right: 0;
+top: 0;
+pointer-events: none;
+${( {animateCalled} ) => animateCalled && `
+animation: ${moveDown} 200ms forwards;
+`}
+@media(min-width: 1240px){
     width: 100%;
     height: 200%;
     position: absolute;
@@ -146,9 +184,7 @@ export const SvgContainer = styled.div`
     right: 0;
     top: 0;
     pointer-events: none;
-    ${( {animateCalled} ) => animateCalled && `
-    animation: ${moveDown} 200ms forwards;
-    `}
+
 `
 
 const moveUp = keyframes`
@@ -160,11 +196,14 @@ const moveUp = keyframes`
 `
 export const BigContentCont = styled.div`
   position: relative;
-  padding: 5rem 5rem;
+  padding: 2.5rem 3rem;
   opacity: 0;
   ${( {animateCalled} ) => animateCalled && `
   animation: ${moveUp} 500ms forwards;
   animation-delay: 200ms;
+  @media(min-width: 1240px){
+    padding: 5rem 5rem;
+  }
 `}
 `
 export const BigSubtitle = styled.h2`
