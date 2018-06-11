@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import {connect} from 'react-redux';
 
 import {addTimer} from '../../../ducks/reducer';
+import fns from './../../../utils/functions';
 
 import start_icon from './img/start_icon.svg';
 import stop_icon from './img/stop_icon.svg';
@@ -29,23 +30,6 @@ class ProjectBar extends Component{
     }
     toggleTimer(){  
         //helper function for setInterval fn below arrow function so that it is implicitly bound and setState can be used inside the function
-        let handleTimeDifference = (difference) => {
-            let hours = Math.floor((difference % (60 * 60 * 24)) / (60 * 60))
-            let minutes = Math.floor((difference % (60 * 60)) / (60))
-            let seconds = Math.floor(difference % 60)
-            
-            if(seconds < 10){
-                seconds = '0' + seconds
-            }
-            if(minutes < 10){
-                minutes = '0' + minutes
-            }
-            this.setState({
-                seconds: seconds,
-                minutes: minutes,
-                hours: hours
-            })
-        }
         if(this.state.timerMode){
             let start_time = new Date()
             this.setState({
@@ -54,8 +38,13 @@ class ProjectBar extends Component{
             var x = setInterval(() => {                
                 let now = new Date().getTime();
                 
-                let difference = Math.round(now - start_time.getTime())/1000;
-                handleTimeDifference(difference)
+                let difference = Math.round(now - start_time.getTime())/1000
+                let newSt = fns.handleTimeDifference(difference)
+                this.setState({
+                    seconds: newSt.seconds,
+                    minutes: newSt.minutes,
+                    hours: newSt.hours
+                })
             }, 1000);
             this.setState({
                 timerFn: x
