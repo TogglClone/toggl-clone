@@ -1,19 +1,19 @@
 import styled, { css, keyframes } from "styled-components"
 
-const animateVid = keyframes`
-  0%{
-    opacity: 0;
-    transform: "translateX(50%) translateY(-30%) translateZ(0)";
-  }
-  50% {
-    opacity: 1;
-    transform: "translateX(0%) translateY(0%) translateZ(0)";
-  }
-  100%{
-    opacity: 0;
-    transform: "translateX(-50%) translateY(50%) translateZ(0)";
-  }
-`
+// const animateVid = keyframes`
+//   0%{
+//     opacity: 0;
+//     transform: "translateX(50%) translateY(-30%) translateZ(0)";
+//   }
+//   50% {
+//     opacity: 1;
+//     transform: "translateX(0%) translateY(0%) translateZ(0)";
+//   }
+//   100%{
+//     opacity: 0;
+//     transform: "translateX(-50%) translateY(50%) translateZ(0)";
+//   }
+// `
 
 export const VideoSize0 = styled.video`
   min-width: 17rem;
@@ -23,12 +23,13 @@ export const VideoSize0 = styled.video`
   position: absolute;
   bottom: 11.5rem;
   margin-bottom: -2%;
-  transition: opacity 0.5s;
+  transition-delay: 1s;
+  transition: opacity 0.5s, transform 1s;
   transform: ${props => props.transform};
   opacity: ${props => props.opac};
   transition-timing-function: ease-in-out;
-  transition-duration: 0.5s;
-
+  transition-duration: 1s;
+  z-index: 1;
   ${direction => direction === "in" && css``} ${direction =>
     direction === "out" && css``}
 
@@ -69,12 +70,13 @@ export const VideoSize1 = styled.video`
   position: absolute;
   bottom: 11.5rem;
   margin-bottom: -2%;
-  transition: opacity 0.5s;
+  z-index: 1;
+  transition-delay: 1s;
+  transition: opacity 0.5s, transform 1s;
   transform: ${props => props.transform};
-  opacity: ${props => props.op};
+  opacity: ${props => props.opac};
   transition-timing-function: ease-in-out;
-  transition-duration: 0.5s;
-  @media (min-width: 651px) {
+  ${"" /* transition-duration: 1s; */} @media (min-width: 651px) {
     max-width: 80%;
     margin-left: -40%;
   }
@@ -111,11 +113,12 @@ export const VideoSize2 = styled.video`
   position: absolute;
   bottom: 11.5rem;
   margin-bottom: -2%;
-  transition: opacity 0.5s;
+  transition: opacity 0.5s, transform 1s;
+  transition-delay: 1s;
   transform: ${props => props.transform};
-  opacity: ${props => props.op};
+  opacity: ${props => props.opac};
   transition-timing-function: ease-in-out;
-  transition-duration: 0.5s;
+  z-index: 1;
   @media (min-width: 651px) {
     max-width: 80%;
     margin-left: -40%;

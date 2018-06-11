@@ -29,7 +29,7 @@ class Landing extends Component {
         opac: 0
       },
       piggy: {
-        trans: null,
+        trans: "translateX(50%) translateY(-30%) translateZ(0)",
         opac: 0
       }
     }
@@ -59,7 +59,7 @@ class Landing extends Component {
   componentDidMount() {
     console.time()
     var count = 1
-    var mili = 5000
+    var mili = 13000
     var transIn = "translateX(50%) translateY(-30%) translateZ(0)"
     var transOut = "translateX(-50%) translateY(50%) translateZ(0)"
     var nullify = "translateX(0%) translateY(0%) translateZ(0)"
@@ -74,7 +74,7 @@ class Landing extends Component {
           opac: 0
         }
       })
-    }, 5000)
+    }, 12200)
     setInterval(() => {
       console.log("count", count)
       this.setState({
@@ -83,7 +83,11 @@ class Landing extends Component {
       if (count === 0) {
         this.setState({
           hatdog: { trans: nullify, opac: 1 }, //NULL
-          piggy: { trans: transIn, opac: 0 }
+          piggy: { trans: transIn, opac: 0 },
+          robot: {
+            trans: transIn,
+            opac: 0
+          }
         })
         setTimeout(_ => {
           this.setState({
@@ -92,7 +96,7 @@ class Landing extends Component {
               opac: 0
             }
           })
-        }, 5000)
+        }, 12500)
       } else if (count === 1) {
         this.setState({
           robot: {
@@ -100,7 +104,11 @@ class Landing extends Component {
             opac: 1
           },
           hatdog: {
-            trans: transIn, //IN
+            trans: transOut, //IN
+            opac: 0
+          },
+          piggy: {
+            trans: transIn,
             opac: 0
           }
         })
@@ -111,7 +119,7 @@ class Landing extends Component {
               opac: 0
             }
           })
-        }, 5000)
+        }, 13000)
       } else if (count === 2) {
         this.setState({
           piggy: {
@@ -120,6 +128,10 @@ class Landing extends Component {
           },
           robot: {
             trans: transIn, //IN
+            opac: 0
+          },
+          hatdog: {
+            trans: transIn,
             opac: 0
           }
         })
@@ -130,7 +142,7 @@ class Landing extends Component {
               opac: 0
             }
           })
-        }, 5000)
+        }, 10500)
       }
       count++
       if (count >= 3) {
@@ -439,6 +451,8 @@ const TitleText = styled.h1`
   margin-top: 1.2rem;
   margin: 0;
   margin-top: 1.75rem;
+  position: relative;
+  z-index: 5;
   @media (min-width: 454px) {
     padding: 0 11%;
   }
@@ -482,6 +496,8 @@ const Ptag = styled.p`
   margin: 0;
   margin-top: 1rem;
   line-height: 1.52;
+  z-index: 5;
+  position: relative;
   -webkit-font-smoothing: antialiased;
   @media (min-width: 390px) {
     padding: 0 9%;
