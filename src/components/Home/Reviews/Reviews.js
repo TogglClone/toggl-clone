@@ -15,7 +15,8 @@ export default class Reviews extends Component {
             wiggle: null,
             buttonBackgroundTasha:false,
             buttonBackgroundBrad:true,
-            buttonBackgroundAnnika:true
+            buttonBackgroundAnnika:true,
+            animateCalled:null
         }
     }
     reset() {
@@ -47,28 +48,28 @@ export default class Reviews extends Component {
     wiggle(){
         this.setState({
             wiggle: dash
-           
         })
         setTimeout(_ => {
             this.reset()
         }, 2000)
     }
-
-
-    updateReviewie(reviewie){
+     updateReviewie(reviewie){
         this.setState({currentReviewie:reviewie})
+    }
+    mouseEnter(){
+        this.setState({animateCalled:TopBounceIn})
     }
     render() {
          const {tasha,brad,annika,wiggle}=this.state
         return(
-        <ReviewsContainer>
+        <ReviewsContainer onMouseEnter={() => this.mouseEnter()}>
                 <ReviewTitle> Sweet Nothings </ReviewTitle>
                 <ReviewMini> Some client love. </ReviewMini>
-                <ReviewText>{this.state.currentReviewie[1]}</ReviewText>
+                <ReviewText entered ={this.state.animateCalled}>{this.state.currentReviewie[1]}</ReviewText>
             <AvatarContainer>
-                <ImageWormBody>
-                    <Worm><Crypto wiggle={wiggle} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45.8 69.6"><path d="M23.5 68.1V63a5.6 5.6 0 0 1 5.6-5.6h1a5.6 5.6 0 0 0 5.6-5.6 5.6 5.6 0 0 0-5.6-5.6h-13a5.6 5.6 0 0 1-5.6-5.6 5.6 5.6 0 0 1 5.6-5.6h21.5a5.6 5.6 0 0 0 5.6-5.6 5.6 5.6 0 0 0-5.6-5.6H7.1a5.6 5.6 0 0 1-5.6-5.6 5.6 5.6 0 0 1 5.6-5.6h10.8A5.6 5.6 0 0 0 23.5 7V1.8" fill="none" stroke="#ffacba" stroke-linecap="round" stroke-miterlimit="10" stroke-width="3" ></path></Crypto></Worm>
-                    <ImageContainer > 
+                <ImageWormBody entered ={this.state.animateCalled}>
+                    <Worm ><Crypto wiggle={wiggle} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45.8 69.6"><path d="M23.5 68.1V63a5.6 5.6 0 0 1 5.6-5.6h1a5.6 5.6 0 0 0 5.6-5.6 5.6 5.6 0 0 0-5.6-5.6h-13a5.6 5.6 0 0 1-5.6-5.6 5.6 5.6 0 0 1 5.6-5.6h21.5a5.6 5.6 0 0 0 5.6-5.6 5.6 5.6 0 0 0-5.6-5.6H7.1a5.6 5.6 0 0 1-5.6-5.6 5.6 5.6 0 0 1 5.6-5.6h10.8A5.6 5.6 0 0 0 23.5 7V1.8" fill="none" stroke="#ffacba" stroke-linecap="round" stroke-miterlimit="10" stroke-width="3" ></path></Crypto></Worm>
+                    <ImageContainer entered ={this.state.animateCalled} > 
                         <Image src={this.state.currentReviewie[0]}alt="current"/>
                         <Tasha onClick={()=>{this.wiggle(),this.updateReviewie(tasha)}} image={tasha[0]} ></Tasha>
                         <Brad onClick={()=>{this.wiggle(),this.updateReviewie(brad)}} image={brad[0]}></Brad>
@@ -108,10 +109,11 @@ const Crypto =styled.svg `
     fill: white;
     stroke: black;
     stroke-dasharray: 800;
+    repeat:2;
     animation: ${props=>props.wiggle};
     animation-duration: 2s;
     animation-timing-function: ease-in-out;
-    // animation-iteration-count: infinite;
+    // animation-iteration-count: 2;
     height:4.7rem;
     margin-left:auto;
     margin-right:auto;
@@ -142,7 +144,7 @@ const ReviewsContainer = styled.div`
     @media(min-width:1024px){
         padding-left:200px;
         padding-right:200px;
-        
+        height:40rem
     }
 `
 const ReviewTitle = styled.h1`
@@ -172,6 +174,10 @@ const ReviewMini = styled.h2`
         font-weight:100;
     }
 `
+const TopBounceIn = keyframes`
+0% { top: 100px; opacity: 0; }
+100% { top:0px; opacity: 1;}
+`
 const ReviewText = styled.h3`
     font-size: 1.1rem;
     font-weight:100;
@@ -180,6 +186,16 @@ const ReviewText = styled.h3`
     padding-right:.8rem;
     position:relative;
     display:block;
+    opacity:0;
+    animation:${props =>props.entered};
+    animation-duration:0.6s;
+    animation-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+    animation-delay:0.2s;
+    animation-iteration-count:1;
+    animation-direction:initial;
+    animation-fill-mode:forwards;
+    animation-play-state:initial; 
+
     @media(min-width:1240px){
         font-size:1.8rem;
         line-height:1.5;
@@ -191,7 +207,7 @@ const ReviewText = styled.h3`
     @media(min-width:1240px){
         width:62%;
         margin:auto
-    }
+    }  
 `
 const AvatarContainer = styled.section `
     margin-top:1px
@@ -200,16 +216,42 @@ const AvatarContainer = styled.section `
 const ImageWormBody = styled.section`
     padding-top:1.5rem;
     position:relative;
+    opacity:0;
+    animation:${props =>props.entered};
+    animation-duration:0.6s;
+    animation-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+    animation-delay:1.2s;
+    animation-iteration-count:1;
+    animation-direction:initial;
+    animation-fill-mode:forwards;
+    animation-play-state:initial; 
 `
 const Worm = styled.section`
     height:4.7rem;
     margin-left:auto;
     margin-right:auto;
     width:3.3rem;
+    animation:${props =>props.entered};
+    animation-duration:0.6s;
+    animation-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+    animation-delay:0.2s;
+    animation-iteration-count:1;
+    animation-direction:initial;
+    animation-fill-mode:forwards;
+    animation-play-state:initial; 
 `
 const ImageContainer = styled.section`
     margin-top:2rem;
-    flex:wrap
+    flex:wrap;
+    opacity:0;
+    animation:${props =>props.entered};
+    animation-duration:0.6s;
+    animation-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+    animation-delay:0.2s;
+    animation-iteration-count:1;
+    animation-direction:initial;
+    animation-fill-mode:forwards;
+    animation-play-state:initial; 
 `
 const Image = styled.img`
     height:65px;

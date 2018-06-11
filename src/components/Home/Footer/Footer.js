@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
-import styled from 'styled-components'
+import styled, {keyframes} from 'styled-components'
 
 class Footer extends Component {
     constructor(){
         super();
         this.state ={
-            intervalId: 0
+            intervalId: 0,
+            animateCalled:null
         }
     }
     scrollStep() {
@@ -19,14 +20,17 @@ class Footer extends Component {
         let intervalId = setInterval(this.scrollStep.bind(this), delayInMs);
         this.setState({ intervalId: intervalId });
       }
+      mouseEnter(){
+          this.setState({animateCalled:TopBounceIn})
+      }
 
     render(){
         return(
-            <FooterMain>
-                <Top>
+            <FooterMain onMouseEnter={() => this.mouseEnter()}>
+                <Top entered ={this.state.animateCalled}>
                <button style={{ outline:'none',border:'none',borderRadius:'50%',backgroundColor:'#dee1e3'}} scrollStepInPx="50" delayInMs="16.66" onClick={ () => { this.scrollToTop('16.6'); }}> <TopArrowContainer><svg style={topArrow} viewBox="0 0 13 18">
               <path d="M1.6 17.8l11-8a1 1 0 0 0 .2-1.4l-.2-.2-11-8A1 1 0 0 0 0 1v16a1 1 0 0 0 1 1z" /></svg>
-              </TopArrowContainer>
+              </TopArrowContainer >
                     <TopHeader>TOP</TopHeader>
                     <BottomArrowContainer><svg style={bottomArrow} viewBox="0 0 13 18">
               <path d="M1.6 17.8l11-8a1 1 0 0 0 .2-1.4l-.2-.2-11-8A1 1 0 0 0 0 1v16a1 1 0 0 0 1 1z" />
@@ -98,7 +102,6 @@ class Footer extends Component {
         )
     }
 }
-//Things to do for Footer- Make top button transition in on scroll and positioning 
 
 export default Footer;
 let topArrow = {
@@ -122,22 +125,22 @@ let bottomArrow ={
  z-index:2;
  width:100%;
  margin-top:100px;
- @media(min-width: 768px){
-
-}
 @media(min-width: 1240px){
 }
  `
-// const TopBounceIn = keyframes`
-
-// `
+const TopBounceIn = keyframes`
+0% { top: -110px; opacity: 0; }
+50%{ top: -150px;}
+100% { top: -110px; opacity: 1;}
+`
  const Top = styled.section`
+ opacity:0;
+ animation:${props =>props.entered};
  animation-duration:0.6s;
  animation-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
  animation-delay:0.2s;
  animation-iteration-count:1;
- animation-iteration-count: infinite;
- animation:direction:initial;
+ animation-direction:initial;
  animation-fill-mode:forwards;
  animation-play-state:initial; 
  background-color:#dee1e3;
@@ -145,6 +148,7 @@ let bottomArrow ={
  color:#000;
  cursor:pointer;
  height:3rem;
+ top:-120px
  position:absolute;
  right:16.6666666667%;
  text-align:center;
@@ -162,11 +166,9 @@ let bottomArrow ={
  ${Top}:hover & {
      transform: scaleX(0);
      opacity: 0;
-    margin-top: 1.3rem;
     }
     `
     let BottomArrowContainer = styled.section`
-    margin-right: 1.3rem;
     opacity: 0;
 transform: scaleY(0) translateX(0);
 transition: transform .5s cubic-bezier(.645,.045,.355,1), opacity .5s cubic-bezier(.645,.045,.355,1), margin-right .5s cubic-bezier(.645,.045,.355,1) ;
@@ -174,18 +176,9 @@ transition-delay: .2s;
 ${Top}:hover & {
   transform: scaleX(1);
   opacity: 1;
-//   margin-bottom: 0;
 }
 `
  const TopHeader = styled.h5`
- animation-duration:0.6s;
- animation-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
- animation-delay:0.2s;
- animation-iteration-count:1;
- animation-iteration-count: infinite;
- animation:direction:initial;
- animation-fill-mode:forwards;
- animation-play-state:initial; 
  bottom:12px;
  box-sizing:inherit;
  color:#000;
@@ -212,13 +205,8 @@ ${Top}:hover & {
  @media(min-width: 768px){
 display:wrap
 }
-@media(min-width: 1024px){
-}
 @media(min-width: 1240px){
-  
     justify-content:center;
- 
-
 }
  `
 const Columns = styled.section `
@@ -240,7 +228,6 @@ box-sizing:border-box;
     width:100%;
     display:grid;
     grid-template-columns:1fr 1fr 1fr;
-    // margin-left:40px;
 }
 @media(min-width: 1240px){
     display:grid;
@@ -260,21 +247,11 @@ font-weight:500;
 padding-left:.5rem;
 padding-top:4px;
 vertical-align:top;
-// width:100%;
 box-sizing:border-box;
-@media(min-width: 768px){
-    // margin-left:-.8px;
-    // margin-right:-.8px;
-    // display:block;
-    // width:50%;
-}
 @media(min-width: 1024px){
-//     display:flex-wrap;
-//    wrap:flex-wrap;
 margin:auto
 }
 @media(min-width: 1240px){
-    // width:calc(8.333333333% *2);
     width:90%;
     margin:0
 }
@@ -287,14 +264,8 @@ font-weight:500;
 padding-left:.5rem;
 padding-top:4px;
 vertical-align:top;
-// width:100%;
 box-sizing:border-box;
-@media(min-width: 768px){
-}
-@media(min-width: 1024px){
-}
 @media(min-width: 1240px){
-    // width:calc(8.333333333% *2)
     width:90%;
 }
 `
@@ -306,16 +277,7 @@ font-weight:500;
 padding-left:.5rem;
 padding-top:4px;
 vertical-align:top;
-// width:100%;
 box-sizing:border-box;
-@media(min-width: 768px){
-   
-}
-@media(min-width: 1024px){
-    // margin-right:400px;
-    // margin-left:100px
-    // width:90%
-}
 @media(min-width: 1240px){
     width:90%;
 }
@@ -353,7 +315,6 @@ font-weight:600;
 
 `
 const IconsBody = styled.section `
-
 width:80%vw;
 display:block;
 margin-bottom: px;
@@ -365,7 +326,6 @@ justify-content:center;
 
 `
 const IconsList =styled.ul `
-
 display:inline-block;
 max-width:320px;
 text-align:center;
@@ -384,7 +344,6 @@ margin-bottom:30px;
 margin-left:22.5px;
 margin-right:22.5px;
 display:inline-block;
-
 `
 const ParagraphBody = styled.p `
 text-align:center;
@@ -401,7 +360,6 @@ font-family:GTWalsheim,Arial,sans-serifbody;
 box-sizing:inherit;
 margin-left:auto;
 margin-right:auto
-
 `
 const BottomSVG = styled.a`
 box-sizing:inherit
