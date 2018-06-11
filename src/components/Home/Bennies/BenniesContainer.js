@@ -6,34 +6,8 @@ import img1 from "./img/img1.png"
 import img2 from "./img/img2.png"
 import img3 from "./img/img3.png"
 
-import {
-  MiniIndCont,
-  MiniColorCont,
-  MiniImgCont,
-  MiniImg,
-  MiniTextCont,
-  MiniContentCont,
-  MiniSubtitle,
-  MiniTitle,
-  MiniDesc,
-  MiniButton
-} from "./BenniesUnder1024"
-import {
-  BigIndCont,
-  BigColorCont,
-  BigImgCont,
-  BigImg,
-  BigEyeBall,
-  BigPupilWrap,
-  BigPupil,
-  BigTextCont,
-  SvgContainer,
-  BigContentCont,
-  BigSubtitle,
-  BigTitle,
-  BigDesc,
-  BigButton
-} from "./BenniesOver1023"
+import { MiniIndCont, MiniColorCont, MiniImgCont, MiniImg, MiniTextCont, MiniContentCont, MiniSubtitle, MiniTitle, MiniDesc, MiniButton } from "./BenniesUnder1024"
+import { BigIndCont, BigColorCont, BigImgCont, BigImg, BigEyeBall, BigPupilWrap, BigPupil, BigTextCont, SvgContainer, BigContentCont, BigSubtitle, BigTitle, BigDesc, BigButton} from "./BenniesOver1023"
 
 export default class BenniesContainer extends Component {
   constructor() {
@@ -75,64 +49,7 @@ export default class BenniesContainer extends Component {
       this.setState({
         animateCalled: tempAnimate
       })
-      let curves = [
-        175,
-        180,
-        195,
-        190,
-        195,
-        200,
-        205,
-        210,
-        215,
-        220,
-        225,
-        230,
-        235,
-        240,
-        245,
-        250,
-        255,
-        260,
-        265,
-        270,
-        275,
-        280,
-        285,
-        290,
-        295,
-        300,
-        305,
-        310,
-        315,
-        320,
-        325,
-        320,
-        315,
-        310,
-        305,
-        300,
-        295,
-        290,
-        285,
-        280,
-        275,
-        270,
-        265,
-        260,
-        255,
-        250,
-        245,
-        240,
-        235,
-        230,
-        225,
-        230,
-        235,
-        240,
-        245,
-        250
-      ]
+      let curves = [175,180,195,190,195,200,205,210,215,220,225,230,235,240,245,250,255,260,265,270,275,280,285,290,295,300,305,310,315,320,325,320,315,310,305,300,295,290,285,280,275,270,265,260,255,250,245,240,235,230,225,230,235,240,245,250]
       let i = 0
       var x = setInterval(() => {
         this.setState({
