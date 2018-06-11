@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import styled, {keyframes} from "styled-components"
+import styled, { keyframes } from "styled-components"
 import Button from "../../Button/Button"
 import img0 from "./img/img0.png"
 import img1 from "./img/img1.png"
@@ -76,36 +76,45 @@ export default class BenniesContainer extends Component {
       //max up 47 max down 47 max left 40 max right 40
       this.setState({ x: tempX, y: tempY });
     }
+    
     _onMouseLeave(){
-        this.setState({
-            x: -15,
-            y: 0
-        })
-    }
-    render() {
-        const { version } = this.props;
-        const {x, y} = this.state
-        var pathD = `M0 250 C 250 ${this.state.topCurve}, 500 250, 500 250 C 500 500, 500 750, 500 750 C 250 ${this.state.bottomCurve}, 0 750, 0 750 C 0 500, 0 750, 0 250 Z`
-        return (
-            <div>
+      this.setState({
+          x: -15,
+          y: 0
+      })
+  }
+  render() {
+    const { version } = this.props
+    const { x, y } = this.state
+    var pathD = `M0 250 C 250 ${
+      this.state.topCurve
+    }, 500 250, 500 250 C 500 500, 500 750, 500 750 C 250 ${
+      this.state.bottomCurve
+    }, 0 750, 0 750 C 0 500, 0 750, 0 250 Z`
+    return (
+      <div>
         {/******************************** Media < 1024 **********************************/}
-            <MiniIndCont onMouseEnter={() => this.animateBox(this.props.version)}>
-                <MiniColorCont  color={this.state.colors[version]}>
-                    <MiniImgCont> 
-                        <MiniImg backgroundUrl={this.state.img[version]}/>
-                    </MiniImgCont>
-                    <MiniTextCont>
-                        <MiniContentCont animateCalled={this.state.animateCalled[version]}>
-                            <MiniSubtitle fontColor={this.state.fontColors[version]}>{this.state.miniTitle[version]}</MiniSubtitle>
-                            <MiniTitle>{this.state.title[version]}</MiniTitle>
-                            <MiniDesc>{this.state.description[version]}</MiniDesc>
-                            <MiniButton>
-                                <Button type="white">{this.state.btnText}</Button>
-                            </MiniButton>
-                        </MiniContentCont>
-                    </MiniTextCont>
-                </MiniColorCont>
-            </MiniIndCont>
+        <MiniIndCont onMouseEnter={() => this.animateBox(this.props.version)}>
+          <MiniColorCont color={this.state.colors[version]}>
+            <MiniImgCont>
+              <MiniImg backgroundUrl={this.state.img[version]} />
+            </MiniImgCont>
+            <MiniTextCont>
+              <MiniContentCont
+                animateCalled={this.state.animateCalled[version]}
+              >
+                <MiniSubtitle fontColor={this.state.fontColors[version]}>
+                  {this.state.miniTitle[version]}
+                </MiniSubtitle>
+                <MiniTitle>{this.state.title[version]}</MiniTitle>
+                <MiniDesc>{this.state.description[version]}</MiniDesc>
+                <MiniButton>
+                  <Button type="white">{this.state.btnText}</Button>
+                </MiniButton>
+              </MiniContentCont>
+            </MiniTextCont>
+          </MiniColorCont>
+        </MiniIndCont>
         {/******************************* Media >= 1024 *********************************/}
             <BigIndCont onMouseEnter={() => this.animateBox(this.props.version)} >
                 <BigColorCont color={this.state.colors[version]} onMouseMove={version === '1' ? this._onMouseMove.bind(this) : null}  onMouseOut={version === '1' ? this._onMouseLeave.bind(this) : null}>
@@ -113,9 +122,9 @@ export default class BenniesContainer extends Component {
                         { version === '1' ? (
                         <BigImg backgroundUrl={this.state.img[version]}>
                             <BigEyeBall/>
-                            {/* <BigPupilWrap>
+                            <BigPupilWrap>
                                 <BigPupil top={y} left={x}/>
-                            </BigPupilWrap> */}
+                            </BigPupilWrap>
                         </BigImg>
                         ) :
                         <BigImg backgroundUrl={this.state.img[version]}>
@@ -143,5 +152,3 @@ export default class BenniesContainer extends Component {
         )
     }
 }
-
-

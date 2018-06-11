@@ -69,14 +69,14 @@ export default class Reviews extends Component {
                 <ImageWormBody>
                     <Worm><Crypto wiggle={wiggle} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45.8 69.6"><path d="M23.5 68.1V63a5.6 5.6 0 0 1 5.6-5.6h1a5.6 5.6 0 0 0 5.6-5.6 5.6 5.6 0 0 0-5.6-5.6h-13a5.6 5.6 0 0 1-5.6-5.6 5.6 5.6 0 0 1 5.6-5.6h21.5a5.6 5.6 0 0 0 5.6-5.6 5.6 5.6 0 0 0-5.6-5.6H7.1a5.6 5.6 0 0 1-5.6-5.6 5.6 5.6 0 0 1 5.6-5.6h10.8A5.6 5.6 0 0 0 23.5 7V1.8" fill="none" stroke="#ffacba" stroke-linecap="round" stroke-miterlimit="10" stroke-width="3" ></path></Crypto></Worm>
                     <ImageContainer > 
-                        {/* <Image src={this.state.currentReviewie[0]}alt="current"/> */}
-                        <Tasha onClick={()=>{this.wiggle(),this.updateReviewie(tasha)}}><Image src={tasha[0]}alt="tasha" /></Tasha>
-                        <Brad onClick={()=>{this.wiggle(),this.updateReviewie(brad)}}><Image  src={brad[0]}alt="brad" /></Brad>
-                        <Annika onClick={()=>{this.wiggle(),this.updateReviewie(annika)}}><Image  src={annika[0]}alt="annika" /></Annika>
+                        <Image src={this.state.currentReviewie[0]}alt="current"/>
+                        <Tasha onClick={()=>{this.wiggle(),this.updateReviewie(tasha)}} image={tasha[0]} ></Tasha>
+                        <Brad onClick={()=>{this.wiggle(),this.updateReviewie(brad)}} image={brad[0]}></Brad>
+                        <Annika onClick={()=>{this.wiggle(),this.updateReviewie(annika)}} image={annika[0]}></Annika>
                     </ImageContainer>
                 </ImageWormBody>
         
-             {/*<ButtonBody>
+             <ButtonBody>
                     {this.state.buttonBackgroundTasha ? 
                         <ButtonWhite onClick={()=>{this.wiggle(),this.updateReviewie(tasha),this.handleButtonOne()}}></ButtonWhite>:
                         <ButtonRed onClick={()=>{this.wiggle(),this.updateReviewie(tasha),this.handleButtonOne()}}></ButtonRed>}
@@ -86,13 +86,14 @@ export default class Reviews extends Component {
                     {this.state.buttonBackgroundAnnika ? 
                         <ButtonWhite onClick={()=>{this.wiggle(),this.updateReviewie(annika),this.handleButtonThree()}}></ButtonWhite>:
                         <ButtonRed onClick={()=>{this.wiggle(),this.updateReviewie(tasha),this.handleButtonThree()}}></ButtonRed>}
-                </ButtonBody> */}
+                </ButtonBody>
             </AvatarContainer>
         </ReviewsContainer>
 
         )
     }
 }
+//Things to do for Reviews- Make text body and image/animation body responsive, Worm animates on click and after reviewie changes, all elements fade in and 
 //  ↓↓↓↓↓  STYLES  ↓↓↓↓↓↓↓
 const dash = keyframes `
         from {
@@ -207,7 +208,6 @@ const Worm = styled.section`
     width:3.3rem;
 `
 const ImageContainer = styled.section`
-    // height:6.4rem;
     margin-top:2rem;
     flex:wrap
 `
@@ -216,6 +216,9 @@ const Image = styled.img`
     width:65px;
     border-radius:50%;
     cursor:pointer;
+    @media(min-width: 768px){
+        display:none
+    }
 `
 const Tasha = styled.button`
     height:65px;
@@ -224,28 +227,56 @@ const Tasha = styled.button`
     cursor:pointer;
     margin-left:50px;
     margin-right:50px;
+    background-image:url(${props=>props.image});
+    background-size:contain;
+    outline:none;
+    border:none;
+    display:none
+    @media(min-width: 768px){
+        display:inline
+    }
 `
 const Brad  = styled.button`
-height:65px;
-width:65px;
-border-radius:50%;
-cursor:pointer;
-margin-left:50px;
-margin-right:50px;
+    height:65px;
+    width:65px;
+    border-radius:50%;
+    cursor:pointer;
+    margin-left:50px;
+    margin-right:50px;
+    background-image:url(${props=>props.image});
+    background-size:contain
+    outline:none;
+    border:none
+    display:none
+    @media(min-width: 768px){
+        display:inline;
+    
+    }
 `
 const Annika  = styled.button`
-height:65px;
-width:65px;
-border-radius:50%;
-cursor:pointer;
-margin-left:50px;
-margin-right:50px;
+    height:65px;
+    width:65px;
+    border-radius:50%;
+    cursor:pointer;
+    margin-left:50px;
+    margin-right:50px;
+    background-image:url(${props=>props.image});
+    background-size:contain;
+    outline:none;
+    border:none;
+    display:none
+    @media(min-width: 768px){
+        display:inline
+    }
 `
 const ButtonBody = styled.section`
     width:100%;
     height:80px;
     margin:auto;
-    padding-top:80px
+    padding-top:80px;
+    @media(min-width: 768px){
+        display:none
+    }
 `
 const ButtonWhite = styled.button`
     border-radius:50%;
