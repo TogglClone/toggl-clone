@@ -16,7 +16,7 @@ class TimersList extends Component{
             return(
                 <TimerItem key={i}>
                     <NameInput placeholder='Add Description' type="text" value={timerNameEdits[i]} onChange={(e) => handleTimerName(timerNameEdits, e.target.value, i)}/>
-                    <span onClick={() => updateName(timerNameEdits[i], e.timer_id)}>Edit Name</span>
+                    <EditName onClick={() => updateName(timerNameEdits[i], e.timer_id)}>Edit Name</EditName>
                     <div>
                     <Moment format="hh:mm A">{e.start_time}</Moment> - <Moment format="h:mm A">{e.end_time}</Moment>
                     </div>
@@ -27,7 +27,6 @@ class TimersList extends Component{
         })
         return(
             <TimerEntriesList>
-                (Add a total time log at the top?)
                 {timersList}
 
             </TimerEntriesList>
@@ -56,6 +55,9 @@ const NameInput = styled.input`
     &:focus {
         outline-width: 0;
     }
+`
+const EditName = styled.span`
+    cursor: pointer;
 `
 
 function mapStateToProps(state) {
