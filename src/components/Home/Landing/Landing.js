@@ -176,12 +176,13 @@ class Landing extends Component {
               <DesktopSpan>Features</DesktopSpan>
               <DesktopSpan>Pricing</DesktopSpan>
               <DesktopSpan>Training</DesktopSpan>
-              <DesktopSpan><LoginCont
-                href={process.env.REACT_APP_LOGIN}
-                className="login-font"
-              >
-                Log in
-              </LoginCont>
+              <DesktopSpan>
+                <LoginCont
+                  href={process.env.REACT_APP_LOGIN}
+                  className="login-font"
+                >
+                  Log in
+                </LoginCont>
               </DesktopSpan>
               <SignUp>
                 <LoginCont
@@ -189,15 +190,81 @@ class Landing extends Component {
                   className="login-font"
                 >
                   Sign Up
-                  <SignUpLineAbove xmlns="http://www.w3.org/2000/svg" width="52.5" height="33.4" viewBox="0 0 52.5 33.4">
-                    <path class="sign-up-line sign-up-line--1" d="M6,18-2.3-.4" transform="translate(4.3 13.4)" fill="#fff" strokeWidth="5" style={{strokeLinecap: "round", strokeMiterlimit: "10", strokeDashoffset: "0px"}}></path>
-                    <path class="sign-up-line sign-up-line--2" d="M22,16.1V-11.4" transform="translate(4.3 13.4)" fill="#fff" strokeWidth="5"></path>
-                    <path class="sign-up-line sign-up-line--3" d="M37.9,18,46.2-1.4" transform="translate(4.3 13.4)" fill="#fff" strokeWidth="5"></path>
+                  <SignUpLineAbove
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="52.5"
+                    height="33.4"
+                    viewBox="0 0 52.5 33.4"
+                  >
+                    <path
+                      class="sign-up-line sign-up-line--1"
+                      d="M6,18-2.3-.4"
+                      transform="translate(4.3 13.4)"
+                      fill="#fff"
+                      strokeWidth="5"
+                      style={{
+                        strokeLinecap: "round",
+                        strokeMiterlimit: "10",
+                        strokeDashoffset: "0px"
+                      }}
+                    />
+                    <path
+                      class="sign-up-line sign-up-line--2"
+                      d="M22,16.1V-11.4"
+                      transform="translate(4.3 13.4)"
+                      fill="#fff"
+                      strokeWidth="5"
+                    />
+                    <path
+                      class="sign-up-line sign-up-line--3"
+                      d="M37.9,18,46.2-1.4"
+                      transform="translate(4.3 13.4)"
+                      fill="#fff"
+                      strokeWidth="5"
+                    />
                   </SignUpLineAbove>
-                  <SignUpLineBelow xmlns="http://www.w3.org/2000/svg" width="52.5" height="33.4" viewBox="0 0 52.5 33.4">
-                    <path class="sign-up-line sign-up-line--4" d="M6,18-2.3-.4" transform="translate(4.3 13.4)" style={{strokeLinecap: "round", strokeMiterlimit: "10", strokeDashoffset: "0px"}} fill="none" strokeWidth="5"></path>
-                    <path class="sign-up-line sign-up-line--5" d="M22,16.1V-11.4" transform="translate(4.3 13.4)" style={{strokeLinecap: "round", strokeMiterlimit: "10", strokeDashoffset: "0px"}} fill="none" strokeWidth="5"></path>
-                    <path class="sign-up-line sign-up-line--6" d="M37.9,18,46.2-1.4" transform="translate(4.3 13.4)" style={{strokeLinecap: "round", strokeMiterlimit: "10", strokeDashoffset: "0px"}} fill="none" strokeWidth="5"></path>
+                  <SignUpLineBelow
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="52.5"
+                    height="33.4"
+                    viewBox="0 0 52.5 33.4"
+                  >
+                    <path
+                      class="sign-up-line sign-up-line--4"
+                      d="M6,18-2.3-.4"
+                      transform="translate(4.3 13.4)"
+                      style={{
+                        strokeLinecap: "round",
+                        strokeMiterlimit: "10",
+                        strokeDashoffset: "0px"
+                      }}
+                      fill="none"
+                      strokeWidth="5"
+                    />
+                    <path
+                      class="sign-up-line sign-up-line--5"
+                      d="M22,16.1V-11.4"
+                      transform="translate(4.3 13.4)"
+                      style={{
+                        strokeLinecap: "round",
+                        strokeMiterlimit: "10",
+                        strokeDashoffset: "0px"
+                      }}
+                      fill="none"
+                      strokeWidth="5"
+                    />
+                    <path
+                      class="sign-up-line sign-up-line--6"
+                      d="M37.9,18,46.2-1.4"
+                      transform="translate(4.3 13.4)"
+                      style={{
+                        strokeLinecap: "round",
+                        strokeMiterlimit: "10",
+                        strokeDashoffset: "0px"
+                      }}
+                      fill="none"
+                      strokeWidth="5"
+                    />
                   </SignUpLineBelow>
                 </LoginCont>
               </SignUp>
@@ -374,6 +441,7 @@ const Header = styled.section`
   padding: 27px 1.3rem;
   align-items: center;
   position: relative;
+
   @media (min-width: 1024px) {
     padding: 27px 1.75rem;
     padding-bottom: 0;
@@ -455,6 +523,9 @@ const TitleContainer = styled.section`
   margin-right: auto;
   color: white;
   display: ${props => props.displayTitle};
+  @media (max-width: 667px) {
+    width: 100%;
+  }
 `
 const TitleText = styled.h1`
   font-size: 1.65rem;
@@ -464,8 +535,9 @@ const TitleText = styled.h1`
   margin-top: 1.75rem;
   position: relative;
   z-index: 5;
-  @media (min-width: 454px) {
-    padding: 0 11%;
+  @media (min-width: 414px) {
+    padding: 0 12%;
+    -webkit-font-smoothing: antialiased;
   }
   @media (min-width: 557px) {
     padding: 0 19%;
@@ -474,6 +546,7 @@ const TitleText = styled.h1`
     padding: 0 25.9%;
   }
   @media (min-width: 768px) {
+    margin-top: 5rem;
     font-size: 3rem;
     line-height: 3.25rem;
     padding: 0 5%;
@@ -510,8 +583,12 @@ const Ptag = styled.p`
   z-index: 5;
   position: relative;
   -webkit-font-smoothing: antialiased;
+
+  @media (max-width: 667px) {
+    padding: 0 2rem;
+  }
   @media (min-width: 390px) {
-    padding: 0 9%;
+    padding: 0 14%;
   }
   @media (min-width: 440px) {
     padding: 0 13%;
@@ -598,7 +675,7 @@ const DesktopNav = styled.section`
   display: flex;
   font-size: 0.75rem;
 
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     display: none;
   }
   @media (min-width: 1240px) {
@@ -610,47 +687,47 @@ const DesktopSpan = styled.span`
   margin-right: 1rem;
   cursor: pointer;
   position: relative;
-  @media(min-width: 1240px){
-    &:before{
+  @media (min-width: 1240px) {
+    &:before {
       transform: scaleX(0);
-      transition: transform .3s;
+      transition: transform 0.3s;
       background-color: #fff;
-      border-radius: .1rem;
+      border-radius: 0.1rem;
       top: 1.2rem;
       content: "";
-      height: .1rem;
+      height: 0.1rem;
       left: 0;
       position: absolute;
       right: 0;
       transform-origin: center center;
-      transition-timing-function: cubic-bezier(.665,.14,.785,.285);
+      transition-timing-function: cubic-bezier(0.665, 0.14, 0.785, 0.285);
     }
-      &:hover {
-        &:before{
-          transform: scaleX(1);
-          transition-timing-function: cubic-bezier(.12,.845,.305,1);
+    &:hover {
+      &:before {
+        transform: scaleX(1);
+        transition-timing-function: cubic-bezier(0.12, 0.845, 0.305, 1);
       }
     }
   }
 `
 
 const SignUpLineAbove = styled.svg`
-stroke: #fff; 
-position: absolute; 
-width: 1rem; 
-transform: translateX(-2rem) translateY(-1.5rem);
-@media(min-width: 1240px){
-  width: 1.2rem; 
-  transform: translateX(-2.4rem) translateY(-1.5rem);
-}
+  stroke: #fff;
+  position: absolute;
+  width: 1rem;
+  transform: translateX(-2rem) translateY(-1.5rem);
+  @media (min-width: 1240px) {
+    width: 1.2rem;
+    transform: translateX(-2.4rem) translateY(-1.5rem);
+  }
 `
 const SignUpLineBelow = styled.svg`
-stroke: #fff; 
-position: absolute;
-width: 1rem; 
-transform: translateX(-2rem) translateY(.4rem) rotate(180deg); 
-@media(min-width: 1240px){
-  width: 1.2rem; 
-  transform: translateX(-2.4rem) translateY(.8rem) rotate(180deg);
-}
+  stroke: #fff;
+  position: absolute;
+  width: 1rem;
+  transform: translateX(-2rem) translateY(0.4rem) rotate(180deg);
+  @media (min-width: 1240px) {
+    width: 1.2rem;
+    transform: translateX(-2.4rem) translateY(0.8rem) rotate(180deg);
+  }
 `

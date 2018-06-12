@@ -33,6 +33,13 @@ export const VideoSize0 = styled.video`
   ${direction => direction === "in" && css``} ${direction =>
     direction === "out" && css``}
 
+
+  @media (max-width: 850px) {
+    position: none;
+    min-width: 16rem;
+    margin-left: -45%;
+    transform: none;
+  }
   @media (min-width: 651px) {
     max-width: 80%;
     margin-left: -40%;
@@ -40,6 +47,12 @@ export const VideoSize0 = styled.video`
   @media (min-width: 735px) {
     max-width: 75%;
     margin-left: -38%;
+  }
+  @media (min-width: 768px) {
+    bottom: 17rem;
+    margin-left: 0%;
+    min-width: 40rem;
+    position: absolute;
   }
   @media (min-width: 769px) {
     max-width: 55%;
@@ -80,12 +93,25 @@ export const VideoSize1 = styled.video`
     max-width: 80%;
     margin-left: -40%;
   }
+
+  @media (max-width: 850px) {
+    position: none;
+    min-width: 16rem;
+    margin-left: -45%;
+    transform: none;
+  }
+  @media (min-width: 768px) {
+    bottom: 17rem;
+    margin-left: -37%;
+    position: absolute;
+  }
   @media (min-width: 735px) {
     max-width: 75%;
     margin-left: -38%;
   }
-  @media (min-width: 769px) {
+  @media (min-width: 768px) {
     max-width: 55%;
+    min-width: 18rem;
     margin-left: -26%;
   }
   @media (min-width: 917px) {
@@ -119,6 +145,13 @@ export const VideoSize2 = styled.video`
   opacity: ${props => props.opac};
   transition-timing-function: ease-in-out;
   z-index: 1;
+
+  @media (max-width: 850px) {
+    position: none;
+    min-width: 16rem;
+    margin-left: -45%;
+    transform: none;
+  }
   @media (min-width: 651px) {
     max-width: 80%;
     margin-left: -40%;
@@ -127,9 +160,11 @@ export const VideoSize2 = styled.video`
     max-width: 75%;
     margin-left: -38%;
   }
-  @media (min-width: 769px) {
+  @media (min-width: 768px) {
     max-width: 55%;
+    min-width: 18rem;
     margin-left: -26%;
+    bottom: 17rem;
   }
   @media (min-width: 917px) {
     max-width: 50%;
