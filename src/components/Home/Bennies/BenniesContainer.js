@@ -7,7 +7,7 @@ import img2 from "./img/img2.png"
 import img3 from "./img/img3.png"
 
 import { MiniIndCont, MiniColorCont, MiniImgCont, MiniImg, MiniTextCont, MiniContentCont, MiniSubtitle, MiniTitle, MiniDesc, MiniButton } from "./BenniesUnder1024"
-import { BigIndCont, BigColorCont, BigImgCont, BigImg, BigEyeBall, BigPupilWrap, BigPupil, BigTextCont, AnimationWrapper, SvgContainer, BigContentCont, BigSubtitle, BigTitle, BigDesc, BigButton} from "./BenniesOver1023"
+import { BigIndCont, BigColorCont, BigImgCont, ImagePeriscope, BigImg, BigEyeBall, BigPupilWrap, BigPupil, BigTextCont, AnimationWrapper, SvgContainer, BigContentCont, BigSubtitle, BigTitle, BigDesc, BigButton} from "./BenniesOver1023"
 
 export default class BenniesContainer extends Component {
     constructor(){
@@ -26,7 +26,8 @@ export default class BenniesContainer extends Component {
             textMarginBig: ["0 8% 0 59%", "0 59% 0 8%" ],
             textLeftBig: ["null", "5%"],
             textRightBig: ["5%", "null"],
-            imgMargin: ["auto 52% auto 5rem", "auto 5rem auto 52%" ],
+            imgMargin: ["auto 52% auto 2.5%", "auto 2.5% auto 52%" ],
+            biggestImgMargin: ["auto 52% auto 10%", "auto 10% auto 52%" ],
             colors: ["#FFACBA", "#F8CE6A", "#88CF8F", "#CA99D7"],
             fontColors: ["#E3677C", "#F69F09", "#31AA53", "#A857BD"],
             x: -15,
@@ -69,8 +70,8 @@ export default class BenniesContainer extends Component {
         tempY -= 223 // gives range from 0 to 600
         tempX -= (1717-180) // gives range from 0 to innerwidth including the side width on the timer bar
         
-        tempY = (tempY / 300 * 47) -47
-        tempX = (tempX / (e.view.innerWidth/2) * 40) - 40
+        tempY = (tempY / 320 * 35)
+        tempX = (tempX / (e.view.innerWidth/2) * 32) - 32
       // top 223 bottom 822 left 1717 right 3136
 
       //max up 47 max down 47 max left 40 max right 40
@@ -118,17 +119,21 @@ export default class BenniesContainer extends Component {
         {/******************************* Media >= 1024 *********************************/}
             <BigIndCont onMouseEnter={() => this.animateBox(this.props.version)} >
                 <BigColorCont color={this.state.colors[version]} onMouseMove={version === '1' ? this._onMouseMove.bind(this) : null}  onMouseOut={version === '1' ? this._onMouseLeave.bind(this) : null}>
-                    <BigImgCont side={this.state.imgMargin[version%2]} >
+                    <BigImgCont side={this.state.imgMargin[version%2]} biggestSide={this.state.biggestImgMargin[version%2]} >
                         { version === '1' ? (
-                        <BigImg backgroundUrl={this.state.img[version]}>
-                            <BigEyeBall/>
-                            <BigPupilWrap>
-                                <BigPupil top={y} left={x}/>
-                            </BigPupilWrap>
-                        </BigImg>
+                        <ImagePeriscope>
+                          <BigImg backgroundUrl={this.state.img[version]}>
+                          </BigImg>
+                          <BigEyeBall/>
+                          <BigPupilWrap>
+                            <BigPupil top={y} left={x}/>
+                          </BigPupilWrap>
+                        </ImagePeriscope>
                         ) :
-                        <BigImg backgroundUrl={this.state.img[version]}>
-                        </BigImg>
+                        <ImagePeriscope>
+                          <BigImg backgroundUrl={this.state.img[version]}>
+                          </BigImg>
+                        </ImagePeriscope>
                         }
                     </BigImgCont>
                     <BigTextCont side={this.state.textMargin[version%2]} sideBig={this.state.textMarginBig[version%2]} left={this.state.textLeftBig[version%2]} right={this.state.textRightBig[version%2]}>
