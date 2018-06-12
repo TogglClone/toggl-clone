@@ -490,7 +490,7 @@ const DesktopSpan = styled.span`
       border-radius: .1rem;
       top: 1.2rem;
       content: "";
-      height: .1rem;
+      height: .15rem;
       left: 0;
       position: absolute;
       right: 0;

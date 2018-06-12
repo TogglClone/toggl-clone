@@ -37,8 +37,6 @@ class Timer extends Component {
                     <ProjectBar />
                     <TimersList />
                </TimerBody>    
-               <h1></h1>
-               <EyeMovement />
            </TimerContainer>
        )
    }
