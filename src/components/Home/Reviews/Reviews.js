@@ -4,6 +4,7 @@ import annika from "./img/annika.jpg"
 import brad from "./img/brad.jpg"
 import tasha from "./img/tasha.jpg"
 import background from "./img/bg.png"
+import { loadavg } from "os";
 export default class Reviews extends Component {
     constructor(){
         super();
@@ -26,6 +27,12 @@ export default class Reviews extends Component {
             tashaPosition: 0,
             bradPosition: 1,
             annikaPosition: 2,
+            animateReviewTasha: null,
+            animateReviewAnnika: null,
+            animateReviewBrad: null,
+            tashaReviewPosition: 2,
+            bradReviewPosition: 1,
+            annikaReviewPosition: 0
         }
     }
     reset() {
@@ -73,64 +80,96 @@ export default class Reviews extends Component {
             animateCalledTasha:TashaLoad,
             })
     }
-    handleReviewPosition(position){
-        const animateLeftKeys = [ShiftLeftPosition0, ShiftLeftPosition1, ShiftLeftPosition2]
-        const animateRightKeys = [ShiftRightPosition0, ShiftRightPosition1, ShiftRightPosition2]
-        if(position === 0){            
-            function shiftRight(position){
-                if(position === 0){
-                    position = 1
-                } else if (position === 1){
-                    position = 2
-                } else if (position === 2){
-                    position = 0
-                }
-                return position
+    handleReviewPosition(position){        
+        function shiftRight(position){
+            if(position === 0){
+                position = 1
+            } else if (position === 1){
+                position = 2
+            } else if (position === 2){
+                position = 0
             }
+            return position
+        }
+        function shiftLeft(position){
+            if(position === 0){
+                position = 2
+            } else if (position === 1){
+                position = 0
+            } else if (position === 2){
+                position = 1
+            }
+            return position
+        }
+
+        const animateImagesLeftKey = [ShiftImageLeftPosition0, ShiftImageLeftPosition1, ShiftImageLeftPosition2]
+        const animateImagesRightKey = [ShiftImagesRightPosition0, ShiftImagesRightPosition1, ShiftImagesRightPosition2]
+        const animateReviewsLeftKey = [ShiftReviewsLeftPosition0, ShiftReviewsLeftPosition1, ShiftReviewsLeftPosition2]
+        const animateReviewsRightKey = [ShiftReviewsRightPosition0, ShiftReviewsRightPosition1, ShiftReviewsRightPosition2]
+        if(position === 0){            
             let tempTasha = shiftRight(this.state.tashaPosition)
             let tempBrad = shiftRight(this.state.bradPosition)
-            let tempAnnika = shiftRight(this.state.annikaPosition)    
+            let tempAnnika = shiftRight(this.state.annikaPosition) 
+            
+            let tempTashaReview = shiftLeft(this.state.tashaReviewPosition)
+            let tempBradReview = shiftLeft(this.state.bradReviewPosition) 
+            let tempAnnikaReview = shiftLeft(this.state.annikaReviewPosition)
             this.setState({
                 tashaPosition: tempTasha,
                 bradPosition: tempBrad,
                 annikaPosition: tempAnnika, 
-                animateSlideTasha: animateRightKeys[tempAnnika],
-                animateSlideBrad: animateRightKeys[tempTasha],
-                animateSlideAnnika: animateRightKeys[tempBrad]
+                animateSlideTasha: animateImagesRightKey[tempAnnika],
+                animateSlideBrad: animateImagesRightKey[tempTasha],
+                animateSlideAnnika: animateImagesRightKey[tempBrad],
+                tashaReviewPosition: tempTashaReview,
+                bradReviewPosition: tempBradReview,
+                annikaReviewPosition: tempAnnikaReview,
+                animateReviewTasha: animateReviewsLeftKey[tempAnnikaReview],
+                animateReviewBrad: animateReviewsLeftKey[tempTashaReview],
+                animateReviewAnnika: animateReviewsLeftKey[tempBradReview],
             })
             
+            
         } else if(position === 2){
-            function shiftLeft(position){
-                if(position === 0){
-                    position = 2
-                } else if (position === 1){
-                    position = 0
-                } else if (position === 2){
-                    position = 1
-                }
-                return position
-            }
             let tempTasha = shiftLeft(this.state.tashaPosition)
             let tempBrad = shiftLeft(this.state.bradPosition)
-            let tempAnnika = shiftLeft(this.state.annikaPosition)                        
+            let tempAnnika = shiftLeft(this.state.annikaPosition)   
+            let tempTashaReview = shiftRight(this.state.tashaReviewPosition)
+            let tempBradReview = shiftRight(this.state.bradReviewPosition) 
+            let tempAnnikaReview = shiftRight(this.state.annikaReviewPosition)                     
             this.setState({
                 tashaPosition: tempTasha,
                 bradPosition: tempBrad,
                 annikaPosition: tempAnnika,
-                animateSlideTasha: animateLeftKeys[tempBrad],
-                animateSlideBrad: animateLeftKeys[tempAnnika],
-                animateSlideAnnika: animateLeftKeys[tempTasha]
+                animateSlideTasha: animateImagesLeftKey[tempBrad],
+                animateSlideBrad: animateImagesLeftKey[tempAnnika],
+                animateSlideAnnika: animateImagesLeftKey[tempTasha],
+                tashaReviewPosition: tempTashaReview,
+                bradReviewPosition: tempBradReview,
+                annikaReviewPosition: tempAnnikaReview,
+                animateReviewTasha: animateReviewsRightKey[tempBradReview],
+                animateReviewBrad: animateReviewsRightKey[tempAnnikaReview],
+                animateReviewAnnika: animateReviewsRightKey[tempTashaReview],
+                
             })
         }
-
+        
     }
     render() {
          const {tasha,brad,annika,wiggle}=this.state
+         console.log(this.state);
+         
         return(
         <ReviewsContainer onMouseEnter={() => this.mouseEnter()}>
                 <ReviewTitle> Sweet Nothings </ReviewTitle>
                 <ReviewMini> Some client love. </ReviewMini>
-                <ReviewText entered ={this.state.animateCalled}>{this.state.currentReviewie[1]}</ReviewText>
+                <ReviewTextWrap entered ={this.state.animateCalled}>
+
+                    <ReviewTextTasha animate={this.state.animateReviewTasha}>{this.state.tasha[1]}</ReviewTextTasha>
+                    <ReviewTextBrad animate={this.state.animateReviewBrad}>{this.state.brad[1]}</ReviewTextBrad>
+                    <ReviewTextAnnika animate={this.state.animateReviewAnnika}>{this.state.annika[1]}</ReviewTextAnnika>
+
+                </ReviewTextWrap>
             <AvatarContainer>
                 <ImageWormBody entered ={this.state.animateCalled}>
                     <Worm ><Crypto wiggle={wiggle} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45.8 69.6"><path d="M23.5 68.1V63a5.6 5.6 0 0 1 5.6-5.6h1a5.6 5.6 0 0 0 5.6-5.6 5.6 5.6 0 0 0-5.6-5.6h-13a5.6 5.6 0 0 1-5.6-5.6 5.6 5.6 0 0 1 5.6-5.6h21.5a5.6 5.6 0 0 0 5.6-5.6 5.6 5.6 0 0 0-5.6-5.6H7.1a5.6 5.6 0 0 1-5.6-5.6 5.6 5.6 0 0 1 5.6-5.6h10.8A5.6 5.6 0 0 0 23.5 7V1.8" fill="none" stroke="#ffacba" stroke-linecap="round" stroke-miterlimit="10" stroke-width="3" ></path></Crypto></Worm>
@@ -239,39 +278,67 @@ const ReviewMini = styled.h2`
         font-weight:100;
     }
 `
+const ShiftReviewsLeftPosition0 = keyframes`
+0%{opacity: 0; transform: translate(-50px, 0);}
+100%{opacity: 0; transform: translate(50px, 0);}
+`
+const ShiftReviewsLeftPosition1 = keyframes`
+0%{opacity: 1; transform: translate(0px, 0);}
+60%{opacity: 0;}
+100%{opacity: 0; transform: translate(-50px, 0);}
+`
+const ShiftReviewsLeftPosition2 = keyframes`
+0%{opacity: 0; transform: translate(50px, 0);}
+40%{opacity: 0;}
+100%{opacity: 1; transform: translate(0px, 0);}
+`
+const ShiftReviewsRightPosition0 = keyframes`
+0%{opacity: 0; transform: translate(-50px, 0);}
+40%{opacity: 0;}
+100%{opacity: 1; transform: translate(0px, 0);}
+`
+const ShiftReviewsRightPosition1 = keyframes`
+0%{opacity: 1; transform: translate(0px, 0);}
+60%{opacity: 0;}
+100%{opacity: 0; transform: translate(50px, 0);}
+`
+const ShiftReviewsRightPosition2 = keyframes`
+0%{opacity: 0; transform: translate(50px, 0);}
+100%{opacity: 0; transform: translate(-50px, 0);}
+`
 
-const ShiftLeftPosition0 = keyframes`
+const ShiftImageLeftPosition0 = keyframes`
 0%{ left: calc(50% - 182px); opacity: 1;}
 30%{left: calc(50% - 182px); opacity: 0;}
 55%{ left: calc(50% + 250px); opacity: 0;}
 75%{left: calc(50% + 118px); opacity: 1;}
 100%{ left: calc(50% + 118px); opacity: 1;}
 `
-const ShiftLeftPosition1 = keyframes`
+const ShiftImageLeftPosition1 = keyframes`
 0%{ left: calc(50% - 32px);}
 20%{ left: calc(50% - 32px);}
 45%{left: calc(50% - 182px);}
 100%{ left: calc(50% - 182px)}
 `
-const ShiftLeftPosition2 = keyframes`
+const ShiftImageLeftPosition2 = keyframes`
 0% {left: calc(50% + 118px);}
 30%{ left: calc(50% + 118px);}
 55%{left: calc(50% - 32px);}
 100%{left: calc(50% - 32px);}
 `
-const ShiftRightPosition0 = keyframes`
+const ShiftImagesRightPosition0 = keyframes`
 0%{ left: calc(50% - 182px);}
 30%{ left: calc(50% - 182px);}
 55%{left: calc(50% - 32px);}
 100%{left: calc(50% - 32px);}
 `
-const ShiftRightPosition1 = keyframes`
+const ShiftImagesRightPosition1 = keyframes`
 0%{left: calc(50% - 32px);}
 20%{ left: calc(50% - 32px);}
 45%{left: calc(50% + 118px);}
 100%{left: calc(50% + 118px);}
 `
-const ShiftRightPosition2 = keyframes`
+const ShiftImagesRightPosition2 = keyframes`
 0%{left: calc(50% + 118px); opacity: 1;}
 30%{left: calc(50% + 118px); opacity: 0;}
 55%{ left: calc(50% - 300px); opacity: 0;}
@@ -295,7 +362,7 @@ const TashaLoad = keyframes`
 0% { top: 100px; left: calc(50% - 32px); opacity: 0; }
 100% { top:0px; left: calc(50% - 182px); opacity: 1;}
 `
-const ReviewText = styled.h3`
+const ReviewTextWrap = styled.div`
     font-size: 1.1rem;
     font-weight:100;
     line-height: 1.7rem;
@@ -326,6 +393,23 @@ const ReviewText = styled.h3`
         margin:auto;
     }
 `
+const ReviewTextTasha = styled.div`
+    position: absolute;
+    opacity: 0;
+    animation: ${props =>props.animate} ease-in-out 1.2s 0s 1 forwards;
+    `
+const ReviewTextBrad = styled.div`
+    position: absolute;
+    opacity: 1;
+    animation: ${props =>props.animate} ease-in-out 1.2s 0s 1 forwards;
+`
+const ReviewTextAnnika = styled.div`
+    position: absolute;
+    opacity: 0;
+    animation: ${props =>props.animate} ease-in-out 1.2s 0s 1 forwards;
+
+`
+
 const AvatarContainer = styled.section `
     margin-top:1px
 `
