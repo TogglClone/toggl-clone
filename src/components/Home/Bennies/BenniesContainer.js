@@ -83,13 +83,16 @@ export default class BenniesContainer extends Component {
       }
     }
     _onMouseMove(e) {
+      console.log(e.screenX);
+      
         let tempY = e.screenY
         let tempX = e.screenX
         tempY -= 223 // gives range from 0 to 600
-        tempX -= (1717-180) // gives range from 0 to innerwidth including the side width on the timer bar
+        tempX -= (e.view.innerWidth) // gives range from 0 to innerwidth including the side width on the timer bar
+        console.log(tempX)
         
         tempY = (tempY / 320 * 35)
-        tempX = (tempX / (e.view.innerWidth/2) * 32) - 32
+        tempX = (tempX / (e.view.innerWidth/2) * 32) + 32
       // top 223 bottom 822 left 1717 right 3136
 
       //max up 47 max down 47 max left 40 max right 40
