@@ -283,7 +283,7 @@ class Landing extends Component {
                 autoPlay
                 loop
               />
-              <VideoSize1
+              {/* <VideoSize1
                 src={this.state.vidList[1]}
                 transform={this.state.robot.trans}
                 opac={this.state.robot.opac}
@@ -296,7 +296,7 @@ class Landing extends Component {
                 opac={this.state.piggy.opac}
                 autoPlay
                 loop
-              />
+              /> */}
             </VideoContainer>
             <ButtonContain>
               <Button type="pink">Get Started</Button>
@@ -443,11 +443,11 @@ const Header = styled.section`
   position: relative;
 
   @media (min-width: 1024px) {
-    padding: 27px 1.75rem;
+    padding: 39px 2.65rem;
     padding-bottom: 0;
   }
   @media (min-width: 1240px) {
-    padding: 27px 2.1rem;
+    padding: 34px 2.5rem;
     padding-bottom: 0;
   }
 `
@@ -455,6 +455,9 @@ const Header = styled.section`
 const Logo = styled.section`
   width: 6rem;
   cursor: pointer;
+  @media (min-width: 1024px) {
+    width: 5rem;
+  }
   @media (min-width: 1240px) {
     width: 7.75rem;
   }
@@ -542,36 +545,41 @@ const TitleText = styled.h1`
   @media (min-width: 557px) {
     padding: 0 19%;
   }
+  @media (min-width: 537px) {
+    padding: 0 20%;
+  }
   @media (min-width: 676px) {
-    padding: 0 25.9%;
+    padding: 0 23%;
   }
   @media (min-width: 768px) {
-    margin-top: 5rem;
+    margin-top: 3.75rem;
     font-size: 3rem;
     line-height: 3.25rem;
     padding: 0 5%;
   }
   @media (min-width: 813px) {
-    padding: 0 15%;
+    padding: 0 12%;
   }
-  @media (min-width: 1020px) {
-    padding: 0 21%;
+  @media (min-width: 1015px) {
+    padding: 0 20%;
+  }
+  @media (min-width: 1024px) {
     margin-top: 1rem;
   }
   @media (min-width: 1214px) {
-    padding: 0 27%;
+    padding: 0 25%;
   }
   @media (min-width: 1240px) {
-    font-size: 4.2rem;
-    padding: 0px 17%;
+    font-size: 52px;
+    padding: 0px 24%;
     line-height: 4.25rem;
-    margin-top: 5rem;
+    margin-top: 1rem;
   }
   @media (min-width: 1537px) {
-    padding: 0 20%;
+    padding: 0 29%;
   }
-  @media (min-width: 1580px) {
-    padding: 0 25%;
+  @media (min-width: 1612px) {
+    padding: 0 30%;
   }
 `
 const Ptag = styled.p`
@@ -581,12 +589,10 @@ const Ptag = styled.p`
   margin-top: 1rem;
   line-height: 1.52;
   z-index: 5;
+  letter-spacing: -0.4px;
   position: relative;
   -webkit-font-smoothing: antialiased;
 
-  @media (max-width: 667px) {
-    padding: 0 2rem;
-  }
   @media (min-width: 390px) {
     padding: 0 14%;
   }
@@ -596,15 +602,26 @@ const Ptag = styled.p`
   @media (min-width: 530px) {
     padding: 0 21%;
   }
+  @media (min-width: 582px) {
+    padding: 0 27%;
+  }
   @media (min-width: 651px) {
     padding: 0 27%;
   }
-  @media (min-width: 768px) {
-    font-size: 1.1rem;
-    font-weight: 100;
+  @media (max-width: 667px) {
   }
-  @media (min-width: 676px) {
+  @media (min-width: 768px) {
+    font-size: 1rem;
+    font-weight: 600;
+
     padding: 0;
+  }
+  @media (min-width: 1024px) {
+    font-size: 20px;
+  }
+  @media (min-width: 1240px) {
+    letter-spacing: 0;
+    font-size: 21px;
   }
 `
 
@@ -647,7 +664,7 @@ const RotateTimer = styled.img`
   bottom: 2.6rem;
   right: 2.7rem;
   animation: ${rotate360} 15s linear infinite;
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     display: none;
   }
   @media (min-width: 1241px) {
@@ -663,7 +680,7 @@ const Scroller = styled.span`
   font-size: 0.75rem;
   text-transform: uppercase;
   animation: ${arrowanim} 7s infinite;
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     display: none;
   }
   @media (min-width: 1241px) {
