@@ -6,7 +6,7 @@ import img1 from "./img/img1.png"
 import img2 from "./img/img2.png"
 import img3 from "./img/img3.png"
 
-import { MiniIndCont, MiniColorCont, MiniImgCont, MiniImg, MiniTextCont, MiniContentCont, MiniSubtitle, MiniTitle, MiniDesc, MiniButton } from "./BenniesUnder1024"
+import { MiniIndCont, MiniColorCont, MiniImgCont, MiniImg, MiniEyeBall, MiniPupilWrap, MiniPupil, MiniTextCont, MiniContentCont, MiniSubtitle, MiniTitle, MiniDesc, MiniButton } from "./BenniesUnder1024"
 import { BigIndCont, BigColorCont, BigImgCont, ImagePeriscope, BigImg, BigEyeBall, BigPupilWrap, BigPupil, BigTextCont, AnimationWrapper, SvgContainer, BigContentCont, BigSubtitle, BigTitle, BigDesc, BigButton} from "./BenniesOver1023"
 
 export default class BenniesContainer extends Component {
@@ -32,6 +32,7 @@ export default class BenniesContainer extends Component {
             fontColors: ["#E3677C", "#F69F09", "#31AA53", "#A857BD"],
             x: -15,
             y: 0,
+            x2: 0,
             topCurve: 175, //even is 250
             bottomCurve: 675, //even is 750
             animateCalled: [false, false, false, false],
@@ -39,31 +40,48 @@ export default class BenniesContainer extends Component {
         }
         this.animateBox = this.animateBox.bind( this )
     }
-      animateBox(version){
-        if(!this.state.animateCalled[version]){
-            let tempAnimate = this.state.animateCalled.slice()
-            tempAnimate[version] = true
+    componentDidMount(){
+      setInterval( () =>{
+        let {x2} = this.state
+        let left = "0"
+        let count = 0
+        let right = "17"
+        if(x2==left){
           this.setState({
-            animateCalled: tempAnimate
+            x2: right
           })
-          let curves = [175, 180, 195, 190, 195, 200, 205, 210, 215, 220, 225, 230, 235, 240, 245, 250, 255, 260, 265, 270, 275, 280, 285, 290, 295, 300, 305, 310, 315, 320, 325, 320, 315, 310, 305, 300, 295, 290, 285, 280, 275, 270, 265, 260, 255, 250, 245, 240, 235, 230, 225, 230, 235, 240, 245, 250]
-          let i=0;
-          var x = setInterval( () =>{
-              this.setState({
-                topCurve: curves[i],
-                bottomCurve: curves[i] + 500,
-              })
-              i++
-            if(i>curves.length-1){
-              clearInterval(this.state.intervalFn)
-            }
-          }, 5)
+        }else{
           this.setState({
-            intervalFn: x
+            x2: left
           })
-    
         }
+    }, 2000)
+    }
+    animateBox(version){
+      if(!this.state.animateCalled[version]){
+          let tempAnimate = this.state.animateCalled.slice()
+          tempAnimate[version] = true
+        this.setState({
+          animateCalled: tempAnimate
+        })
+        let curves = [175, 180, 195, 190, 195, 200, 205, 210, 215, 220, 225, 230, 235, 240, 245, 250, 255, 260, 265, 270, 275, 280, 285, 290, 295, 300, 305, 310, 315, 320, 325, 320, 315, 310, 305, 300, 295, 290, 285, 280, 275, 270, 265, 260, 255, 250, 245, 240, 235, 230, 225, 230, 235, 240, 245, 250]
+        let i=0;
+        var x = setInterval( () =>{
+            this.setState({
+              topCurve: curves[i],
+              bottomCurve: curves[i] + 500,
+            })
+            i++
+          if(i>curves.length-1){
+            clearInterval(this.state.intervalFn)
+          }
+        }, 5)
+        this.setState({
+          intervalFn: x
+        })
+  
       }
+    }
     _onMouseMove(e) {
         let tempY = e.screenY
         let tempX = e.screenX
@@ -86,7 +104,7 @@ export default class BenniesContainer extends Component {
   }
   render() {
     const { version } = this.props
-    const { x, y } = this.state
+    const { x, y, x2 } = this.state
     var pathD = `M0 250 C 250 ${
       this.state.topCurve
     }, 500 250, 500 250 C 500 500, 500 750, 500 750 C 250 ${
@@ -98,7 +116,17 @@ export default class BenniesContainer extends Component {
         <MiniIndCont onMouseEnter={() => this.animateBox(this.props.version)}>
           <MiniColorCont color={this.state.colors[version]}>
             <MiniImgCont>
-              <MiniImg backgroundUrl={this.state.img[version]} />
+              { version === '1' ? (
+                <div>
+                <MiniImg backgroundUrl={this.state.img[version]} />
+                <MiniEyeBall />
+                <MiniPupilWrap>
+                  <MiniPupil left={x2}/>
+                </MiniPupilWrap>
+                </div>
+              ) : 
+                <MiniImg backgroundUrl={this.state.img[version]} />
+              }
             </MiniImgCont>
             <MiniTextCont>
               <MiniContentCont
