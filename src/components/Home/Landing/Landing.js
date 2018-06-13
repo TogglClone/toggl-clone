@@ -283,7 +283,7 @@ class Landing extends Component {
                 autoPlay
                 loop
               />
-              {/* <VideoSize1
+              <VideoSize1
                 src={this.state.vidList[1]}
                 transform={this.state.robot.trans}
                 opac={this.state.robot.opac}
@@ -296,7 +296,7 @@ class Landing extends Component {
                 opac={this.state.piggy.opac}
                 autoPlay
                 loop
-              /> */}
+              />
             </VideoContainer>
             <ButtonContain>
               <Button type="pink">Get Started</Button>
