@@ -16,7 +16,16 @@ export default class Reviews extends Component {
             buttonBackgroundTasha:false,
             buttonBackgroundBrad:true,
             buttonBackgroundAnnika:true,
-            animateCalled:null
+            animateCalled:null,
+            animateCalledBrad:null,
+            animateCalledAnnika:null,
+            animateCalledTasha:null,
+            animateSlideBrad: null,
+            animateSlideAnnika: null,
+            animateSlideTasha: null,
+            tashaPosition: 0,
+            bradPosition: 1,
+            annikaPosition: 2,
         }
     }
     reset() {
@@ -57,7 +66,63 @@ export default class Reviews extends Component {
         this.setState({currentReviewie:reviewie})
     }
     mouseEnter(){
-        this.setState({animateCalled:TopBounceIn})
+        this.setState({
+            animateCalled:TopBounceIn,
+            animateCalledBrad:BradLoad,
+            animateCalledAnnika:AnnikaLoad,
+            animateCalledTasha:TashaLoad,
+            })
+    }
+    handleReviewPosition(position){
+        const animateLeftKeys = [ShiftLeftPosition0, ShiftLeftPosition1, ShiftLeftPosition2]
+        const animateRightKeys = [ShiftRightPosition0, ShiftRightPosition1, ShiftRightPosition2]
+        if(position === 0){            
+            function shiftRight(position){
+                if(position === 0){
+                    position = 1
+                } else if (position === 1){
+                    position = 2
+                } else if (position === 2){
+                    position = 0
+                }
+                return position
+            }
+            let tempTasha = shiftRight(this.state.tashaPosition)
+            let tempBrad = shiftRight(this.state.bradPosition)
+            let tempAnnika = shiftRight(this.state.annikaPosition)    
+            this.setState({
+                tashaPosition: tempTasha,
+                bradPosition: tempBrad,
+                annikaPosition: tempAnnika, 
+                animateSlideTasha: animateRightKeys[tempAnnika],
+                animateSlideBrad: animateRightKeys[tempTasha],
+                animateSlideAnnika: animateRightKeys[tempBrad]
+            })
+            
+        } else if(position === 2){
+            function shiftLeft(position){
+                if(position === 0){
+                    position = 2
+                } else if (position === 1){
+                    position = 0
+                } else if (position === 2){
+                    position = 1
+                }
+                return position
+            }
+            let tempTasha = shiftLeft(this.state.tashaPosition)
+            let tempBrad = shiftLeft(this.state.bradPosition)
+            let tempAnnika = shiftLeft(this.state.annikaPosition)                        
+            this.setState({
+                tashaPosition: tempTasha,
+                bradPosition: tempBrad,
+                annikaPosition: tempAnnika,
+                animateSlideTasha: animateLeftKeys[tempBrad],
+                animateSlideBrad: animateLeftKeys[tempAnnika],
+                animateSlideAnnika: animateLeftKeys[tempTasha]
+            })
+        }
+
     }
     render() {
          const {tasha,brad,annika,wiggle}=this.state
@@ -71,9 +136,9 @@ export default class Reviews extends Component {
                     <Worm ><Crypto wiggle={wiggle} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45.8 69.6"><path d="M23.5 68.1V63a5.6 5.6 0 0 1 5.6-5.6h1a5.6 5.6 0 0 0 5.6-5.6 5.6 5.6 0 0 0-5.6-5.6h-13a5.6 5.6 0 0 1-5.6-5.6 5.6 5.6 0 0 1 5.6-5.6h21.5a5.6 5.6 0 0 0 5.6-5.6 5.6 5.6 0 0 0-5.6-5.6H7.1a5.6 5.6 0 0 1-5.6-5.6 5.6 5.6 0 0 1 5.6-5.6h10.8A5.6 5.6 0 0 0 23.5 7V1.8" fill="none" stroke="#ffacba" stroke-linecap="round" stroke-miterlimit="10" stroke-width="3" ></path></Crypto></Worm>
                     <ImageContainer entered ={this.state.animateCalled} > 
                         <Image src={this.state.currentReviewie[0]}alt="current"/>
-                        <Tasha onClick={()=>{this.wiggle(),this.updateReviewie(tasha)}} image={tasha[0]} ></Tasha>
-                        <Brad onClick={()=>{this.wiggle(),this.updateReviewie(brad)}} image={brad[0]}></Brad>
-                        <Annika onClick={()=>{this.wiggle(),this.updateReviewie(annika)}} image={annika[0]}></Annika>
+                        <Tasha entered ={this.state.animateCalledTasha} slide={this.state.animateSlideTasha} onClick={()=>{this.wiggle(),this.updateReviewie(tasha),this.handleReviewPosition(this.state.tashaPosition)}} image={tasha[0]} ></Tasha>
+                        <Brad entered ={this.state.animateCalledBrad} slide={this.state.animateSlideBrad} onClick={()=>{this.wiggle(),this.updateReviewie(brad),this.handleReviewPosition(this.state.bradPosition)}} image={brad[0]}></Brad>
+                        <Annika entered ={this.state.animateCalledAnnika} slide={this.state.animateSlideAnnika} onClick={()=>{this.wiggle(),this.updateReviewie(annika),this.handleReviewPosition(this.state.annikaPosition)}} image={annika[0]}></Annika>
                     </ImageContainer>
                 </ImageWormBody>
         
@@ -90,11 +155,11 @@ export default class Reviews extends Component {
                 </ButtonBody>
             </AvatarContainer>
         </ReviewsContainer>
-
         )
     }
 }
-//Things to do for Reviews- Make text body and image/animation body responsive, Worm animates on click and after reviewie changes, all elements fade in and 
+
+
 //  ↓↓↓↓↓  STYLES  ↓↓↓↓↓↓↓
 const dash = keyframes `
         from {
@@ -122,7 +187,6 @@ const Crypto =styled.svg `
   
 `
 const ReviewsContainer = styled.div`
-    height: 43rem;
     width: 100% -4rem;
     background-color:#FEEEDE;
     background-image: url(${background});
@@ -137,6 +201,7 @@ const ReviewsContainer = styled.div`
     }
     @media(min-width:768px){
         padding-top:5.5rem;
+        padding-bottom:5.5rem;
         padding-left:80px;
         padding-right:80px;
         
@@ -144,7 +209,7 @@ const ReviewsContainer = styled.div`
     @media(min-width:1024px){
         padding-left:200px;
         padding-right:200px;
-        height:40rem
+        padding-bottom: 12rem;
     }
 `
 const ReviewTitle = styled.h1`
@@ -174,9 +239,61 @@ const ReviewMini = styled.h2`
         font-weight:100;
     }
 `
+
+const ShiftLeftPosition0 = keyframes`
+0%{ left: calc(50% - 182px); opacity: 1;}
+30%{left: calc(50% - 182px); opacity: 0;}
+55%{ left: calc(50% + 250px); opacity: 0;}
+75%{left: calc(50% + 118px); opacity: 1;}
+100%{ left: calc(50% + 118px); opacity: 1;}
+`
+const ShiftLeftPosition1 = keyframes`
+0%{ left: calc(50% - 32px);}
+20%{ left: calc(50% - 32px);}
+45%{left: calc(50% - 182px);}
+100%{ left: calc(50% - 182px)}
+`
+const ShiftLeftPosition2 = keyframes`
+0% {left: calc(50% + 118px);}
+30%{ left: calc(50% + 118px);}
+55%{left: calc(50% - 32px);}
+100%{left: calc(50% - 32px);}
+`
+const ShiftRightPosition0 = keyframes`
+0%{ left: calc(50% - 182px);}
+30%{ left: calc(50% - 182px);}
+55%{left: calc(50% - 32px);}
+100%{left: calc(50% - 32px);}
+`
+const ShiftRightPosition1 = keyframes`
+0%{left: calc(50% - 32px);}
+20%{ left: calc(50% - 32px);}
+45%{left: calc(50% + 118px);}
+100%{left: calc(50% + 118px);}
+`
+const ShiftRightPosition2 = keyframes`
+0%{left: calc(50% + 118px); opacity: 1;}
+30%{left: calc(50% + 118px); opacity: 0;}
+55%{ left: calc(50% - 300px); opacity: 0;}
+75%{left: calc(50% - 182px); opacity: 1;}
+100%{left: calc(50% - 182px); opacity: 1;}
+`
+
 const TopBounceIn = keyframes`
 0% { top: 100px; opacity: 0; }
 100% { top:0px; opacity: 1;}
+`
+const BradLoad = keyframes`
+0% { top: 100px; left: calc(50% - 32px); opacity: 0; }
+100% { top:0px; left: calc(50% - 32px); opacity: 1;}
+`
+const AnnikaLoad = keyframes`
+0% { top: 100px; left: calc(50% - 32px); opacity: 0; }
+100% { top:0px; left: calc(50% + 118px); opacity: 1;}
+`
+const TashaLoad = keyframes`
+0% { top: 100px; left: calc(50% - 32px); opacity: 0; }
+100% { top:0px; left: calc(50% - 182px); opacity: 1;}
 `
 const ReviewText = styled.h3`
     font-size: 1.1rem;
@@ -195,36 +312,35 @@ const ReviewText = styled.h3`
     animation-direction:initial;
     animation-fill-mode:forwards;
     animation-play-state:initial; 
-
-    @media(min-width:1240px){
-        font-size:1.8rem;
-        line-height:1.5;
-        font-weight:100; 
-    }
+    height: 144px;
     @media(min-width:768px){
         line-height:2.3rem;
     }
     @media(min-width:1240px){
-        width:62%;
-        margin:auto
-    }  
+        height: 240px;
+        font-size:1.8rem;
+        line-height:1.5;
+        font-weight:100; 
+        min-width:62%;
+        max-width: 700px;
+        margin:auto;
+    }
 `
 const AvatarContainer = styled.section `
     margin-top:1px
-
 `
 const ImageWormBody = styled.section`
     padding-top:1.5rem;
     position:relative;
-    opacity:0;
-    animation:${props =>props.entered};
-    animation-duration:0.6s;
-    animation-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
-    animation-delay:1.2s;
-    animation-iteration-count:1;
-    animation-direction:initial;
-    animation-fill-mode:forwards;
-    animation-play-state:initial; 
+    // opacity:0;
+    // animation:${props =>props.entered};
+    // animation-duration:0.6s;
+    // animation-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+    // animation-delay:1.2s;
+    // animation-iteration-count:1;
+    // animation-direction:initial;
+    // animation-fill-mode:forwards;
+    // animation-play-state:initial; 
 `
 const Worm = styled.section`
     height:4.7rem;
@@ -234,7 +350,7 @@ const Worm = styled.section`
     animation:${props =>props.entered};
     animation-duration:0.6s;
     animation-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
-    animation-delay:0.2s;
+    animation-delay:0;
     animation-iteration-count:1;
     animation-direction:initial;
     animation-fill-mode:forwards;
@@ -242,16 +358,10 @@ const Worm = styled.section`
 `
 const ImageContainer = styled.section`
     margin-top:2rem;
-    flex:wrap;
-    opacity:0;
-    animation:${props =>props.entered};
-    animation-duration:0.6s;
-    animation-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
-    animation-delay:0.2s;
-    animation-iteration-count:1;
-    animation-direction:initial;
-    animation-fill-mode:forwards;
-    animation-play-state:initial; 
+    position: relative;
+    height: 80px;
+    width: 100%;
+   
 `
 const Image = styled.img`
     height:65px;
@@ -267,15 +377,26 @@ const Tasha = styled.button`
     width:65px;
     border-radius:50%;
     cursor:pointer;
-    margin-left:50px;
-    margin-right:50px;
     background-image:url(${props=>props.image});
     background-size:contain;
     outline:none;
+    position:absolute;
     border:none;
-    display:none
+    display:none;
+    top: 0px; 
+    left: calc(50% - 182px); 
+    opacity: 1;
+    animation:${props =>props.entered} cubic-bezier(0.455, 0.03, 0.515, 0.955) .6s 1s 1 forwards, ${props => props.slide} cubic-bezier(0.455, 0.03, 0.515, 0.955) 1.2s 0s 1 forwards;
+    // animation-duration:0.6s;
+    // animation-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+    // animation-delay:1s;
+    // animation-iteration-count:1;
+    // animation-direction:initial;
+    // animation-fill-mode:forwards;
+    // animation-play-state:initial; 
+    opacity:0;
     @media(min-width: 768px){
-        display:inline
+        display:inline-block;
     }
 `
 const Brad  = styled.button`
@@ -283,15 +404,23 @@ const Brad  = styled.button`
     width:65px;
     border-radius:50%;
     cursor:pointer;
-    margin-left:50px;
-    margin-right:50px;
     background-image:url(${props=>props.image});
     background-size:contain
     outline:none;
-    border:none
-    display:none
+    border:none;
+    display:none;
+    position:absolute;
+    animation:${props =>props.entered} cubic-bezier(0.455, 0.03, 0.515, 0.955) .6s 1s 1 forwards, ${props => props.slide} cubic-bezier(0.455, 0.03, 0.515, 0.955) 1.2s 0s 1 forwards;
+    // animation-duration:0.6s;
+    // animation-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+    // animation-delay:1s;
+    // animation-iteration-count:1;
+    // animation-direction:initial;
+    // animation-fill-mode:forwards;
+    // animation-play-state:initial; 
+    opacity:0;
     @media(min-width: 768px){
-        display:inline;
+        display:inline-block;
     
     }
 `
@@ -300,15 +429,23 @@ const Annika  = styled.button`
     width:65px;
     border-radius:50%;
     cursor:pointer;
-    margin-left:50px;
-    margin-right:50px;
     background-image:url(${props=>props.image});
     background-size:contain;
     outline:none;
+    position:absolute;
     border:none;
-    display:none
+    display:none;
+    animation:${props =>props.entered} cubic-bezier(0.455, 0.03, 0.515, 0.955) .6s 1s 1 forwards, ${props => props.slide} cubic-bezier(0.455, 0.03, 0.515, 0.955) 1.2s 0s 1 forwards;
+    // animation-duration:0.6s;
+    // animation-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+    // animation-delay:1s;
+    // animation-iteration-count:1;
+    // animation-direction:initial;
+    // animation-fill-mode:forwards;
+    // animation-play-state:initial; 
+    opacity:0;
     @media(min-width: 768px){
-        display:inline
+        display:inline-block;
     }
 `
 const ButtonBody = styled.section`
@@ -316,26 +453,27 @@ const ButtonBody = styled.section`
     height:80px;
     margin:auto;
     padding-top:80px;
+    display: flex;
+    justify-content: center;
     @media(min-width: 768px){
         display:none
     }
 `
-const ButtonWhite = styled.button`
+const ButtonWhite = styled.div`
     border-radius:50%;
-    height: 20px;
-    width: 18px;
+    height: 8px;
+    width: 8px;
     cursor: pointer;
     background-color:white;
     margin-left:2px;
     margin-right:2px
 `
-const ButtonRed = styled.button`
+const ButtonRed = styled.div`
     border-radius:50%;
-    height: 20px;
-    width: 18px;
+    height: 8px;
+    width: 8px;
     cursor: pointer;
     background-color:red;
     margin-left:2px;
     margin-right:2px
 `
-

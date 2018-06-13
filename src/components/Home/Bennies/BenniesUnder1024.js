@@ -7,7 +7,7 @@ export const MiniIndCont = styled.div`
     margin: 0rem 1.5rem 2rem 1.5rem;
     @media (min-width: 768px) {
     width: 609px;
-    margin: 0rem auto 2rem auto;
+    margin: 0rem auto 5rem auto;
     }
     @media(min-width: 1024px){
         display: none;
@@ -27,7 +27,7 @@ export const MiniColorCont = styled.div`
 export const MiniImgCont = styled.div`
     @media(min-width: 415px){
         width: 100%;
-        height: 50vw;
+        height: 45vw;
     }
     @media(min-width: 480px){
         height: 100%;
@@ -39,15 +39,21 @@ export const MiniImg = styled.div`
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
-    height: 9.4rem;
+    height: 9.2rem;
     width: auto;
+    margin-top: 1.2rem;
+    margin-bottom: 2rem;
     @media(min-width: 415px){
+        margin-top: 7%;
+        margin-bottom: 1.2rem;
+    }
+    @media(min-width: 480px){
         margin-top: 2rem;
-        margin-bottom: 2.5rem;
+        margin-bottom: 3.5rem;;
     }
     @media(min-width: 768px){
         margin-top: 2rem;
-        margin-bottom: 2.5rem;
+        margin-bottom: 3rem;
     }
 `
 export const MiniTextCont = styled.div`

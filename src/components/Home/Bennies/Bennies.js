@@ -18,7 +18,7 @@ export default class Bennies extends Component {
         <BenniesContainer version="3" />
         <BennieFooter>
           <BennieH3> Begin your free 30 day trial now. </BennieH3>
-          <Button type="pink"> GET STARTED </Button>
+          <Button type="pinkBennies"> GET STARTED </Button>
         </BennieFooter>
       </BennieSectionContainer>
     )

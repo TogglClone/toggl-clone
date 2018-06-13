@@ -31,29 +31,45 @@ export const BigColorCont = styled.div`
   display: flex;
   flex-direction: row;
   position: relative;
+  z-index: 0;
   @media(min-width: 1240px){
     height: 40rem;
   }
 `
 export const BigImgCont = styled.div`
-    height: 300px;
-    width: 100%;
-    margin: ${props=> props.side};
-    position: relative;
-    z-index: 3;
-    background: transparent;
+height: 300px;
+width: 100%;
+margin: ${props=> props.side};
+position: relative;
+z-index: 1;
+background: transparent;
+@media(min-width: 1240px){
+    margin: ${props => props.biggestSide}
+}
 `
-export const BigImg = styled.div`
-    position: absolute;
-    background-image: url(${props => props.backgroundUrl});
-    background-size: contain;
-    background-position: center center;
-    background-repeat: no-repeat;
+export const ImagePeriscope = styled.div`
     width: 225px;       
     height: 200px;
     top: 50px;
     left: 112px;
-    z-index: 5;
+    z-index: 2;
+    position: absolute;
+    @media(min-width: 1240px){
+        width: 500px;
+        height: 100%;
+        top: 0;
+        left: 0;
+    }
+`
+export const BigImg = styled.div`
+    position: relative;
+    background-image: url(${props => props.backgroundUrl});
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
+    width: 100%;       
+    height: 100%;
+    z-index: 3;
     @media(min-width: 1240px){
         height: 100%;
         width: 100%;
@@ -62,20 +78,21 @@ export const BigImg = styled.div`
 `
 export const BigEyeBall = styled.div`
     border-radius: 50%;
-    height: 58px;
-    width: 42px;
+    height: 48px;
+    width: 44px;
     background: url(${eyeball});
     background-repeat: no-repeat;
     background-size: contain;
     position: absolute;
-    top: calc(5%);
+    top: calc(5.5%);
     left: calc(21.5%);
     overflow: hidden;
-    z-index: -3;
+    z-index: 1;
     @media(min-width: 1240px){
-        top: calc(5%);
-        left: calc(29.5%);
-        overflow: hidden;
+        top: 5%;
+        left: 31%;
+        height: 71px;
+        width: 65px;
     }
 `
 export const BigPupilWrap = styled.div`
@@ -87,29 +104,24 @@ export const BigPupilWrap = styled.div`
     top: calc(5%);
     left: calc(21.5%);
     overflow: hidden;
-    z-index: -1;
+    z-index: 2;
     @media(min-width: 1240px){
-        border-radius: 50%;
-        height: 74px;
-        width: 68px;
-        position: absolute;
-        top: calc(5%);
-        left: calc(29.5%);
-        overflow: hidden;
-        z-index: -1;
+        top: 5%;
+        left: 31%;
+        height: 71px;
+        width: 65px;
     }
 `
 export const BigPupil = styled.div`
-border-radius: 50%;
 background-image: url(${pupil});
 background-size: contain;
 background-repeat: no-repeat;
-height: 20px;
-width: 18px;
+height: 24px;
+width: 20px;
 position: absolute;
 top: calc(50% - 10px);
-left: calc(50% - 15px);
-z-index: -1;
+left: calc(50% - 18px);
+z-index: 3;
     @media(min-width: 1240px){
         border-radius: 50%;
         background-image: url(${pupil});
@@ -120,7 +132,6 @@ z-index: -1;
         top: calc(50% - 15px);
         left: calc(50% - 15px);
         transform: translate(${props => props.left}px,${props => props.top}px);
-        z-index: -1;
     }
 `
 export const BigTextCont = styled.div`

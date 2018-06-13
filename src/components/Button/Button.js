@@ -100,8 +100,18 @@ let pink = {
   fill: "white",
   marginLeft: "-7rem"
 }
+
+let pinkBennies = {
+  backgroundColor: "#e24f54",
+  color: "white",
+  border: "none",
+  outline: "none",
+  fill: "white"
+}
+
 let styles = {
   white: white,
   pink: pink,
+  pinkBennies: pinkBennies,
   default: BtnBase
 }

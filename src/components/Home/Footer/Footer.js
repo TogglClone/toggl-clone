@@ -27,14 +27,14 @@ class Footer extends Component {
     render(){
         return(
             <FooterMain onMouseEnter={() => this.mouseEnter()}>
-                <Top entered ={this.state.animateCalled}>
-               <button style={{ outline:'none',border:'none',borderRadius:'50%',backgroundColor:'#dee1e3'}} scrollStepInPx="50" delayInMs="16.66" onClick={ () => { this.scrollToTop('16.6'); }}> <TopArrowContainer><svg style={topArrow} viewBox="0 0 13 18">
+                <Top entered ={this.state.animateCalled} onClick={ () => { this.scrollToTop('16.6'); }}>
+               <TopArrowContainer><svg style={topArrow} viewBox="0 0 13 18">
               <path d="M1.6 17.8l11-8a1 1 0 0 0 .2-1.4l-.2-.2-11-8A1 1 0 0 0 0 1v16a1 1 0 0 0 1 1z" /></svg>
               </TopArrowContainer >
                     <TopHeader>TOP</TopHeader>
                     <BottomArrowContainer><svg style={bottomArrow} viewBox="0 0 13 18">
               <path d="M1.6 17.8l11-8a1 1 0 0 0 .2-1.4l-.2-.2-11-8A1 1 0 0 0 0 1v16a1 1 0 0 0 1 1z" />
-            </svg></BottomArrowContainer></button>
+            </svg></BottomArrowContainer>
                 </Top>
                 <FooterBody>
                     <Columns>
@@ -153,40 +153,44 @@ const TopBounceIn = keyframes`
  right:16.6666666667%;
  text-align:center;
  width:3rem;
- z-index:5;
- outline:none;
- border:none;
+//  z-index:5;
+//  outline:none;
+//  border:none;
  transform:translateX(1.6rem) translateY(-.8rem);
  @media(min-width: 1024px){
 }
  `
  let TopArrowContainer = styled.section`
- transition: transform .5s cubic-bezier(.645,.045,.355,1), opacity .5s cubic-bezier(.645,.045,.355,1);
+ transition: transform .5s cubic-bezier(.645,.045,.355,1), opacity .5s cubic-bezier(.645,.045,.355,1), margin-top .5s cubic-bezier(.645,.045,.355,1);
+ position: relative;
+ margin-top: .25rem;
  transition-delay: .2s;
  ${Top}:hover & {
-     transform: scaleX(0);
-     opacity: 0;
-    }
-    `
-    let BottomArrowContainer = styled.section`
+    transform: scaleX(0);
     opacity: 0;
-transform: scaleY(0) translateX(0);
-transition: transform .5s cubic-bezier(.645,.045,.355,1), opacity .5s cubic-bezier(.645,.045,.355,1), margin-right .5s cubic-bezier(.645,.045,.355,1) ;
-transition-delay: .2s;
-${Top}:hover & {
-  transform: scaleX(1);
-  opacity: 1;
+    margin-top: -.35rem;
 }
+    `
+let BottomArrowContainer = styled.section`
+    opacity: 0;
+    position: relative;
+    transform: scaleX(0);
+    transition: transform .5s cubic-bezier(.645,.045,.355,1), opacity .5s cubic-bezier(.645,.045,.355,1);
+    transition-delay: .2s;
+    margin-top: -.25rem;
+    ${Top}:hover & {
+      transform: scaleX(1);
+      opacity: 1;
+     }
 `
  const TopHeader = styled.h5`
- bottom:12px;
+ position: relative;
  box-sizing:inherit;
  color:#000;
  margin: 0;
  cursor:pointer;
  display:block;
  font-size:11px;
- font-weight:700;
  outline:none;
  border:none;
  @media(min-width: 1024px){
