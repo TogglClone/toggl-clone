@@ -1,4 +1,6 @@
 import styled, {keyframes} from "styled-components"
+import eyeball from "./img/eyeball.png"
+import pupil from "./img/pupil.png"
 
 //  ↓↓↓↓↓  STYLES  ↓↓↓↓↓↓↓
 export const MiniIndCont = styled.div`
@@ -34,6 +36,7 @@ export const MiniImgCont = styled.div`
     }
 }`
 
+
 export const MiniImg = styled.div`
     background-image: url(${props => props.backgroundUrl});
     background-size: contain;
@@ -43,6 +46,8 @@ export const MiniImg = styled.div`
     width: auto;
     margin-top: 1.2rem;
     margin-bottom: 2rem;
+    z-index: 3;
+    position: relative;
     @media(min-width: 415px){
         margin-top: 7%;
         margin-bottom: 1.2rem;
@@ -55,6 +60,53 @@ export const MiniImg = styled.div`
         margin-top: 2rem;
         margin-bottom: 3rem;
     }
+`
+export const MiniEyeBall = styled.div`
+    border-radius: 50%;
+    background: url(${eyeball});
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: absolute;
+    overflow: hidden;
+    z-index: 1;
+    height: 38px;
+    width: 37px;
+    top: 10%;
+    left: 43%;
+    @media(min-width: 768px){
+        top: 10%;
+        left: 42%;
+    }
+`
+export const MiniPupilWrap = styled.div`
+    background: transparent;
+    border-radius: 50%;
+    position: absolute;
+    overflow: hidden;
+    z-index: 2;
+    height: 38px;
+    width: 37px;
+    top: 10%;
+    left: 43%;
+    @media(min-width: 768px){
+        top: 10%;
+        left: 42%;
+    }
+`
+export const MiniPupil = styled.div`
+    background-image: url(${pupil});
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: 3;
+    border-radius: 50%;
+    height: 16px;
+    width: 16px;
+    position: absolute;
+    top: calc(36%);
+    left: calc(6%);
+    transform: translate(${props => props.left}px);
+    transform-duration:  2s;
+
 `
 export const MiniTextCont = styled.div`
     position: relative;
