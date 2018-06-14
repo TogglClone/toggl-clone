@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import Nav from './Nav/Nav';
 import ProjectBar from './ProjectBar/ProjectBar';
 import TimersList from './TimersList/TimersList';
-import EyeMovement from './EyeMovement';
 
 class Timer extends Component {
     constructor(props) {
@@ -80,10 +79,10 @@ const TimerContainer = styled.div`
    display: grid;
    grid-template-columns: 52px 1fr;
    grid-template-rows: 100vh;
+   transition: grid-template-columns 1s;
    @media(min-width: 1024px){
        grid-template-columns: 180px 1fr;
-   &:hover ${TimerBody}{
-
+       transition: grid-template-columns 1s;
    }
 `
 const TimerBody = styled.section`
