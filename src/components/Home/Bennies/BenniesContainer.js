@@ -6,7 +6,7 @@ import img1 from "./img/img1.png"
 import img2 from "./img/img2.png"
 import img3 from "./img/img3.png"
 
-import { MiniIndCont, MiniColorCont, MiniImgCont, MiniImg, MiniEyeBall, MiniPupilWrap, MiniPupil, MiniTextCont, MiniContentCont, MiniSubtitle, MiniTitle, MiniDesc, MiniButton } from "./BenniesUnder1024"
+import { MiniIndCont, MiniColorCont, MiniImgCont, MiniPeriscope, MiniImg, MiniEyeBall, MiniPupilWrap, MiniPupil, MiniTextCont, MiniContentCont, MiniSubtitle, MiniTitle, MiniDesc, MiniButton } from "./BenniesUnder1024"
 import { BigIndCont, BigColorCont, BigImgCont, ImagePeriscope, BigImg, BigEyeBall, BigPupilWrap, BigPupil, BigTextCont, AnimationWrapper, SvgContainer, BigContentCont, BigSubtitle, BigTitle, BigDesc, BigButton} from "./BenniesOver1023"
 
 export default class BenniesContainer extends Component {
@@ -32,30 +32,12 @@ export default class BenniesContainer extends Component {
             fontColors: ["#E3677C", "#F69F09", "#31AA53", "#A857BD"],
             x: -15,
             y: 0,
-            x2: 0,
             topCurve: 175, //even is 250
             bottomCurve: 675, //even is 750
             animateCalled: [false, false, false, false],
             intervalFn: null
         }
         this.animateBox = this.animateBox.bind( this )
-    }
-    componentDidMount(){
-      setInterval( () =>{
-        let {x2} = this.state
-        let left = "0"
-        let count = 0
-        let right = "17"
-        if(x2==left){
-          this.setState({
-            x2: right
-          })
-        }else{
-          this.setState({
-            x2: left
-          })
-        }
-    }, 2000)
     }
     animateBox(version){
       if(!this.state.animateCalled[version]){
@@ -83,13 +65,16 @@ export default class BenniesContainer extends Component {
       }
     }
     _onMouseMove(e) {
+      console.log(e.screenX);
+      
         let tempY = e.screenY
         let tempX = e.screenX
         tempY -= 223 // gives range from 0 to 600
-        tempX -= (1717-180) // gives range from 0 to innerwidth including the side width on the timer bar
+        tempX -= (e.view.innerWidth) // gives range from 0 to innerwidth including the side width on the timer bar
+        console.log(tempX)
         
         tempY = (tempY / 320 * 35)
-        tempX = (tempX / (e.view.innerWidth/2) * 32) - 32
+        tempX = (tempX / (e.view.innerWidth/2) * 32) + 32
       // top 223 bottom 822 left 1717 right 3136
 
       //max up 47 max down 47 max left 40 max right 40
@@ -117,15 +102,17 @@ export default class BenniesContainer extends Component {
           <MiniColorCont color={this.state.colors[version]}>
             <MiniImgCont>
               { version === '1' ? (
-                <div>
-                <MiniImg backgroundUrl={this.state.img[version]} />
-                <MiniEyeBall />
-                <MiniPupilWrap>
-                  <MiniPupil left={x2}/>
-                </MiniPupilWrap>
-                </div>
+                <MiniPeriscope>
+                  <MiniImg backgroundUrl={this.state.img[version]} />
+                  <MiniEyeBall />
+                  <MiniPupilWrap>
+                    <MiniPupil left={x2}/>
+                  </MiniPupilWrap>
+                </MiniPeriscope>
               ) : 
-                <MiniImg backgroundUrl={this.state.img[version]} />
+                <MiniPeriscope>
+                  <MiniImg backgroundUrl={this.state.img[version]} />
+                </MiniPeriscope>
               }
             </MiniImgCont>
             <MiniTextCont>
