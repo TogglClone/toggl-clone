@@ -19,10 +19,19 @@ class Landing extends Component {
       displayNav: "none",
       clicked: false,
       vidList: [hatdog, robot, piggy],
-      beingPlayed: 0,
-      transIn: null,
-      transOut: null,
-      op: [1, 0, 0]
+      beingPlayed: "0",
+      hatdog: {
+        trans: null,
+        opac: 1
+      },
+      robot: {
+        trans: "translateX(50%) translateY(-30%) translateZ(0)",
+        opac: 0
+      },
+      piggy: {
+        trans: "translateX(50%) translateY(-30%) translateZ(0)",
+        opac: 0
+      }
     }
   }
 
@@ -50,42 +59,96 @@ class Landing extends Component {
   componentDidMount() {
     console.time()
     var count = 1
-    var mili = 1545
-    var miliTran = 12250
-    // hotdog 12500
-    // robot 13000
-    // piggies 10500
+    var mili = 13000
+    var transIn = "translateX(50%) translateY(-30%) translateZ(0)"
+    var transOut = "translateX(-50%) translateY(50%) translateZ(0)"
+    var nullify = "translateX(0%) translateY(0%) translateZ(0)"
+    let hatdogTime = 12500
+    let robotTime = 13000
+    let piggiesTime = 10500
+
+    setTimeout(_ => {
+      this.setState({
+        hatdog: {
+          trans: transOut, //OUT
+          opac: 0
+        }
+      })
+    }, 12200)
     setInterval(() => {
+      console.log("count", count)
       this.setState({
         beingPlayed: count
       })
+      if (count === 0) {
+        this.setState({
+          hatdog: { trans: nullify, opac: 1 }, //NULL
+          piggy: { trans: transIn, opac: 0 },
+          robot: {
+            trans: transIn,
+            opac: 0
+          }
+        })
+        setTimeout(_ => {
+          this.setState({
+            hatdog: {
+              trans: transOut, //OUT
+              opac: 0
+            }
+          })
+        }, 12500)
+      } else if (count === 1) {
+        this.setState({
+          robot: {
+            trans: nullify, //NULL
+            opac: 1
+          },
+          hatdog: {
+            trans: transOut, //IN
+            opac: 0
+          },
+          piggy: {
+            trans: transIn,
+            opac: 0
+          }
+        })
+        setTimeout(_ => {
+          this.setState({
+            robot: {
+              trans: transOut, //OUT
+              opac: 0
+            }
+          })
+        }, 13000)
+      } else if (count === 2) {
+        this.setState({
+          piggy: {
+            trans: nullify, //NULL
+            opac: 1
+          },
+          robot: {
+            trans: transIn, //IN
+            opac: 0
+          },
+          hatdog: {
+            trans: transIn,
+            opac: 0
+          }
+        })
+        setTimeout(_ => {
+          this.setState({
+            piggy: {
+              trans: transOut, //OUT
+              opac: 0
+            }
+          })
+        }, 10500)
+      }
       count++
       if (count >= 3) {
         count = 0
       }
-      if (count === 0) {
-        mili = 12545
-        miliTran = 12545
-        this.setState({
-          transIn: null,
-          op: 1
-        })
-      } else if (count === 1) {
-        mili = 13000
-        miliTran = 13000
-      } else if (count === 2) {
-        mili = 10500
-        miliTran = 10500
-      }
-      setTimeout(() => {}, 1000)
     }, mili)
-
-    // setInterval(_ => {
-    //   console.log(miliTran)
-    //   this.setState({
-    //     vidAnimationIn: ["translateX(-50%) translateY(50%) translateZ(0)"]
-    //   })
-    // }, miliTran)
   }
 
   render() {
@@ -95,7 +158,7 @@ class Landing extends Component {
           <Header>
             <Link to="/">
               <Logo>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 72.1">
+                <svg viewBox="0 0 240 72.1">
                   <path d="M234.9 57.6c-3.5 0-5.2-2.5-5.2-7.5V14.7c0-5.1 1.6-7.5 5.2-7.5s5.1 2.5 5.1 7.5v35.4c0 5-1.6 7.5-5.1 7.5zm-30.8 14.5c-9.5 0-15.2-3.5-15.2-7.5a4.4 4.4 0 0 1 4.2-4.5h.3c2.6 0 5.7 2.8 11.1 2.8s8.1-3.1 8.1-8.7c0-.4-.1-.8-.1-1.3a10.8 10.8 0 0 1-9.4 4.9c-8.2 0-15-7.5-15-18s7.3-18.3 16.1-18.3a10.1 10.1 0 0 1 8.3 3.7 5.6 5.6 0 0 1 4.6-3.3c3.5 0 5.2 2.4 5.2 7.5v20.7c0 6.2-.4 11-2.4 14.3-3.1 5-8.5 7.7-15.8 7.7zm1.5-40.9c-3.8 0-6.8 3.3-6.8 8.5s2.9 8.7 6.8 8.7 6.8-3.4 6.8-8.7-3-8.5-6.8-8.5zm-40.8 40.9c-9.5 0-15.2-3.5-15.2-7.5a4.4 4.4 0 0 1 4.2-4.5h.3c2.6 0 5.7 2.8 11.1 2.8s8.1-3.1 8.1-8.7c0-.4-.1-.8-.1-1.3a10.8 10.8 0 0 1-9.4 4.9c-8.1 0-15-7.5-15-18s7.3-18.3 16.1-18.3a10.1 10.1 0 0 1 8.3 3.7 5.6 5.6 0 0 1 4.6-3.3c3.5 0 5.2 2.4 5.2 7.5v20.7c0 6.2-.4 11-2.4 14.3-3 5-8.4 7.7-15.8 7.7zm1.5-40.9c-3.8 0-6.8 3.3-6.8 8.5s2.9 8.7 6.8 8.7 6.8-3.4 6.8-8.7-3-8.5-6.8-8.5zm-38.1 27c-10.2 0-17.5-7.7-17.5-18.5s7.4-18.5 17.5-18.5 17.5 7.7 17.5 18.5-7.2 18.5-17.4 18.5zm0-27.3c-3.8 0-6.8 3.3-6.8 8.7s2.9 8.8 6.8 8.8 6.8-3.4 6.8-8.8-3-8.7-6.8-8.7zm-24.1.9h-.9v18.3c0 5-1.6 7.5-5.1 7.5S93 55.1 93 50.1V31.8h-.4c-3.7 0-5.8-1.8-5.8-4.5s2.1-4.4 6.2-4.6v-4.5c0-5 1.6-7.5 5.2-7.5s5.1 2.5 5.1 7.5v4.5h.9c4.1 0 6.5 1.8 6.5 4.6s-2.2 4.5-6.6 4.5z" />
                   <circle cx="35.6" cy="35.6" r="35.6" fill="#e1393f" />
                   <path
@@ -105,7 +168,10 @@ class Landing extends Component {
                 </svg>
               </Logo>
             </Link>
-            <BurgerContainer onClick={_ => this.burgerToggle()}>
+            <BurgerContainer
+              onClick={_ => this.burgerToggle()}
+              className="burgerTest"
+            >
               <div style={this.state.clicked ? Clicked1 : Burger1} />
               <div style={this.state.clicked ? Clicked2 : Burger2} />
             </BurgerContainer>
@@ -113,12 +179,13 @@ class Landing extends Component {
               <DesktopSpan>Features</DesktopSpan>
               <DesktopSpan>Pricing</DesktopSpan>
               <DesktopSpan>Training</DesktopSpan>
-              <DesktopSpan><LoginCont
-                href={process.env.REACT_APP_LOGIN}
-                className="login-font"
-              >
-                Log in
-              </LoginCont>
+              <DesktopSpan>
+                <LoginCont
+                  href={process.env.REACT_APP_LOGIN}
+                  className="login-font"
+                >
+                  Log in
+                </LoginCont>
               </DesktopSpan>
               <SignUp>
                 <LoginCont
@@ -126,15 +193,81 @@ class Landing extends Component {
                   className="login-font"
                 >
                   Sign Up
-                  <SignUpLineAbove xmlns="http://www.w3.org/2000/svg" width="52.5" height="33.4" viewBox="0 0 52.5 33.4">
-                    <path class="sign-up-line sign-up-line--1" d="M6,18-2.3-.4" transform="translate(4.3 13.4)" fill="#fff" strokeWidth="5" style={{strokeLinecap: "round", strokeMiterlimit: "10", strokeDashoffset: "0px"}}></path>
-                    <path class="sign-up-line sign-up-line--2" d="M22,16.1V-11.4" transform="translate(4.3 13.4)" fill="#fff" strokeWidth="5"></path>
-                    <path class="sign-up-line sign-up-line--3" d="M37.9,18,46.2-1.4" transform="translate(4.3 13.4)" fill="#fff" strokeWidth="5"></path>
+                  <SignUpLineAbove
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="52.5"
+                    height="33.4"
+                    viewBox="0 0 52.5 33.4"
+                  >
+                    <path
+                      class="sign-up-line sign-up-line--1"
+                      d="M6,18-2.3-.4"
+                      transform="translate(4.3 13.4)"
+                      fill="#fff"
+                      strokeWidth="5"
+                      style={{
+                        strokeLinecap: "round",
+                        strokeMiterlimit: "10",
+                        strokeDashoffset: "0px"
+                      }}
+                    />
+                    <path
+                      class="sign-up-line sign-up-line--2"
+                      d="M22,16.1V-11.4"
+                      transform="translate(4.3 13.4)"
+                      fill="#fff"
+                      strokeWidth="5"
+                    />
+                    <path
+                      class="sign-up-line sign-up-line--3"
+                      d="M37.9,18,46.2-1.4"
+                      transform="translate(4.3 13.4)"
+                      fill="#fff"
+                      strokeWidth="5"
+                    />
                   </SignUpLineAbove>
-                  <SignUpLineBelow xmlns="http://www.w3.org/2000/svg" width="52.5" height="33.4" viewBox="0 0 52.5 33.4">
-                    <path class="sign-up-line sign-up-line--4" d="M6,18-2.3-.4" transform="translate(4.3 13.4)" style={{strokeLinecap: "round", strokeMiterlimit: "10", strokeDashoffset: "0px"}} fill="none" strokeWidth="5"></path>
-                    <path class="sign-up-line sign-up-line--5" d="M22,16.1V-11.4" transform="translate(4.3 13.4)" style={{strokeLinecap: "round", strokeMiterlimit: "10", strokeDashoffset: "0px"}} fill="none" strokeWidth="5"></path>
-                    <path class="sign-up-line sign-up-line--6" d="M37.9,18,46.2-1.4" transform="translate(4.3 13.4)" style={{strokeLinecap: "round", strokeMiterlimit: "10", strokeDashoffset: "0px"}} fill="none" strokeWidth="5"></path>
+                  <SignUpLineBelow
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="52.5"
+                    height="33.4"
+                    viewBox="0 0 52.5 33.4"
+                  >
+                    <path
+                      class="sign-up-line sign-up-line--4"
+                      d="M6,18-2.3-.4"
+                      transform="translate(4.3 13.4)"
+                      style={{
+                        strokeLinecap: "round",
+                        strokeMiterlimit: "10",
+                        strokeDashoffset: "0px"
+                      }}
+                      fill="none"
+                      strokeWidth="5"
+                    />
+                    <path
+                      class="sign-up-line sign-up-line--5"
+                      d="M22,16.1V-11.4"
+                      transform="translate(4.3 13.4)"
+                      style={{
+                        strokeLinecap: "round",
+                        strokeMiterlimit: "10",
+                        strokeDashoffset: "0px"
+                      }}
+                      fill="none"
+                      strokeWidth="5"
+                    />
+                    <path
+                      class="sign-up-line sign-up-line--6"
+                      d="M37.9,18,46.2-1.4"
+                      transform="translate(4.3 13.4)"
+                      style={{
+                        strokeLinecap: "round",
+                        strokeMiterlimit: "10",
+                        strokeDashoffset: "0px"
+                      }}
+                      fill="none"
+                      strokeWidth="5"
+                    />
                   </SignUpLineBelow>
                 </LoginCont>
               </SignUp>
@@ -147,22 +280,41 @@ class Landing extends Component {
             </Ptag>
             <VideoContainer>
               <VideoSize0
-                transform={this.state.transIn}
-                op={this.state.op}
                 src={this.state.vidList[0]}
+                transform={this.state.hatdog.trans}
+                opac={this.state.hatdog.opac}
                 autoPlay
                 loop
               />
-              <VideoSize1 src={this.state.vidList[1]} autoPlay loop />
-              <VideoSize2 src={this.state.vidList[2]} autoPlay loop />
+              <VideoSize1
+                src={this.state.vidList[1]}
+                transform={this.state.robot.trans}
+                opac={this.state.robot.opac}
+                autoPlay
+                loop
+              />
+              <VideoSize2
+                src={this.state.vidList[2]}
+                transform={this.state.piggy.trans}
+                opac={this.state.piggy.opac}
+                autoPlay
+                loop
+              />
             </VideoContainer>
             <ButtonContain>
-              <Button type="pink">Get Started</Button>
+              <Button type="pink" className="pinky">
+                Get Started
+              </Button>
             </ButtonContain>
             {/* <video src="">VID</video>
             <video src="">VDI</video> */}
             <RotateTimer src={timer_icon} alt="animated rotating timer" />
-            <Scroller>Scroll</Scroller>
+            <Scroller>
+              <Scrollp>Scroll</Scrollp>
+              <Arrow viewBox="0 0 13 18">
+                <path d="M1.6 17.8l11-8a1 1 0 0 0 .2-1.4l-.2-.2-11-8A1 1 0 0 0 0 1v16a1 1 0 0 0 1 1z" />
+              </Arrow>
+            </Scroller>
           </TitleContainer>
           <BurgerWrapper displayNav={this.state.displayNav}>
             <BurgerNav>Features</BurgerNav>
@@ -177,12 +329,98 @@ class Landing extends Component {
             </LoginCont>
             <BottomLoginSvg />
             <SignUp>
+              <SignUpLineAboveBurger
+                xmlns="http://www.w3.org/2000/svg"
+                width="52.5"
+                height="33.4"
+                viewBox="0 0 52.5 33.4"
+              >
+                <path
+                  class="sign-up-line sign-up-line--4"
+                  d="M6,18-2.3-.4"
+                  transform="translate(4.3 13.4)"
+                  style={{
+                    strokeLinecap: "round",
+                    strokeMiterlimit: "10",
+                    strokeDashoffset: "0px"
+                  }}
+                  fill="black"
+                  strokeWidth="5"
+                />
+                <path
+                  class="sign-up-line sign-up-line--5"
+                  d="M22,16.1V-11.4"
+                  transform="translate(4.3 13.4)"
+                  style={{
+                    strokeLinecap: "round",
+                    strokeMiterlimit: "10",
+                    strokeDashoffset: "0px"
+                  }}
+                  fill="black"
+                  strokeWidth="5"
+                />
+                <path
+                  class="sign-up-line sign-up-line--6"
+                  d="M37.9,18,46.2-1.4"
+                  transform="translate(4.3 13.4)"
+                  style={{
+                    strokeLinecap: "round",
+                    strokeMiterlimit: "10",
+                    strokeDashoffset: "0px"
+                  }}
+                  fill="black"
+                  strokeWidth="5"
+                />
+              </SignUpLineAboveBurger>
               <LoginCont
                 href={process.env.REACT_APP_LOGIN}
                 className="login-font"
               >
                 Sign Up
               </LoginCont>
+              <SignUpLineBelowBurger
+                xmlns="http://www.w3.org/2000/svg"
+                width="52.5"
+                height="33.4"
+                viewBox="0 0 52.5 33.4"
+              >
+                <path
+                  class="sign-up-line sign-up-line--4"
+                  d="M6,18-2.3-.4"
+                  transform="translate(4.3 13.4)"
+                  style={{
+                    strokeLinecap: "round",
+                    strokeMiterlimit: "10",
+                    strokeDashoffset: "0px"
+                  }}
+                  fill="black"
+                  strokeWidth="5"
+                />
+                <path
+                  class="sign-up-line sign-up-line--5"
+                  d="M22,16.1V-11.4"
+                  transform="translate(4.3 13.4)"
+                  style={{
+                    strokeLinecap: "round",
+                    strokeMiterlimit: "10",
+                    strokeDashoffset: "0px"
+                  }}
+                  fill="black"
+                  strokeWidth="5"
+                />
+                <path
+                  class="sign-up-line sign-up-line--6"
+                  d="M37.9,18,46.2-1.4"
+                  transform="translate(4.3 13.4)"
+                  style={{
+                    strokeLinecap: "round",
+                    strokeMiterlimit: "10",
+                    strokeDashoffset: "0px"
+                  }}
+                  fill="black"
+                  strokeWidth="5"
+                />
+              </SignUpLineBelowBurger>
             </SignUp>
             <NavButtonContainer>
               <Button type="white">DOWNLOAD THE APP</Button>
@@ -200,14 +438,55 @@ export default Landing
 
 const BurgerWrapper = styled.section`
   background: white;
-  font-weight: 700;
-  font-size: 1.25rem;
-  margin-top: 4rem;
+  font-weight: 500;
+  font-size: 21px;
   letter-spacing: -0.02rem;
   line-height: 3.16;
   text-decoration: none;
   display: ${props => props.displayNav};
-  padding: 4.7rem;
+  padding: 2rem 8.5rem;
+  line-height: 66px;
+`
+
+const arrowanim = keyframes`
+0% {
+  opacity: 0;
+    transform: matrix(1, 0, 0, 1, 0, -30);
+}
+25%{
+  opacity: 1;
+    transform: matrix(1, 0, 0, 1, 0, 0);
+    
+}
+50% {
+  opacity: 1;
+    transform: matrix(1, 0, 0, 1, 0, 0);
+    
+}
+75%{
+  opacity: 0;
+    transform: matrix(1, 0, 0, 1, 0, 60);
+}
+100% {
+  opacity: 0;
+    transform: matrix(1, 0, 0, 1, 0, 60);
+    
+}
+`
+
+let Arrow = styled.svg`
+  width: 0.9rem;
+  height: 0.5rem;
+  margin-right: 0.3rem;
+  fill: white;
+  transform: rotate(90deg);
+  left: 1.05rem;
+  position: absolute;
+`
+
+let Scrollp = styled.p`
+  transform: rotate(90deg);
+  margin-bottom: 1.25rem;
 `
 
 const ButtonContain = styled.section`
@@ -219,6 +498,9 @@ const ButtonContain = styled.section`
 const NavButtonContainer = styled.section`
   display: flex;
   justify-content: center;
+  position: absolute;
+  bottom: 4.5rem;
+  left: 19%;
 `
 
 const BurgerNav = styled.nav`
@@ -253,12 +535,13 @@ const Header = styled.section`
   padding: 27px 1.3rem;
   align-items: center;
   position: relative;
+
   @media (min-width: 1024px) {
-    padding: 27px 1.75rem;
+    padding: 39px 2.65rem;
     padding-bottom: 0;
   }
   @media (min-width: 1240px) {
-    padding: 27px 2.1rem;
+    padding: 34px 2.5rem;
     padding-bottom: 0;
   }
 `
@@ -266,6 +549,9 @@ const Header = styled.section`
 const Logo = styled.section`
   width: 6rem;
   cursor: pointer;
+  @media (min-width: 1024px) {
+    width: 5rem;
+  }
   @media (min-width: 1240px) {
     width: 7.75rem;
   }
@@ -334,6 +620,9 @@ const TitleContainer = styled.section`
   margin-right: auto;
   color: white;
   display: ${props => props.displayTitle};
+  @media (max-width: 667px) {
+    width: 100%;
+  }
 `
 const TitleText = styled.h1`
   font-size: 1.65rem;
@@ -341,41 +630,50 @@ const TitleText = styled.h1`
   margin-top: 1.2rem;
   margin: 0;
   margin-top: 1.75rem;
-  @media (min-width: 454px) {
-    padding: 0 11%;
+  position: relative;
+  z-index: 5;
+  @media (min-width: 414px) {
+    padding: 0 12%;
+    -webkit-font-smoothing: antialiased;
   }
   @media (min-width: 557px) {
     padding: 0 19%;
   }
+  @media (min-width: 537px) {
+    padding: 0 20%;
+  }
   @media (min-width: 676px) {
-    padding: 0 25.9%;
+    padding: 0 23%;
   }
   @media (min-width: 768px) {
+    margin-top: 3.75rem;
     font-size: 3rem;
     line-height: 3.25rem;
     padding: 0 5%;
   }
   @media (min-width: 813px) {
-    padding: 0 15%;
+    padding: 0 12%;
   }
-  @media (min-width: 1020px) {
-    padding: 0 21%;
+  @media (min-width: 1015px) {
+    padding: 0 20%;
+  }
+  @media (min-width: 1024px) {
     margin-top: 1rem;
   }
   @media (min-width: 1214px) {
-    padding: 0 27%;
+    padding: 0 25%;
   }
   @media (min-width: 1240px) {
-    font-size: 4.2rem;
-    padding: 0px 17%;
-    line-height: 4.25rem;
-    margin-top: 5rem;
+    font-size: 52px;
+    padding: 0px 24%;
+    line-height: 1;
+    margin-top: 1rem;
   }
   @media (min-width: 1537px) {
-    padding: 0 20%;
+    padding: 0 29%;
   }
-  @media (min-width: 1580px) {
-    padding: 0 25%;
+  @media (min-width: 1612px) {
+    padding: 0 30%;
   }
 `
 const Ptag = styled.p`
@@ -384,8 +682,13 @@ const Ptag = styled.p`
   margin: 0;
   margin-top: 1rem;
   line-height: 1.52;
+  z-index: 5;
+  letter-spacing: -0.4px;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+
   @media (min-width: 390px) {
-    padding: 0 9%;
+    padding: 0 14%;
   }
   @media (min-width: 440px) {
     padding: 0 13%;
@@ -393,15 +696,26 @@ const Ptag = styled.p`
   @media (min-width: 530px) {
     padding: 0 21%;
   }
+  @media (min-width: 582px) {
+    padding: 0 27%;
+  }
   @media (min-width: 651px) {
     padding: 0 27%;
   }
-  @media (min-width: 768px) {
-    font-size: 1.1rem;
-    font-weight: 100;
+  @media (max-width: 667px) {
   }
-  @media (min-width: 676px) {
+  @media (min-width: 768px) {
+    font-size: 1rem;
+    font-weight: 600;
+
     padding: 0;
+  }
+  @media (min-width: 1024px) {
+    font-size: 20px;
+  }
+  @media (min-width: 1240px) {
+    letter-spacing: 0;
+    font-size: 21px;
   }
 `
 
@@ -444,7 +758,7 @@ const RotateTimer = styled.img`
   bottom: 2.6rem;
   right: 2.7rem;
   animation: ${rotate360} 15s linear infinite;
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     display: none;
   }
   @media (min-width: 1241px) {
@@ -459,7 +773,8 @@ const Scroller = styled.span`
   left: 0.7rem;
   font-size: 0.75rem;
   text-transform: uppercase;
-  @media (max-width: 768px) {
+  animation: ${arrowanim} 7s infinite;
+  @media (max-width: 767px) {
     display: none;
   }
   @media (min-width: 1241px) {
@@ -470,7 +785,8 @@ const Scroller = styled.span`
 const DesktopNav = styled.section`
   display: flex;
   font-size: 0.75rem;
-  @media (max-width: 768px) {
+
+  @media (max-width: 767px) {
     display: none;
   }
   @media (min-width: 1240px) {
@@ -482,47 +798,73 @@ const DesktopSpan = styled.span`
   margin-right: 1rem;
   cursor: pointer;
   position: relative;
-  @media(min-width: 1240px){
-    &:before{
+  @media (min-width: 1240px) {
+    &:before {
       transform: scaleX(0);
-      transition: transform .3s;
+      transition: transform 0.3s;
       background-color: #fff;
-      border-radius: .1rem;
+      border-radius: 0.1rem;
       top: 1.2rem;
       content: "";
-      height: .15rem;
+      height: 0.1rem;
       left: 0;
       position: absolute;
       right: 0;
       transform-origin: center center;
-      transition-timing-function: cubic-bezier(.665,.14,.785,.285);
+      transition-timing-function: cubic-bezier(0.665, 0.14, 0.785, 0.285);
     }
-      &:hover {
-        &:before{
-          transform: scaleX(1);
-          transition-timing-function: cubic-bezier(.12,.845,.305,1);
+    &:hover {
+      &:before {
+        transform: scaleX(1);
+        transition-timing-function: cubic-bezier(0.12, 0.845, 0.305, 1);
       }
     }
   }
 `
 
 const SignUpLineAbove = styled.svg`
-stroke: #fff; 
-position: absolute; 
-width: 1rem; 
-transform: translateX(-2rem) translateY(-1.5rem);
-@media(min-width: 1240px){
-  width: 1.2rem; 
-  transform: translateX(-2.4rem) translateY(-1.5rem);
-}
+  stroke: #fff;
+  position: absolute;
+  width: 1rem;
+  transform: translateX(-2rem) translateY(-1.5rem);
+  @media (min-width: 1240px) {
+    width: 1.2rem;
+    transform: translateX(-2.4rem) translateY(-1.5rem);
+  }
 `
 const SignUpLineBelow = styled.svg`
-stroke: #fff; 
-position: absolute;
-width: 1rem; 
-transform: translateX(-2rem) translateY(.4rem) rotate(180deg); 
-@media(min-width: 1240px){
-  width: 1.2rem; 
-  transform: translateX(-2.4rem) translateY(.8rem) rotate(180deg);
-}
+  stroke: #fff;
+  position: absolute;
+  width: 1rem;
+  transform: translateX(-2rem) translateY(0.4rem) rotate(180deg);
+  @media (min-width: 1240px) {
+    width: 1.2rem;
+    transform: translateX(-2.4rem) translateY(0.8rem) rotate(180deg);
+  }
+`
+
+const SignUpLineBelowBurger = styled.svg`
+  stroke: red;
+  position: absolute;
+  bottom: 11.5rem;
+  left: 12.75rem;
+  width: 1.75rem;
+  transform: translateX(-2rem) translateY(0.4rem) rotate(180deg);
+  @media (min-width: 1240px) {
+    width: 1.2rem;
+    transform: translateX(-2.4rem) translateY(0.8rem) rotate(180deg);
+  }
+`
+
+const SignUpLineAboveBurger = styled.svg`
+  stroke: red;
+  position: absolute;
+  bottom: 14rem;
+  left: 12.75rem;
+  width: 1.75rem;
+  transform: translateX(-2rem) translateY(-1.5rem);
+  @media (min-width: 1240px) {
+    width: 1.2rem;
+    transform: translateX(-2.4rem) translateY(-1.5rem);
+  }
 `

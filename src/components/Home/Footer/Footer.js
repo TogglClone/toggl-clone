@@ -27,7 +27,7 @@ class Footer extends Component {
     render(){
         return(
             <FooterMain onMouseEnter={() => this.mouseEnter()}>
-                <Top entered ={this.state.animateCalled} onClick={ () => { this.scrollToTop('16.6'); }}>
+                <Top entered ={this.state.animateCalled} className='top' onClick={ () => { this.scrollToTop('16.6'); }}>
                <TopArrowContainer><svg style={topArrow} viewBox="0 0 13 18">
               <path d="M1.6 17.8l11-8a1 1 0 0 0 .2-1.4l-.2-.2-11-8A1 1 0 0 0 0 1v16a1 1 0 0 0 1 1z" /></svg>
               </TopArrowContainer >
