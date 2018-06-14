@@ -4,208 +4,200 @@ import annika from "./img/annika.jpg"
 import brad from "./img/brad.jpg"
 import tasha from "./img/tasha.jpg"
 import background from "./img/bg.png"
-import { loadavg } from "os";
+import { loadavg } from "os"
 export default class Reviews extends Component {
-    constructor(){
-        super();
-        this.state = {
-            tasha:[tasha,`"We're using Toggl to analyze the profitability of the projects we do for our clients, and for tracking our internal ROI. But sometimes we also show the data to our clients - that makes negotiations a lot easier!"`],
-            brad:[brad,`"Using Toggl is helping us get a handle on our time allocation for different customers and projects. Before we had no idea of what people were spending their work time on - I had to check in on that all the time. Now I can just focus on the important things, instead of micromanaging."`],
-            annika:[annika,`"It's always hard to predict how much time a project is going to take. Having stats on how much time different things have taken in the past is great for getting accurate predictions for the future."`],
-            currentReviewie:[tasha,"We're using Toggl to analyze the profitability of the projects we do for our clients, and for tracking our internal ROI. But sometimes we also show the data to our clients - that makes negotiations a lot easier!"],
-            wiggle: null,
-            buttonBackgroundTasha:false,
-            buttonBackgroundBrad:true,
-            buttonBackgroundAnnika:true,
-            animateCalled:null,
-            animateCalledBrad:null,
-            animateCalledAnnika:null,
-            animateCalledTasha:null,
-            animateSlideBrad: null,
-            animateSlideAnnika: null,
-            animateSlideTasha: null,
-            tashaPosition: 0,
-            bradPosition: 1,
-            annikaPosition: 2,
-            animateReviewTasha: null,
-            animateReviewAnnika: null,
-            animateReviewBrad: null,
-            tashaReviewPosition: 2,
-            bradReviewPosition: 1,
-            annikaReviewPosition: 0
-        }
+  constructor() {
+    super()
+    this.state = {
+      tasha: [
+        tasha,
+        `"We're using Toggl to analyze the profitability of the projects we do for our clients, and for tracking our internal ROI. But sometimes we also show the data to our clients - that makes negotiations a lot easier!"`
+      ],
+      brad: [
+        brad,
+        `"Using Toggl is helping us get a handle on our time allocation for different customers and projects. Before we had no idea of what people were spending their work time on - I had to check in on that all the time. Now I can just focus on the important things, instead of micromanaging."`
+      ],
+      annika: [
+        annika,
+        `"It's always hard to predict how much time a project is going to take. Having stats on how much time different things have taken in the past is great for getting accurate predictions for the future."`
+      ],
+      currentReviewie: [
+        tasha,
+        "We're using Toggl to analyze the profitability of the projects we do for our clients, and for tracking our internal ROI. But sometimes we also show the data to our clients - that makes negotiations a lot easier!"
+      ],
+      wiggle: null,
+      buttonBackgroundTasha: false,
+      buttonBackgroundBrad: true,
+      buttonBackgroundAnnika: true,
+      animateCalled: null,
+      animateCalledBrad: null,
+      animateCalledAnnika: null,
+      animateCalledTasha: null,
+      animateSlideBrad: null,
+      animateSlideAnnika: null,
+      animateSlideTasha: null,
+      tashaPosition: 0,
+      bradPosition: 1,
+      annikaPosition: 2,
+      animateReviewTasha: null,
+      animateReviewAnnika: null,
+      animateReviewBrad: null,
+      tashaReviewPosition: 2,
+      bradReviewPosition: 1,
+      annikaReviewPosition: 0
     }
-    reset() {
-        this.setState({
-            wiggle: null
-        })
+  }
+  reset() {
+    this.setState({
+      wiggle: null
+    })
+  }
+  handleButtonOne() {
+    this.setState({
+      buttonBackgroundTasha: false,
+      buttonBackgroundBrad: true,
+      buttonBackgroundAnnika: true
+    })
+  }
+  handleButtonTwo() {
+    this.setState({
+      buttonBackgroundBrad: false,
+      buttonBackgroundAnnika: true,
+      buttonBackgroundTasha: true
+    })
+  }
+  handleButtonThree() {
+    this.setState({
+      buttonBackgroundAnnika: false,
+      buttonBackgroundBrad: true,
+      buttonBackgroundTasha: true
+    })
+  }
+  wiggle() {
+    this.setState({
+      wiggle: dash
+    })
+    setTimeout(_ => {
+      this.reset()
+    }, 2000)
+  }
+  updateReviewie(reviewie) {
+    this.setState({ currentReviewie: reviewie })
+  }
+  mouseEnter() {
+    this.setState({
+      animateCalled: TopBounceIn,
+      animateCalledBrad: BradLoad,
+      animateCalledAnnika: AnnikaLoad,
+      animateCalledTasha: TashaLoad
+    })
+  }
+  handleReviewPosition(position) {
+    function shiftRight(position) {
+      if (position === 0) {
+        position = 1
+      } else if (position === 1) {
+        position = 2
+      } else if (position === 2) {
+        position = 0
+      }
+      return position
     }
-    handleButtonOne(){
-        this.setState({
-            buttonBackgroundTasha:false,
-            buttonBackgroundBrad:true,
-            buttonBackgroundAnnika:true
-        })
+    function shiftLeft(position) {
+      if (position === 0) {
+        position = 2
+      } else if (position === 1) {
+        position = 0
+      } else if (position === 2) {
+        position = 1
+      }
+      return position
     }
-    handleButtonTwo(){
-        this.setState({
-            buttonBackgroundBrad:false,
-            buttonBackgroundAnnika:true,
-            buttonBackgroundTasha:true
-        })
-    }
-    handleButtonThree(){
-        this.setState({
-            buttonBackgroundAnnika:false,
-            buttonBackgroundBrad:true,
-            buttonBackgroundTasha:true
-        })
-    }
-    wiggle(){
-        this.setState({
-            wiggle: dash
-        })
-        setTimeout(_ => {
-            this.reset()
-        }, 2000)
-    }
-     updateReviewie(reviewie){
-        this.setState({currentReviewie:reviewie})
-    }
-    mouseEnter(){
-        this.setState({
-            animateCalled:TopBounceIn,
-            animateCalledBrad:BradLoad,
-            animateCalledAnnika:AnnikaLoad,
-            animateCalledTasha:TashaLoad,
-            })
-    }
-    handleReviewPosition(position){        
-        function shiftRight(position){
-            if(position === 0){
-                position = 1
-            } else if (position === 1){
-                position = 2
-            } else if (position === 2){
-                position = 0
-            }
-            return position
-        }
-        function shiftLeft(position){
-            if(position === 0){
-                position = 2
-            } else if (position === 1){
-                position = 0
-            } else if (position === 2){
-                position = 1
-            }
-            return position
-        }
 
-        const animateImagesLeftKey = [ShiftImageLeftPosition0, ShiftImageLeftPosition1, ShiftImageLeftPosition2]
-        const animateImagesRightKey = [ShiftImagesRightPosition0, ShiftImagesRightPosition1, ShiftImagesRightPosition2]
-        const animateReviewsLeftKey = [ShiftReviewsLeftPosition0, ShiftReviewsLeftPosition1, ShiftReviewsLeftPosition2]
-        const animateReviewsRightKey = [ShiftReviewsRightPosition0, ShiftReviewsRightPosition1, ShiftReviewsRightPosition2]
-        if(position === 0){            
-            let tempTasha = shiftRight(this.state.tashaPosition)
-            let tempBrad = shiftRight(this.state.bradPosition)
-            let tempAnnika = shiftRight(this.state.annikaPosition) 
-            
-            let tempTashaReview = shiftLeft(this.state.tashaReviewPosition)
-            let tempBradReview = shiftLeft(this.state.bradReviewPosition) 
-            let tempAnnikaReview = shiftLeft(this.state.annikaReviewPosition)
-            this.setState({
-                tashaPosition: tempTasha,
-                bradPosition: tempBrad,
-                annikaPosition: tempAnnika, 
-                animateSlideTasha: animateImagesRightKey[tempAnnika],
-                animateSlideBrad: animateImagesRightKey[tempTasha],
-                animateSlideAnnika: animateImagesRightKey[tempBrad],
-                tashaReviewPosition: tempTashaReview,
-                bradReviewPosition: tempBradReview,
-                annikaReviewPosition: tempAnnikaReview,
-                animateReviewTasha: animateReviewsLeftKey[tempAnnikaReview],
-                animateReviewBrad: animateReviewsLeftKey[tempTashaReview],
-                animateReviewAnnika: animateReviewsLeftKey[tempBradReview],
-            })
-            
-            
-        } else if(position === 2){
-            let tempTasha = shiftLeft(this.state.tashaPosition)
-            let tempBrad = shiftLeft(this.state.bradPosition)
-            let tempAnnika = shiftLeft(this.state.annikaPosition)   
-            let tempTashaReview = shiftRight(this.state.tashaReviewPosition)
-            let tempBradReview = shiftRight(this.state.bradReviewPosition) 
-            let tempAnnikaReview = shiftRight(this.state.annikaReviewPosition)                     
-            this.setState({
-                tashaPosition: tempTasha,
-                bradPosition: tempBrad,
-                annikaPosition: tempAnnika,
-                animateSlideTasha: animateImagesLeftKey[tempBrad],
-                animateSlideBrad: animateImagesLeftKey[tempAnnika],
-                animateSlideAnnika: animateImagesLeftKey[tempTasha],
-                tashaReviewPosition: tempTashaReview,
-                bradReviewPosition: tempBradReview,
-                annikaReviewPosition: tempAnnikaReview,
-                animateReviewTasha: animateReviewsRightKey[tempBradReview],
-                animateReviewBrad: animateReviewsRightKey[tempAnnikaReview],
-                animateReviewAnnika: animateReviewsRightKey[tempTashaReview],
-                
-            })
-        }
-        
-    }
-    render() {
-         const {tasha,brad,annika,wiggle}=this.state
-         console.log(this.state);
-         
-        return(
-        <ReviewsContainer onMouseEnter={() => this.mouseEnter()}>
-                <ReviewTitle> Sweet Nothings </ReviewTitle>
-                <ReviewMini> Some client love. </ReviewMini>
-                <ReviewTextWrap entered ={this.state.animateCalled}>
+    const animateImagesLeftKey = [
+      ShiftImageLeftPosition0,
+      ShiftImageLeftPosition1,
+      ShiftImageLeftPosition2
+    ]
+    const animateImagesRightKey = [
+      ShiftImagesRightPosition0,
+      ShiftImagesRightPosition1,
+      ShiftImagesRightPosition2
+    ]
+    const animateReviewsLeftKey = [
+      ShiftReviewsLeftPosition0,
+      ShiftReviewsLeftPosition1,
+      ShiftReviewsLeftPosition2
+    ]
+    const animateReviewsRightKey = [
+      ShiftReviewsRightPosition0,
+      ShiftReviewsRightPosition1,
+      ShiftReviewsRightPosition2
+    ]
+    if (position === 0) {
+      let tempTasha = shiftRight(this.state.tashaPosition)
+      let tempBrad = shiftRight(this.state.bradPosition)
+      let tempAnnika = shiftRight(this.state.annikaPosition)
 
-                    <ReviewTextTasha animate={this.state.animateReviewTasha}>{this.state.tasha[1]}</ReviewTextTasha>
-                    <ReviewTextBrad animate={this.state.animateReviewBrad}>{this.state.brad[1]}</ReviewTextBrad>
-                    <ReviewTextAnnika animate={this.state.animateReviewAnnika}>{this.state.annika[1]}</ReviewTextAnnika>
-
-                </ReviewTextWrap>
-            <AvatarContainer>
-                <ImageWormBody entered ={this.state.animateCalled}>
-                    <Worm ><Crypto wiggle={wiggle} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45.8 69.6"><path d="M23.5 68.1V63a5.6 5.6 0 0 1 5.6-5.6h1a5.6 5.6 0 0 0 5.6-5.6 5.6 5.6 0 0 0-5.6-5.6h-13a5.6 5.6 0 0 1-5.6-5.6 5.6 5.6 0 0 1 5.6-5.6h21.5a5.6 5.6 0 0 0 5.6-5.6 5.6 5.6 0 0 0-5.6-5.6H7.1a5.6 5.6 0 0 1-5.6-5.6 5.6 5.6 0 0 1 5.6-5.6h10.8A5.6 5.6 0 0 0 23.5 7V1.8" fill="none" stroke="#ffacba" stroke-linecap="round" stroke-miterlimit="10" stroke-width="3" ></path></Crypto></Worm>
-                    <ImageContainer entered ={this.state.animateCalled} > 
-                        <Image src={this.state.currentReviewie[0]}alt="current"/>
-                        <Tasha entered ={this.state.animateCalledTasha} slide={this.state.animateSlideTasha} onClick={()=>{this.wiggle(),this.updateReviewie(tasha),this.handleReviewPosition(this.state.tashaPosition)}} image={tasha[0]} ></Tasha>
-                        <Brad entered ={this.state.animateCalledBrad} slide={this.state.animateSlideBrad} onClick={()=>{this.wiggle(),this.updateReviewie(brad),this.handleReviewPosition(this.state.bradPosition)}} image={brad[0]}></Brad>
-                        <Annika entered ={this.state.animateCalledAnnika} slide={this.state.animateSlideAnnika} onClick={()=>{this.wiggle(),this.updateReviewie(annika),this.handleReviewPosition(this.state.annikaPosition)}} image={annika[0]}></Annika>
-                    </ImageContainer>
-                </ImageWormBody>
-        
-             <ButtonBody>
-                    {this.state.buttonBackgroundTasha ? 
-                        <ButtonWhite onClick={()=>{this.wiggle(),this.updateReviewie(tasha),this.handleButtonOne()}}></ButtonWhite>:
-                        <ButtonRed onClick={()=>{this.wiggle(),this.updateReviewie(tasha),this.handleButtonOne()}}></ButtonRed>}
-                    {this.state.buttonBackgroundBrad ? 
-                        <ButtonWhite onClick={()=>{this.wiggle(),this.updateReviewie(brad),this.handleButtonTwo()}}></ButtonWhite>:
-                        <ButtonRed onClick={()=>{this.wiggle(),this.updateReviewie(tasha),this.handleButtonTwo()}}></ButtonRed>}
-                    {this.state.buttonBackgroundAnnika ? 
-                        <ButtonWhite onClick={()=>{this.wiggle(),this.updateReviewie(annika),this.handleButtonThree()}}></ButtonWhite>:
-                        <ButtonRed onClick={()=>{this.wiggle(),this.updateReviewie(tasha),this.handleButtonThree()}}></ButtonRed>}
-                </ButtonBody>
-            </AvatarContainer>
-        </ReviewsContainer>
-        )
+      let tempTashaReview = shiftLeft(this.state.tashaReviewPosition)
+      let tempBradReview = shiftLeft(this.state.bradReviewPosition)
+      let tempAnnikaReview = shiftLeft(this.state.annikaReviewPosition)
+      this.setState({
+        tashaPosition: tempTasha,
+        bradPosition: tempBrad,
+        annikaPosition: tempAnnika,
+        animateSlideTasha: animateImagesRightKey[tempAnnika],
+        animateSlideBrad: animateImagesRightKey[tempTasha],
+        animateSlideAnnika: animateImagesRightKey[tempBrad],
+        tashaReviewPosition: tempTashaReview,
+        bradReviewPosition: tempBradReview,
+        annikaReviewPosition: tempAnnikaReview,
+        animateReviewTasha: animateReviewsLeftKey[tempAnnikaReview],
+        animateReviewBrad: animateReviewsLeftKey[tempTashaReview],
+        animateReviewAnnika: animateReviewsLeftKey[tempBradReview]
+      })
+    } else if (position === 2) {
+      let tempTasha = shiftLeft(this.state.tashaPosition)
+      let tempBrad = shiftLeft(this.state.bradPosition)
+      let tempAnnika = shiftLeft(this.state.annikaPosition)
+      let tempTashaReview = shiftRight(this.state.tashaReviewPosition)
+      let tempBradReview = shiftRight(this.state.bradReviewPosition)
+      let tempAnnikaReview = shiftRight(this.state.annikaReviewPosition)
+      this.setState({
+        tashaPosition: tempTasha,
+        bradPosition: tempBrad,
+        annikaPosition: tempAnnika,
+        animateSlideTasha: animateImagesLeftKey[tempBrad],
+        animateSlideBrad: animateImagesLeftKey[tempAnnika],
+        animateSlideAnnika: animateImagesLeftKey[tempTasha],
+        tashaReviewPosition: tempTashaReview,
+        bradReviewPosition: tempBradReview,
+        annikaReviewPosition: tempAnnikaReview,
+        animateReviewTasha: animateReviewsRightKey[tempBradReview],
+        animateReviewBrad: animateReviewsRightKey[tempAnnikaReview],
+        animateReviewAnnika: animateReviewsRightKey[tempTashaReview]
+      })
     }
   }
   render() {
     const { tasha, brad, annika, wiggle } = this.state
+    console.log(this.state)
+
     return (
       <ReviewsContainer onMouseEnter={() => this.mouseEnter()}>
         <ReviewTitle> Sweet Nothings </ReviewTitle>
         <ReviewMini> Some client love. </ReviewMini>
-        <ReviewText entered={this.state.animateCalled}>
-          {this.state.currentReviewie[1]}
-        </ReviewText>
+        <ReviewTextWrap entered={this.state.animateCalled}>
+          <ReviewTextTasha animate={this.state.animateReviewTasha}>
+            {this.state.tasha[1]}
+          </ReviewTextTasha>
+          <ReviewTextBrad animate={this.state.animateReviewBrad}>
+            {this.state.brad[1]}
+          </ReviewTextBrad>
+          <ReviewTextAnnika animate={this.state.animateReviewAnnika}>
+            {this.state.annika[1]}
+          </ReviewTextAnnika>
+        </ReviewTextWrap>
         <AvatarContainer>
           <ImageWormBody entered={this.state.animateCalled}>
             <Worm>
@@ -267,7 +259,6 @@ export default class Reviews extends Component {
                     this.updateReviewie(tasha),
                     this.handleButtonOne()
                 }}
-                className="avaTest1"
               />
             ) : (
               <ButtonRed
@@ -482,55 +473,54 @@ const TashaLoad = keyframes`
 100% { top:0px; left: calc(50% - 182px); opacity: 1;}
 `
 const ReviewTextWrap = styled.div`
-    font-size: 1.1rem;
-    font-weight:100;
-    line-height: 1.7rem;
-    padding-left:.8rem;
-    padding-right:.8rem;
-    position:relative;
-    display:block;
-    opacity:0;
-    animation:${props =>props.entered};
-    animation-duration:0.6s;
-    animation-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
-    animation-delay:0.2s;
-    animation-iteration-count:1;
-    animation-direction:initial;
-    animation-fill-mode:forwards;
-    animation-play-state:initial; 
-    height: 144px;
-    @media(min-width:768px){
-        line-height:2.3rem;
-    }
-    @media(min-width:1240px){
-        height: 240px;
-        font-size:1.8rem;
-        line-height:1.5;
-        font-weight:100; 
-        min-width:62%;
-        max-width: 700px;
-        margin:auto;
-    }
+  font-size: 1.1rem;
+  font-weight: 100;
+  line-height: 1.7rem;
+  padding-left: 0.8rem;
+  padding-right: 0.8rem;
+  position: relative;
+  display: block;
+  opacity: 0;
+  animation: ${props => props.entered};
+  animation-duration: 0.6s;
+  animation-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  animation-delay: 0.2s;
+  animation-iteration-count: 1;
+  animation-direction: initial;
+  animation-fill-mode: forwards;
+  animation-play-state: initial;
+  height: 144px;
+  @media (min-width: 768px) {
+    line-height: 2.3rem;
+  }
+  @media (min-width: 1240px) {
+    height: 240px;
+    font-size: 1.8rem;
+    line-height: 1.5;
+    font-weight: 100;
+    min-width: 62%;
+    max-width: 700px;
+    margin: auto;
+  }
 `
 const ReviewTextTasha = styled.div`
-    position: absolute;
-    opacity: 0;
-    animation: ${props =>props.animate} ease-in-out 1.2s 0s 1 forwards;
-    `
+  position: absolute;
+  opacity: 0;
+  animation: ${props => props.animate} ease-in-out 1.2s 0s 1 forwards;
+`
 const ReviewTextBrad = styled.div`
-    position: absolute;
-    opacity: 1;
-    animation: ${props =>props.animate} ease-in-out 1.2s 0s 1 forwards;
+  position: absolute;
+  opacity: 1;
+  animation: ${props => props.animate} ease-in-out 1.2s 0s 1 forwards;
 `
 const ReviewTextAnnika = styled.div`
-    position: absolute;
-    opacity: 0;
-    animation: ${props =>props.animate} ease-in-out 1.2s 0s 1 forwards;
-
+  position: absolute;
+  opacity: 0;
+  animation: ${props => props.animate} ease-in-out 1.2s 0s 1 forwards;
 `
 
-const AvatarContainer = styled.section `
-    margin-top:1px
+const AvatarContainer = styled.section`
+  margin-top: 1px;
 `
 const ImageWormBody = styled.section`
     padding-top:1.5rem;
