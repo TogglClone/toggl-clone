@@ -8,8 +8,8 @@ export const MiniIndCont = styled.div`
     border-top-right-radius: 3px;
     margin: 0rem 1.5rem 2rem 1.5rem;
     @media (min-width: 768px) {
-    width: 609px;
-    margin: 0rem auto 5rem auto;
+        width: 609px;
+        margin: 0rem auto 5rem auto;
     }
     @media(min-width: 1024px){
         display: none;
@@ -21,21 +21,34 @@ export const MiniColorCont = styled.div`
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
     width: 100%;
-    padding-top: 1rem;
     position: relative;
+    padding-top: 2rem;
+    @media(min-width: 480px){
+        padding-top: 3rem;
+    }
 }
 `
 
 export const MiniImgCont = styled.div`
+    height: 36vw;
+    position: relative;
+    margin-bottom: 3rem;
     @media(min-width: 415px){
         width: 100%;
-        height: 45vw;
+        position: relative;
+        margin-bottom: 2rem;
     }
     @media(min-width: 480px){
-        height: 100%;
+        height: 190px;
+        margin-bottom: 0.5rem;
     }
 }`
-
+export const MiniPeriscope = styled.div`
+    position: absolute;
+    width: 250px;
+    height: 9.2rem;
+    left: calc(50% - 125px);
+`
 
 export const MiniImg = styled.div`
     background-image: url(${props => props.backgroundUrl});
@@ -44,21 +57,20 @@ export const MiniImg = styled.div`
     background-position: center center;
     height: 9.2rem;
     width: auto;
-    margin-top: 1.2rem;
-    margin-bottom: 2rem;
+    // margin-bottom: 2rem;
     z-index: 3;
     position: relative;
     @media(min-width: 415px){
-        margin-top: 7%;
-        margin-bottom: 1.2rem;
+        // margin-top: 7%;
+        // margin-bottom: 1.2rem;
     }
     @media(min-width: 480px){
-        margin-top: 2rem;
-        margin-bottom: 3.5rem;;
+        // margin-top: 2rem;
+        // margin-bottom: 3.5rem;
     }
     @media(min-width: 768px){
-        margin-top: 2rem;
-        margin-bottom: 3rem;
+        // margin-top: 2rem;
+        // margin-bottom: 3rem;
     }
 `
 export const MiniEyeBall = styled.div`
@@ -71,13 +83,14 @@ export const MiniEyeBall = styled.div`
     z-index: 1;
     height: 38px;
     width: 37px;
-    top: 10%;
-    left: 43%;
+    top: 4%;
+    left: 31%;
     @media(min-width: 768px){
-        top: 10%;
-        left: 42%;
+        top: 5%;
+        left: 31%;
     }
 `
+
 export const MiniPupilWrap = styled.div`
     background: transparent;
     border-radius: 50%;
@@ -86,12 +99,18 @@ export const MiniPupilWrap = styled.div`
     z-index: 2;
     height: 38px;
     width: 37px;
-    top: 10%;
-    left: 43%;
+    top: 4%;
+    left: 31%;
     @media(min-width: 768px){
-        top: 10%;
-        left: 42%;
+        top: 5%;
+        left: 31%;
     }
+`
+const AlternatePupil = keyframes`
+    0%{ transform: translate(0px, 0);}
+    10%{ transform: translate(17px, 0);}
+    20%{ transform: translate(0px, 0);}
+    100%{ transform: translate(0px, 0);}
 `
 export const MiniPupil = styled.div`
     background-image: url(${pupil});
@@ -102,14 +121,13 @@ export const MiniPupil = styled.div`
     height: 16px;
     width: 16px;
     position: absolute;
-    top: calc(36%);
-    left: calc(6%);
-    transform: translate(${props => props.left}px);
-    transform-duration:  2s;
+    top: calc(30%);
+    left: calc(5%);
+    animation: ${AlternatePupil} ease-in-out 6s 2s infinite forwards;
 
 `
 export const MiniTextCont = styled.div`
-    position: relative;
+    // position: block;
     background: white;
     padding: 1.8rem 3.5rem 2rem 2.5rem;
     width: 100% -2rem;
@@ -117,6 +135,8 @@ export const MiniTextCont = styled.div`
     box-sizing: border-box;
     top: 0px;
     left: 0px;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
 `
 const moveUp = keyframes`
     0% { top: 70px; opacity: 0; }
@@ -154,5 +174,6 @@ export const MiniDesc = styled.h3`
 `
 export const MiniButton = styled.div`
     text-align: center;
-    widrth: 100%;
+    width: 100%;
+    margin-bottom: .4rem;
 `
