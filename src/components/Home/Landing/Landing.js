@@ -168,7 +168,10 @@ class Landing extends Component {
                 </svg>
               </Logo>
             </Link>
-            <BurgerContainer onClick={_ => this.burgerToggle()}>
+            <BurgerContainer
+              onClick={_ => this.burgerToggle()}
+              className="burgerTest"
+            >
               <div style={this.state.clicked ? Clicked1 : Burger1} />
               <div style={this.state.clicked ? Clicked2 : Burger2} />
             </BurgerContainer>
@@ -299,7 +302,9 @@ class Landing extends Component {
               />
             </VideoContainer>
             <ButtonContain>
-              <Button type="pink">Get Started</Button>
+              <Button type="pink" className="pinky">
+                Get Started
+              </Button>
             </ButtonContain>
             {/* <video src="">VID</video>
             <video src="">VDI</video> */}
@@ -324,12 +329,98 @@ class Landing extends Component {
             </LoginCont>
             <BottomLoginSvg />
             <SignUp>
+              <SignUpLineAboveBurger
+                xmlns="http://www.w3.org/2000/svg"
+                width="52.5"
+                height="33.4"
+                viewBox="0 0 52.5 33.4"
+              >
+                <path
+                  class="sign-up-line sign-up-line--4"
+                  d="M6,18-2.3-.4"
+                  transform="translate(4.3 13.4)"
+                  style={{
+                    strokeLinecap: "round",
+                    strokeMiterlimit: "10",
+                    strokeDashoffset: "0px"
+                  }}
+                  fill="black"
+                  strokeWidth="5"
+                />
+                <path
+                  class="sign-up-line sign-up-line--5"
+                  d="M22,16.1V-11.4"
+                  transform="translate(4.3 13.4)"
+                  style={{
+                    strokeLinecap: "round",
+                    strokeMiterlimit: "10",
+                    strokeDashoffset: "0px"
+                  }}
+                  fill="black"
+                  strokeWidth="5"
+                />
+                <path
+                  class="sign-up-line sign-up-line--6"
+                  d="M37.9,18,46.2-1.4"
+                  transform="translate(4.3 13.4)"
+                  style={{
+                    strokeLinecap: "round",
+                    strokeMiterlimit: "10",
+                    strokeDashoffset: "0px"
+                  }}
+                  fill="black"
+                  strokeWidth="5"
+                />
+              </SignUpLineAboveBurger>
               <LoginCont
                 href={process.env.REACT_APP_LOGIN}
                 className="login-font"
               >
                 Sign Up
               </LoginCont>
+              <SignUpLineBelowBurger
+                xmlns="http://www.w3.org/2000/svg"
+                width="52.5"
+                height="33.4"
+                viewBox="0 0 52.5 33.4"
+              >
+                <path
+                  class="sign-up-line sign-up-line--4"
+                  d="M6,18-2.3-.4"
+                  transform="translate(4.3 13.4)"
+                  style={{
+                    strokeLinecap: "round",
+                    strokeMiterlimit: "10",
+                    strokeDashoffset: "0px"
+                  }}
+                  fill="black"
+                  strokeWidth="5"
+                />
+                <path
+                  class="sign-up-line sign-up-line--5"
+                  d="M22,16.1V-11.4"
+                  transform="translate(4.3 13.4)"
+                  style={{
+                    strokeLinecap: "round",
+                    strokeMiterlimit: "10",
+                    strokeDashoffset: "0px"
+                  }}
+                  fill="black"
+                  strokeWidth="5"
+                />
+                <path
+                  class="sign-up-line sign-up-line--6"
+                  d="M37.9,18,46.2-1.4"
+                  transform="translate(4.3 13.4)"
+                  style={{
+                    strokeLinecap: "round",
+                    strokeMiterlimit: "10",
+                    strokeDashoffset: "0px"
+                  }}
+                  fill="black"
+                  strokeWidth="5"
+                />
+              </SignUpLineBelowBurger>
             </SignUp>
             <NavButtonContainer>
               <Button type="white">DOWNLOAD THE APP</Button>
@@ -347,14 +438,14 @@ export default Landing
 
 const BurgerWrapper = styled.section`
   background: white;
-  font-weight: 700;
-  font-size: 1.25rem;
-  margin-top: 4rem;
+  font-weight: 500;
+  font-size: 21px;
   letter-spacing: -0.02rem;
   line-height: 3.16;
   text-decoration: none;
   display: ${props => props.displayNav};
-  padding: 4.7rem;
+  padding: 2rem 8.5rem;
+  line-height: 66px;
 `
 
 const arrowanim = keyframes`
@@ -407,6 +498,9 @@ const ButtonContain = styled.section`
 const NavButtonContainer = styled.section`
   display: flex;
   justify-content: center;
+  position: absolute;
+  bottom: 4.5rem;
+  left: 19%;
 `
 
 const BurgerNav = styled.nav`
@@ -572,7 +666,7 @@ const TitleText = styled.h1`
   @media (min-width: 1240px) {
     font-size: 52px;
     padding: 0px 24%;
-    line-height: 4.25rem;
+    line-height: 1;
     margin-top: 1rem;
   }
   @media (min-width: 1537px) {
@@ -746,5 +840,31 @@ const SignUpLineBelow = styled.svg`
   @media (min-width: 1240px) {
     width: 1.2rem;
     transform: translateX(-2.4rem) translateY(0.8rem) rotate(180deg);
+  }
+`
+
+const SignUpLineBelowBurger = styled.svg`
+  stroke: red;
+  position: absolute;
+  bottom: 11.5rem;
+  left: 12.75rem;
+  width: 1.75rem;
+  transform: translateX(-2rem) translateY(0.4rem) rotate(180deg);
+  @media (min-width: 1240px) {
+    width: 1.2rem;
+    transform: translateX(-2.4rem) translateY(0.8rem) rotate(180deg);
+  }
+`
+
+const SignUpLineAboveBurger = styled.svg`
+  stroke: red;
+  position: absolute;
+  bottom: 14rem;
+  left: 12.75rem;
+  width: 1.75rem;
+  transform: translateX(-2rem) translateY(-1.5rem);
+  @media (min-width: 1240px) {
+    width: 1.2rem;
+    transform: translateX(-2.4rem) translateY(-1.5rem);
   }
 `
