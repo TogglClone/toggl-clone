@@ -686,6 +686,7 @@ const Ptag = styled.p`
   margin-top: 1rem;
   line-height: 1.52;
   z-index: 5;
+  padding: 0 4rem;
   letter-spacing: -0.4px;
   position: relative;
   -webkit-font-smoothing: antialiased;
