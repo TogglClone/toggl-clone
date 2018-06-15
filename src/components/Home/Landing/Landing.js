@@ -284,6 +284,7 @@ class Landing extends Component {
                 transform={this.state.hatdog.trans}
                 opac={this.state.hatdog.opac}
                 autoPlay
+                muted
                 loop
               />
               <VideoSize1
@@ -291,6 +292,7 @@ class Landing extends Component {
                 transform={this.state.robot.trans}
                 opac={this.state.robot.opac}
                 autoPlay
+                muted
                 loop
               />
               <VideoSize2
@@ -298,6 +300,7 @@ class Landing extends Component {
                 transform={this.state.piggy.trans}
                 opac={this.state.piggy.opac}
                 autoPlay
+                muted
                 loop
               />
             </VideoContainer>
