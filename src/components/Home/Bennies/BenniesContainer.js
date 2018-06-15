@@ -7,7 +7,7 @@ import img2 from "./img/img2.png"
 import img3 from "./img/img3.png"
 
 import { MiniIndCont, MiniColorCont, MiniImgCont, MiniPeriscope, MiniImg, MiniEyeBall, MiniPupilWrap, MiniPupil, MiniTextCont, MiniContentCont, MiniSubtitle, MiniTitle, MiniDesc, MiniButton } from "./BenniesUnder1024"
-import { BigIndCont, BigColorCont, BigImgCont, ImagePeriscope, BigImg, BigEyeBall, BigPupilWrap, BigPupil, BigTextCont, AnimationWrapper, SvgContainer, BigContentCont, BigSubtitle, BigTitle, BigDesc, BigButton} from "./BenniesOver1023"
+import { BigIndCont, BigColorCont, BigImgCont, ImagePeriscope, BigImg, BigEyeBall, BigPupilWrap, BigPupil, BigTextCont, AnimationWrapper, SvgContainer, BigContentCont, BigSubtitle, BigTitle, BigDesc, BigButton, AlternatePupil} from "./BenniesOver1023"
 
 export default class BenniesContainer extends Component {
     constructor(){
@@ -35,7 +35,8 @@ export default class BenniesContainer extends Component {
             topCurve: 175, //even is 250
             bottomCurve: 675, //even is 750
             animateCalled: [false, false, false, false],
-            intervalFn: null
+            intervalFn: null,
+            bigAnimation: `${AlternatePupil} ease-in-out 6s 2s infinite forwards`
         }
         this.animateBox = this.animateBox.bind( this )
     }
@@ -65,29 +66,29 @@ export default class BenniesContainer extends Component {
       }
     }
     _onMouseMove(e) {
-      console.log(e.screenX);
       
         let tempY = e.screenY
         let tempX = e.screenX
         tempY -= 223 // gives range from 0 to 600
         tempX -= (e.view.innerWidth) // gives range from 0 to innerwidth including the side width on the timer bar
-        console.log(tempX)
         
         tempY = (tempY / 320 * 35)
         tempX = (tempX / (e.view.innerWidth/2) * 32) + 32
       // top 223 bottom 822 left 1717 right 3136
 
       //max up 47 max down 47 max left 40 max right 40
-      this.setState({ x: tempX, y: tempY });
+      this.setState({ x: tempX, y: tempY, bigAnimation: "none" });
     }
     
     _onMouseLeave(){
       this.setState({
           x: -15,
-          y: 0
+          y: 0,
+          bigAnimation: `${AlternatePupil} ease-in-out 6s 2s infinite forwards`
       })
   }
   render() {
+    console.log(this.state)
     const { version } = this.props
     const { x, y, x2 } = this.state
     var pathD = `M0 250 C 250 ${
@@ -141,7 +142,7 @@ export default class BenniesContainer extends Component {
                           </BigImg>
                           <BigEyeBall/>
                           <BigPupilWrap>
-                            <BigPupil top={y} left={x}/>
+                            <BigPupil animashe={this.state.bigAnimation} top={y} left={x}/>
                           </BigPupilWrap>
                         </ImagePeriscope>
                         ) :

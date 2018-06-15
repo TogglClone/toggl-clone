@@ -112,6 +112,21 @@ export const BigPupilWrap = styled.div`
         width: 65px;
     }
 `
+
+export const AlternateLilPupil = keyframes`
+    0%{ transform: translate(0px, 0);}
+    10%{ transform: translate(17px, 0);}
+    20%{ transform: translate(0px, 0);}
+    100%{ transform: translate(0px, 0);}
+`
+
+export const AlternatePupil = keyframes`
+    0%{ transform: translate(-14px, 0);}
+    10%{ transform: translate(17px, 0);}
+    20%{ transform: translate(-14px, 0);}
+    100%{ transform: translate(-14px, 0);}
+`
+
 export const BigPupil = styled.div`
 background-image: url(${pupil});
 background-size: contain;
@@ -122,7 +137,9 @@ position: absolute;
 top: calc(50% - 10px);
 left: calc(50% - 18px);
 z-index: 3;
-    @media(min-width: 1240px){
+animation: ${AlternateLilPupil} ease-in-out 6s 2s infinite forwards;
+@media(min-width: 1240px){
+        animation: ${props => props.animashe};
         border-radius: 50%;
         background-image: url(${pupil});
         background-size: contain;
