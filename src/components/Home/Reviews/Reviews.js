@@ -4,7 +4,6 @@ import annika from "./img/annika.jpg"
 import brad from "./img/brad.jpg"
 import tasha from "./img/tasha.jpg"
 import background from "./img/bg.png"
-import { loadavg } from "os";
 export default class Reviews extends Component {
     constructor(){
         super();
@@ -196,7 +195,8 @@ export default class Reviews extends Component {
         </ReviewsContainer>
         )
     }
-  }
+}
+
 //  ↓↓↓↓↓  STYLES  ↓↓↓↓↓↓↓
 const dash = keyframes`
         from {
