@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import styled, { keyframes } from "styled-components"
+import styled from "styled-components"
 
 export default class Button extends Component {
   render() {
@@ -52,25 +52,29 @@ let BtnBase = styled.button`
   fill: white;
 `
 let LeftArrowContainer = styled.section`
-opacity: 0;
-transition: transform .5s cubic-bezier(.645,.045,.355,1), opacity .5s cubic-bezier(.645,.045,.355,1), margin-left .5s cubic-bezier(.645,.045,.355,1);
-transition-delay: .2s;
-transform: scaleY(0) translateX(0);
-${BtnBase}:hover & {
-  transform: scaleY(1);
-  opacity: 1;
-  margin-left: 1.3rem;
-}
+  opacity: 0;
+  transition: transform 0.5s cubic-bezier(0.645, 0.045, 0.355, 1),
+    opacity 0.5s cubic-bezier(0.645, 0.045, 0.355, 1),
+    margin-left 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition-delay: 0.2s;
+  transform: scaleY(0) translateX(0);
+  ${BtnBase}:hover & {
+    transform: scaleY(1);
+    opacity: 1;
+    margin-left: 1.3rem;
+  }
 `
 let RightArrowContainer = styled.section`
-margin-right: 1.3rem;
-transition: transform .5s cubic-bezier(.645,.045,.355,1), opacity .5s cubic-bezier(.645,.045,.355,1), margin-right .5s cubic-bezier(.645,.045,.355,1) ;
-transition-delay: .2s;
-${BtnBase}:hover & {
-  transform: scaleY(0);
-  opacity: 0;
-  margin-right: 0;
-}
+  margin-right: 1.3rem;
+  transition: transform 0.5s cubic-bezier(0.645, 0.045, 0.355, 1),
+    opacity 0.5s cubic-bezier(0.645, 0.045, 0.355, 1),
+    margin-right 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition-delay: 0.2s;
+  ${BtnBase}:hover & {
+    transform: scaleY(0);
+    opacity: 0;
+    margin-right: 0;
+  }
 `
 
 let leftArrow = {
