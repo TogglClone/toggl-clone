@@ -1,9 +1,10 @@
 import React, { Component } from "react"
-import styled, { keyframes } from "styled-components"
+import styled,{keyframes} from "styled-components"
 import annika from "./img/annika.jpg"
 import brad from "./img/brad.jpg"
 import tasha from "./img/tasha.jpg"
 import background from "./img/bg.png"
+import { loadavg } from "os";
 export default class Reviews extends Component {
     constructor(){
         super();
@@ -172,23 +173,23 @@ export default class Reviews extends Component {
             <AvatarContainer>
                 <ImageWormBody entered ={this.state.animateCalled}>
                     <Worm ><Crypto wiggle={wiggle} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45.8 69.6"><path d="M23.5 68.1V63a5.6 5.6 0 0 1 5.6-5.6h1a5.6 5.6 0 0 0 5.6-5.6 5.6 5.6 0 0 0-5.6-5.6h-13a5.6 5.6 0 0 1-5.6-5.6 5.6 5.6 0 0 1 5.6-5.6h21.5a5.6 5.6 0 0 0 5.6-5.6 5.6 5.6 0 0 0-5.6-5.6H7.1a5.6 5.6 0 0 1-5.6-5.6 5.6 5.6 0 0 1 5.6-5.6h10.8A5.6 5.6 0 0 0 23.5 7V1.8" fill="none" stroke="#ffacba" stroke-linecap="round" stroke-miterlimit="10" stroke-width="3" ></path></Crypto></Worm>
-                    <ImageContainer entered ={this.state.animateCalled} > 
+                    <ImageContainer > 
                         <Image src={this.state.currentReviewie[0]}alt="current"/>
-                        <Tasha entered ={this.state.animateCalledTasha} slide={this.state.animateSlideTasha} onClick={()=>{this.wiggle(),this.updateReviewie(tasha),this.handleReviewPosition(this.state.tashaPosition)}} image={tasha[0]} ></Tasha>
-                        <Brad entered ={this.state.animateCalledBrad} slide={this.state.animateSlideBrad} onClick={()=>{this.wiggle(),this.updateReviewie(brad),this.handleReviewPosition(this.state.bradPosition)}} image={brad[0]}></Brad>
-                        <Annika entered ={this.state.animateCalledAnnika} slide={this.state.animateSlideAnnika} onClick={()=>{this.wiggle(),this.updateReviewie(annika),this.handleReviewPosition(this.state.annikaPosition)}} image={annika[0]}></Annika>
+                        <Tasha review={tasha[1]} entered ={this.state.animateCalledTasha} slide={this.state.animateSlideTasha} onClick={()=>{this.wiggle(),this.updateReviewie(tasha),this.handleReviewPosition(this.state.tashaPosition)}} image={tasha[0]} ></Tasha>
+                        <Brad review={brad[1]} entered ={this.state.animateCalledBrad} slide={this.state.animateSlideBrad} onClick={()=>{this.wiggle(),this.updateReviewie(brad),this.handleReviewPosition(this.state.bradPosition)}} image={brad[0]}></Brad>
+                        <Annika review={annika[1]} entered ={this.state.animateCalledAnnika} slide={this.state.animateSlideAnnika} onClick={()=>{this.wiggle(),this.updateReviewie(annika),this.handleReviewPosition(this.state.annikaPosition)}} image={annika[0]}></Annika>
                     </ImageContainer>
                 </ImageWormBody>
         
              <ButtonBody>
                     {this.state.buttonBackgroundTasha ? 
-                        <ButtonWhite onClick={()=>{this.wiggle(),this.updateReviewie(tasha),this.handleButtonOne()}}></ButtonWhite>:
+                        <ButtonWhite review={tasha[1]} entered ={this.state.animateCalledTasha} slide={this.state.animateSlideTasha} onClick={()=>{this.handleReviewPosition(this.state.tashaPosition),this.wiggle(),this.updateReviewie(tasha),this.handleButtonOne()}}></ButtonWhite>:
                         <ButtonRed onClick={()=>{this.wiggle(),this.updateReviewie(tasha),this.handleButtonOne()}}></ButtonRed>}
                     {this.state.buttonBackgroundBrad ? 
-                        <ButtonWhite onClick={()=>{this.wiggle(),this.updateReviewie(brad),this.handleButtonTwo()}}></ButtonWhite>:
+                        <ButtonWhite review={brad[1]} entered ={this.state.animateCalledBrad} slide={this.state.animateSlideBrad} onClick={()=>{this.handleReviewPosition(this.state.bradPosition),this.wiggle(),this.updateReviewie(brad),this.handleButtonTwo()}}></ButtonWhite>:
                         <ButtonRed onClick={()=>{this.wiggle(),this.updateReviewie(tasha),this.handleButtonTwo()}}></ButtonRed>}
                     {this.state.buttonBackgroundAnnika ? 
-                        <ButtonWhite onClick={()=>{this.wiggle(),this.updateReviewie(annika),this.handleButtonThree()}}></ButtonWhite>:
+                        <ButtonWhite review={annika[1]} entered ={this.state.animateCalledAnnika} slide={this.state.animateSlideAnnika} onClick={()=>{this.handleReviewPosition(this.state.annikaPosition),this.wiggle(),this.updateReviewie(annika),this.handleButtonThree()}}></ButtonWhite>:
                         <ButtonRed onClick={()=>{this.wiggle(),this.updateReviewie(tasha),this.handleButtonThree()}}></ButtonRed>}
                 </ButtonBody>
             </AvatarContainer>
@@ -197,8 +198,9 @@ export default class Reviews extends Component {
     }
 }
 
+
 //  ↓↓↓↓↓  STYLES  ↓↓↓↓↓↓↓
-const dash = keyframes`
+const dash = keyframes `
         from {
           stroke-dashoffset: -800;
         }
@@ -207,12 +209,12 @@ const dash = keyframes`
           stroke-dashoffset: 0;
       }
     `
-const Crypto = styled.svg`
+const Crypto =styled.svg `
     fill: white;
     stroke: black;
     stroke-dasharray: 800;
     repeat:2;
-    animation: ${props => props.wiggle};
+    animation: ${props=>props.wiggle};
     animation-duration: 2s;
     animation-timing-function: ease-in-out;
     // animation-iteration-count: 2;
@@ -224,56 +226,58 @@ const Crypto = styled.svg`
   
 `
 const ReviewsContainer = styled.div`
-  width: 100% -4rem;
-  background-color: #feeede;
-  background-image: url(${background});
-  background-repeat: repeat;
-  padding: 3rem 2rem 0 2rem;
-  position: relative;
-  @media (min-width: 1240px) {
-    padding-bottom: 15rem;
-    padding-top: 8.5rem;
-    padding-left: 280px;
-    padding-right: 280px;
-  }
-  @media (min-width: 768px) {
-    padding-top: 5.5rem;
-    padding-bottom: 5.5rem;
-    padding-left: 80px;
-    padding-right: 80px;
-  }
-  @media (min-width: 1024px) {
-    padding-left: 200px;
-    padding-right: 200px;
-    padding-bottom: 12rem;
-  }
+    width: 100% -4rem;
+    background-color:#FEEEDE;
+    background-image: url(${background});
+    background-repeat: repeat;
+    padding: 3rem 2rem 0 2rem;
+    position: relative;
+    @media(min-width:1240px){
+        padding-bottom:15rem;
+        padding-top:8.5rem;
+        padding-left:280px;
+        padding-right:280px;
+        height: auto;
+    }
+    @media(min-width:768px){
+        padding-top:5.5rem;
+        padding-bottom:5.5rem;
+        padding-left:80px;
+        padding-right:80px;
+        height: auto;
+    }
+    @media(min-width:1024px){
+        padding-left:200px;
+        padding-right:200px;
+        padding-bottom: 12rem;
+    }
 `
 const ReviewTitle = styled.h1`
-  font-size: 1.75rem;
-  line-height: 2rem;
-  @media (min-width: 1240px) {
-    font-size: 3.4rem;
-    line-height: 1.03;
-    font-weight: 900;
-    margin-bottom: 0.5rem;
-    margin-top: 6rem;
-  }
+    font-size: 1.75rem; 
+    line-height: 2rem;
+    @media(min-width:1240px){
+        font-size:3.4rem;
+        line-height:1.03;
+        font-weight:900;
+        margin-bottom:.5rem;
+        margin-top:6rem
+    }
 `
 const ReviewMini = styled.h2`
-  font-size: 0.75rem;
-  margin-bottom: 1.5em;
-  margin-top: 0;
-  line-height: 1.71;
-  letter-spacing: -0.02em;
-  @media (min-width: 768px) {
-    font-size: 0.85rem;
-  }
-  @media (min-width: 1240px) {
-    font-size: 1.2rem;
-    line-height: 2rem;
-    margin-bottom: 5.5rem;
-    font-weight: 100;
-  }
+    font-size: .75rem;
+    margin-bottom: 1.5em;
+    margin-top:0;
+    line-height:1.71;
+    letter-spacing:-.02em;
+    @media(min-width:768px){
+        font-size: .85rem;
+    }
+    @media(min-width:1240px){
+        font-size:1.2rem;
+        line-height:2rem;
+        margin-bottom:5.5rem;
+        font-weight:100;
+    }
 `
 const ShiftReviewsLeftPosition0 = keyframes`
 0%{opacity: 0; transform: translate(-50px, 0);}
@@ -342,7 +346,11 @@ const ShiftImagesRightPosition2 = keyframes`
 75%{left: calc(50% - 182px); opacity: 1;}
 100%{left: calc(50% - 182px); opacity: 1;}
 `
-
+// --------------------------------------------- OVER HERE
+const Review = keyframes`
+0%{left: calc(50% + 118px); opacity: 0;}
+100%{left: calc(50% - 182px); opacity: 1;}
+`
 const TopBounceIn = keyframes`
 0% { top: 100px; opacity: 0; }
 100% { top:0px; opacity: 1;}
@@ -362,13 +370,14 @@ const TashaLoad = keyframes`
 const ReviewTextWrap = styled.div`
     font-size: 1.1rem;
     font-weight:100;
+    height: 250px;
     line-height: 1.7rem;
     padding-left:.8rem;
     padding-right:.8rem;
     position:relative;
     display:block;
     opacity:0;
-    animation:${props =>props.entered};
+    animation:${props =>props.entered}
     animation-duration:0.6s;
     animation-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
     animation-delay:0.2s;
@@ -376,7 +385,6 @@ const ReviewTextWrap = styled.div`
     animation-direction:initial;
     animation-fill-mode:forwards;
     animation-play-state:initial; 
-    height: 144px;
     @media(min-width:768px){
         line-height:2.3rem;
     }
@@ -414,7 +422,7 @@ const ImageWormBody = styled.section`
     padding-top:1.5rem;
     position:relative;
     // opacity:0;
-    // animation:${props => props.entered};
+    // animation:${props =>props.entered};
     // animation-duration:0.6s;
     // animation-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
     // animation-delay:1.2s;
@@ -424,78 +432,74 @@ const ImageWormBody = styled.section`
     // animation-play-state:initial; 
 `
 const Worm = styled.section`
-  height: 4.7rem;
-  margin-left: auto;
-  margin-right: auto;
-  width: 3.3rem;
-  animation: ${props => props.entered};
-  animation-duration: 0.6s;
-  animation-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
-  animation-delay: 0;
-  animation-iteration-count: 1;
-  animation-direction: initial;
-  animation-fill-mode: forwards;
-  animation-play-state: initial;
+    height:4.7rem;
+    margin-left:auto;
+    margin-right:auto;
+    width:3.3rem;
+    animation:${props =>props.entered};
+    animation-duration:0.6s;
+    animation-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+    animation-delay:0;
+    animation-iteration-count:1;
+    animation-direction:initial;
+    animation-fill-mode:forwards;
+    animation-play-state:initial; 
 `
 const ImageContainer = styled.section`
-  margin-top: 2rem;
-  position: relative;
-  height: 80px;
-  width: 100%;
+    margin-top:2rem;
+    position: relative;
+    height: 80px;
+    width: 100%;
+   
 `
 const Image = styled.img`
-  height: 65px;
-  width: 65px;
-  border-radius: 50%;
-  cursor: pointer;
-  @media (min-width: 768px) {
-    display: none;
-  }
-`
-const Tasha = styled.button`
-  height: 65px;
-  width: 65px;
-  border-radius: 50%;
-  cursor: pointer;
-  background-image: url(${props => props.image});
-  background-size: contain;
-  outline: none;
-  position: absolute;
-  border: none;
-  display: none;
-  top: 0px;
-  left: calc(50% - 182px);
-  opacity: 1;
-  animation: ${props => props.entered} cubic-bezier(0.455, 0.03, 0.515, 0.955)
-      0.6s 1s 1 forwards,
-    ${props => props.slide} cubic-bezier(0.455, 0.03, 0.515, 0.955) 1.2s 0s 1
-      forwards;
-  // animation-duration:0.6s;
-  // animation-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
-  // animation-delay:1s;
-  // animation-iteration-count:1;
-  // animation-direction:initial;
-  // animation-fill-mode:forwards;
-  // animation-play-state:initial;
-  opacity: 0;
-  @media (min-width: 768px) {
-    display: inline-block;
-  }
-`
-const Brad = styled.button`
     height:65px;
     width:65px;
     border-radius:50%;
     cursor:pointer;
-    background-image:url(${props => props.image});
+    @media(min-width: 768px){
+        display:none
+    }
+`
+const Tasha = styled.button`
+    height:65px;
+    width:65px;
+    border-radius:50%;
+    cursor:pointer;
+    background-image:url(${props=>props.image});
+    background-size:contain;
+    outline:none;
+    position:absolute;
+    border:none;
+    display:none;
+    top: 0px; 
+    left: calc(50% - 182px); 
+    opacity: 1;
+    animation:${props =>props.entered} cubic-bezier(0.455, 0.03, 0.515, 0.955) .6s 1s 1 forwards, ${props => props.slide} cubic-bezier(0.455, 0.03, 0.515, 0.955) 1.2s 0s 1 forwards;
+    // animation-duration:0.6s;
+    // animation-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+    // animation-delay:1s;
+    // animation-iteration-count:1;
+    // animation-direction:initial;
+    // animation-fill-mode:forwards;
+    // animation-play-state:initial; 
+    opacity:0;
+    @media(min-width: 768px){
+        display:inline-block;
+    }
+`
+const Brad  = styled.button`
+    height:65px;
+    width:65px;
+    border-radius:50%;
+    cursor:pointer;
+    background-image:url(${props=>props.image});
     background-size:contain
     outline:none;
     border:none;
     display:none;
     position:absolute;
-    animation:${props =>
-      props.entered} cubic-bezier(0.455, 0.03, 0.515, 0.955) .6s 1s 1 forwards, ${props =>
-  props.slide} cubic-bezier(0.455, 0.03, 0.515, 0.955) 1.2s 0s 1 forwards;
+    animation:${props =>props.entered} cubic-bezier(0.455, 0.03, 0.515, 0.955) .6s 1s 1 forwards, ${props => props.slide} cubic-bezier(0.455, 0.03, 0.515, 0.955) 1.2s 0s 1 forwards;
     // animation-duration:0.6s;
     // animation-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
     // animation-delay:1s;
@@ -509,59 +513,57 @@ const Brad = styled.button`
     
     }
 `
-const Annika = styled.button`
-  height: 65px;
-  width: 65px;
-  border-radius: 50%;
-  cursor: pointer;
-  background-image: url(${props => props.image});
-  background-size: contain;
-  outline: none;
-  position: absolute;
-  border: none;
-  display: none;
-  animation: ${props => props.entered} cubic-bezier(0.455, 0.03, 0.515, 0.955)
-      0.6s 1s 1 forwards,
-    ${props => props.slide} cubic-bezier(0.455, 0.03, 0.515, 0.955) 1.2s 0s 1
-      forwards;
-  // animation-duration:0.6s;
-  // animation-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
-  // animation-delay:1s;
-  // animation-iteration-count:1;
-  // animation-direction:initial;
-  // animation-fill-mode:forwards;
-  // animation-play-state:initial;
-  opacity: 0;
-  @media (min-width: 768px) {
-    display: inline-block;
-  }
+const Annika  = styled.button`
+    height:65px;
+    width:65px;
+    border-radius:50%;
+    cursor:pointer;
+    background-image:url(${props=>props.image});
+    background-size:contain;
+    outline:none;
+    position:absolute;
+    border:none;
+    display:none;
+    animation:${props =>props.entered} cubic-bezier(0.455, 0.03, 0.515, 0.955) .6s 1s 1 forwards, ${props => props.slide} cubic-bezier(0.455, 0.03, 0.515, 0.955) 1.2s 0s 1 forwards;
+    // animation-duration:0.6s;
+    // animation-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+    // animation-delay:1s;
+    // animation-iteration-count:1;
+    // animation-direction:initial;
+    // animation-fill-mode:forwards;
+    // animation-play-state:initial; 
+    opacity:0;
+    @media(min-width: 768px){
+        display:inline-block;
+    }
 `
 const ButtonBody = styled.section`
-  width: 100%;
-  height: 80px;
-  margin: auto;
-  padding-top: 80px;
-  display: flex;
-  justify-content: center;
-  @media (min-width: 768px) {
-    display: none;
-  }
+    width:100%;
+    height:80px;
+    margin-left:auto;
+    margin-right:auto;
+    padding-top:80px;
+    display: flex;
+    justify-content: center;
+    @media(min-width: 768px){
+        display:none
+    }
 `
 const ButtonWhite = styled.div`
-  border-radius: 50%;
-  height: 8px;
-  width: 8px;
-  cursor: pointer;
-  background-color: white;
-  margin-left: 2px;
-  margin-right: 2px;
+    border-radius:50%;
+    height: 8px;
+    width: 8px;
+    cursor: pointer;
+    background-color:white;
+    margin-left:2px;
+    margin-right:2px
 `
 const ButtonRed = styled.div`
-  border-radius: 50%;
-  height: 8px;
-  width: 8px;
-  cursor: pointer;
-  background-color: red;
-  margin-left: 2px;
-  margin-right: 2px;
+    border-radius:50%;
+    height: 8px;
+    width: 8px;
+    cursor: pointer;
+    background-color:red;
+    margin-left:2px;
+    margin-right:2px
 `

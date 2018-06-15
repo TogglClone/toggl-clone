@@ -1,16 +1,10 @@
-//person 3
+//person 3 b
 
 describe("my first test", () => {
   it("Visits home page", () => {
     cy.visit("http://localhost:3000/#/")
   })
 })
-//animate avatars
-// describe("Checks if avatar menu can slide and move properly", () => {
-//   it("Should animate properly.", () => {
-//     cy.get(".avaTest1").click({ force: true })
-//   })
-// })
 
 describe("finds bottom button", () => {
   it("Finds Bottom Button", () => {
@@ -65,7 +59,7 @@ describe("User Can properly Log out of the page ", () => {
   })
 })
 
-//person 2
+//person 2 nate
 
 describe("Expected timer page", () => {
   it("Visits timer page", () => {
